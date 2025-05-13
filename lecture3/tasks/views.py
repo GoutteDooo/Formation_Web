@@ -13,6 +13,8 @@ def index(request):
   })
 
 def add(request):
+  if request.method == "POST":
+    form = NewTaskForm(request.POST)
   return render(request, "tasks/add.html", {
     "form": NewTaskForm()
   })
