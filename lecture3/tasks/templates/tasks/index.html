@@ -7,8 +7,10 @@
 </head>
 <body>
   <h1>Tasks</h1>
-  {% for task in tasks %}
-    <p>{{ task }}</p>
-  {% endfor %}
+  <ul>
+    {% for task in tasks %}
+      <li>{{ task }}</li>
+    {% endfor %}
+  </ul>
 </body>
 </html>
