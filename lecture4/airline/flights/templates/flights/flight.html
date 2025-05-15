@@ -15,6 +15,8 @@
         <li>No passengers</li>
     {% endfor %}
   </ul>
+  <h2>Add Passenger</h2>
+  <form action="{% url 'flights:book' flight.id %}" method="post"></form>
 
   <a href="{% url 'flights:index' %}">Back to flights</a>
 {% endblock %}
