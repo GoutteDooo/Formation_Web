@@ -13,3 +13,6 @@ def flight(request, flight_id):
     })
 
 def book(request, flight_id):
+  if request.method == "POST":
+    flight = Flight.objects.get(pk=flight_id)
+    request.POST["passenger"]
