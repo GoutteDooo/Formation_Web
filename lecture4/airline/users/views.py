@@ -5,7 +5,7 @@ from django.urls import reverse
 # Create your views here.
 def index(request):
   if not request.user.is_authenticated:
-    return HttpResponseRedirect(reverse("users:login"))
+    return HttpResponseRedirect(reverse("users:login_view"))
 
 def login_view(request):
   return render(request, "users/login.html")
