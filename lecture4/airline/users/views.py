@@ -7,6 +7,7 @@ from django.urls import reverse
 def index(request):
   if not request.user.is_authenticated:
     return HttpResponseRedirect(reverse("users:login"))
+  return render(request, "users/user.html")
 
 def login_view(request):
   if request.method == "POST":
