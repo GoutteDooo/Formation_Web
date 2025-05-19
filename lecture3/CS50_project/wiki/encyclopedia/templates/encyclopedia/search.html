@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Search results for "{{ query }}"</h1>
-
-    <ul>
-        {% for entry in entries %}
-            <li><a href="{% url 'entry' entry %}">{{ entry }}</a></li>
-        {% endfor %}
-    </ul>
-
+    <h1>{{ message }}</h1>
+    
+    {% if entries %}
+        <ul>
+            {% for entry in entries %}
+                <li><a href="{% url 'entry' entry %}">{{ entry }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

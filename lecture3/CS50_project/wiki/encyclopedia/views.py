@@ -21,12 +21,26 @@ def entry(request, title):
     })
 
 def search(request):
-    query = request.GET.get("q")
+    query = request.GET.get("q", "")
+    if not query:
+        return render(request, "encyclopedia/search.html", {
+            "query": "",
+            "entries": [],
+            "message": "Please enter a search term"
+        })
+    
     entries = []
     for entry in util.list_entries():
         if query.lower() in entry.lower():
             entries.append(entry)
+    
+    if not entries:
+        message = f"No results found for '{query}'"
+    else:
+        message = f"Results for '{query}'"
+    
     return render(request, "encyclopedia/search.html", {
         "query": query,
-        "entries": entries
+        "entries": entries,
+        "message": message
     })
