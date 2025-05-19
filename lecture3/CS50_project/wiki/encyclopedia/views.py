@@ -10,6 +10,11 @@ def index(request):
 
 def entry(request, title):
     content = util.get_entry(title)
+    if content is None:
+        return render(request, "encyclopedia/page.html", {
+            "title": "No page here :(",
+            "content": "Page not found"
+        })
     return render(request, "encyclopedia/page.html", {
         "title": title,
         "content": content
