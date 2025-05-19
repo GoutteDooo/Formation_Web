@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block body %}
+{% if error %}
+    <p style="color: red;">Error: {{ error }}</p>
+{% endif %}
     <h1>Create New Page</h1>
     <form action="{% url 'save_new' %}" method="post">
         {% csrf_token %}

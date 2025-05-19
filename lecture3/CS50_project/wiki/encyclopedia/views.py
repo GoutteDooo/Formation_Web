@@ -51,6 +51,11 @@ def save_new(request):
     if request.method == "POST":
         title = request.POST.get("title")
         content = request.POST.get("content")
+        #Search if the entry already exists
+        if util.get_entry(title) is not None:
+            return render(request, "encyclopedia/new.html", {
+                "error": "Entry already exists"
+            })
         util.save_entry(title, content)
         return redirect('entry', title=title)
     return render(request, "encyclopedia/new.html")
