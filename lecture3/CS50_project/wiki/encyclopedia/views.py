@@ -23,7 +23,7 @@ def entry(request, title):
 def search(request):
     query = request.GET.get("q", "")
     if not query:
-        return redirect('search')
+        return redirect('index')
     
     entries = []
     for entry in util.list_entries():
@@ -34,8 +34,11 @@ def search(request):
         message = f"No results found for '{query}'"
     else:
         message = f"Results for '{query}'"
+
     if len(entries) == 1:
+        print(entries[0])
         return redirect('entry', title=entries[0])
+
     return render(request, "encyclopedia/search.html", {
         "query": query,
         "entries": entries,
