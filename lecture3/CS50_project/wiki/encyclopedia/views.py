@@ -34,7 +34,8 @@ def search(request):
         message = f"No results found for '{query}'"
     else:
         message = f"Results for '{query}'"
-    
+    if len(entries) == 1:
+        return redirect('entry', title=entries[0])
     return render(request, "encyclopedia/search.html", {
         "query": query,
         "entries": entries,
