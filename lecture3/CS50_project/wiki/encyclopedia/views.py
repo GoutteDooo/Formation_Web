@@ -35,8 +35,7 @@ def search(request):
     else:
         message = f"Results for '{query}'"
 
-    if len(entries) == 1:
-        print(entries[0])
+    if len(entries) == 1 and entries[0].lower() == query.lower():
         return redirect('entry', title=entries[0])
 
     return render(request, "encyclopedia/search.html", {
