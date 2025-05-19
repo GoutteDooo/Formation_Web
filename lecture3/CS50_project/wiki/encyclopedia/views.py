@@ -57,5 +57,6 @@ def save_new(request):
                 "error": "Entry already exists"
             })
         util.save_entry(title, content)
-        return redirect('entry', title=title)
-    return render(request, "encyclopedia/new.html")
+        return render(request, "encyclopedia/new.html", {
+            "message": "Page added successfully !"
+        })
