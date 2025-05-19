@@ -19,3 +19,8 @@ def entry(request, title):
         "title": title,
         "content": content
     })
+
+def search(request):
+    if request.method == "POST":
+        query = request.POST.get("q")
+        
