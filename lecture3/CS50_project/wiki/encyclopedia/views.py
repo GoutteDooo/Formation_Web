@@ -24,3 +24,6 @@ def search(request):
     if request.method == "POST":
         query = request.POST.get("q")
         print(query)
+    return render(request, "encyclopedia/search.html", {
+        "query": query
+    })
