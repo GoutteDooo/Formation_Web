@@ -6,7 +6,8 @@
 
 {% block body %}
     <h1>Create New Page</h1>
-    <form action="{% url 'save_new' %}">
+    <form action="{% url 'save_new' %}" method="post">
+        {% csrf_token %}
         <label for="title">Title:</label>
         <input type="text" name="title" placeholder="Title">
         <br>
