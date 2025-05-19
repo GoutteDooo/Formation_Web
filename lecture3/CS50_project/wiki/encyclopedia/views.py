@@ -21,5 +21,6 @@ def entry(request, title):
     })
 
 def search(request):
-    query = request.POST.get("q")
-    print(query)
+    if request.method == "POST":
+        query = request.POST.get("q")
+        print(query)
