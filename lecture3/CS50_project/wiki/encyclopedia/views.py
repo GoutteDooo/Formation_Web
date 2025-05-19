@@ -21,9 +21,12 @@ def entry(request, title):
     })
 
 def search(request):
-    if request.method == "POST":
-        query = request.POST.get("q")
-        print(query)
+    query = request.GET.get("q")
+    entries = []
+    for entry in util.list_entries():
+        if query.lower() in entry.lower():
+            entries.append(entry)
     return render(request, "encyclopedia/search.html", {
-        "query": query
+        "query": query,
+        "entries": entries
     })
