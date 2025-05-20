@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-import random
+from random import choice
 
 from . import util
 
