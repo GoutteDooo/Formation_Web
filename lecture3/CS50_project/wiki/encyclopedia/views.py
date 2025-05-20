@@ -17,9 +17,11 @@ def entry(request, title):
             "title": "No page here :(",
             "content": "Page not found"
         })
+    # Convertir le contenu Markdown en HTML
+    html_content = markdown2.markdown(content)
     return render(request, "encyclopedia/page.html", {
         "title": title,
-        "content": content
+        "content": html_content
     })
 
 def search(request):
