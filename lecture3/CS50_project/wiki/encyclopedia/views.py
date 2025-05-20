@@ -60,3 +60,6 @@ def save_new(request):
         return render(request, "encyclopedia/new.html", {
             "message": "Page added successfully !"
         })
+
+def edit(request):
+    
