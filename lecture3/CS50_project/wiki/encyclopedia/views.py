@@ -69,3 +69,5 @@ def edit(request):
         "content": content
     })
     
+def save_edit(request):
+    pass
