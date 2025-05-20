@@ -68,5 +68,8 @@ def edit(request, title):
         "content": content
     })
 
-def save_edit(request):
-    pass
+def save_edit(request, title):
+    if request.method == "POST":
+        content = request.POST.get("content")
+        util.save_entry(title, content)
+        return redirect('entry', title=title)
