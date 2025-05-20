@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from random import randint
+import markdown2
 
 from . import util
 
