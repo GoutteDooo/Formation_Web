@@ -62,4 +62,10 @@ def save_new(request):
         })
 
 def edit(request):
+    title = request.GET.get("title")
+    content = util.get_entry(title)
+    return render(request, "encyclopedia/edit.html", {
+        "title": title,
+        "content": content
+    })
     
