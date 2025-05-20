@@ -7,7 +7,6 @@
 
 {% block body %}
     <h1>{{ title }}</h1>
-    <div>{{ content }}</div>
-    "salut"|markdownify
+    <div>{{ content|markdownify }}</div>
     <a href="{% url 'edit' title %}">Edit</a>
 {% endblock %}
