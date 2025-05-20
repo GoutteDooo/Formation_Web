@@ -1,1 +1,1 @@
-CSS upgraded !!
+CSS extended !!
