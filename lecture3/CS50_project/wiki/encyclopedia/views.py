@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+import random
 
 from . import util
 
@@ -73,3 +74,8 @@ def save_edit(request, title):
         content = request.POST.get("content")
         util.save_entry(title, content)
         return redirect('entry', title=title)
+
+def random(request):
+    entries = util.list_entries()
+    random_entry = random.choice(entries)
+    return redirect('entry', title=random_entry)
