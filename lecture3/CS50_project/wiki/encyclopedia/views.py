@@ -61,7 +61,8 @@ def save_new(request):
             "message": "Page added successfully !"
         })
 
-def edit(request, title):
+def edit(request):
+    title = request.GET.get("title")
     content = util.get_entry(title)
     return render(request, "encyclopedia/edit.html", {
         "title": title,
