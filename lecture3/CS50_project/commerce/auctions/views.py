@@ -64,6 +64,13 @@ def register(request):
 
 def create_listing(request):
     if request.method == "POST":
-        pass
+        name = request.POST["name"]
+        description = request.POST["description"]
+        initial_price = request.POST["initial_price"]
+        picture_url = request.POST["picture_url"]
+        end_at = request.POST["end_at"]
+        owner_id = request.user
+        listing = Listing.objects.create(name=name, description=description, initial_price=initial_price, picture_url=picture_url, end_at=end_at, owner_id=owner_id)
+        return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/createListing.html")
