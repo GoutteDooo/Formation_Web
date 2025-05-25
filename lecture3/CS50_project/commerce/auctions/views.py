@@ -63,4 +63,7 @@ def register(request):
         return render(request, "auctions/register.html")
 
 def create_listing(request):
-    pass
+    if request.method == "POST":
+        pass
+    else:
+        return render(request, "auctions/createListing.html")
