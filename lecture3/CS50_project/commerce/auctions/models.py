@@ -11,9 +11,12 @@ class Listing(models.Model):
     picture_url = models.URLField()
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    end_at = models.DateTimeField()
     bids_count = models.IntegerField(default=0)
     last_bid_id = models.ForeignKey("Bid", on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f"{self.name}: ${self.last_bid_id.amount} - end at: {self.end_at}"
 
 class Bid(models.Model):
     listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="bids")
