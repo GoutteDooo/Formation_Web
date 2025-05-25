@@ -6,7 +6,11 @@
     
     <form action="{% url 'create_listing' %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="description" placeholder="Description">
+        <input type="number" name="initial_price" placeholder="Initial price">
+        <input type="url" name="picture_url" placeholder="Picture URL">
+        <input type="datetime-local" name="end_at" placeholder="End at">
         <button type="submit">Create Listing</button>
     </form>
 
