@@ -6,4 +6,5 @@ class User(AbstractUser):
     pass
 
 class Listing(models.Model):
-    id
+    name = models.CharField(max_length=64)
+    description = models.TextField()
