@@ -14,12 +14,12 @@
             <label for="picture_url">Select an image:</label> 
             <input type="file" id="picture_url" name="picture_url" accept="image/*"> 
             <select name="category" id="category">
-                <option value="" selected>Select a category</option>
+                <option value="" disabled>Select a category</option>
                 <option value="books">Books</option>
                 <option value="clothes">Clothes</option>
                 <option value="electronics">Electronics</option>
                 <option value="furniture">Furniture</option>
-                <option value="others">Others</option>
+                <option value="others" selected>Others</option>
             </select>
             <label for="end_at">End at:</label>
             <input type="date" name="end_at" placeholder="End at" value="{{ today }}" min="{{ today }}" max="2050-12-31" required>

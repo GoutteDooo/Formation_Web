@@ -75,7 +75,7 @@ def create_listing(request):
             "owner_id": request.user
         }
         for key, value in listing.items():
-            if not value and key != "picture_url" and key != "category":
+            if not value and key != "picture_url":
                 return render(request, "auctions/createListing.html", {
                     "message": f"Please fill {key} field",
                     "today": timezone.now().strftime("%Y-%m-%d")
