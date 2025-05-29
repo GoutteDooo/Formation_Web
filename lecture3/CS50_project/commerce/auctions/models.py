@@ -3,9 +3,10 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+    id = models.AutoField(primary_key=True)
 
 class Listing(models.Model):
+    id = models.AutoField(primary_key=True)
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
     name = models.CharField(max_length=64)
     description = models.TextField()
@@ -19,6 +20,7 @@ class Listing(models.Model):
         return f"{self.name}: ${self.last_bid_id.amount} - end at: {self.end_at}"
 
 class Bid(models.Model):
+    id = models.AutoField(primary_key=True)
     listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="bids")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -27,6 +29,7 @@ class Bid(models.Model):
         return f"{self.user_id} bid ${self.amount} on {self.listing_id}"
 
 class ListingComment(models.Model):
+    id = models.AutoField(primary_key=True)
     listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="comments")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     content = models.TextField(max_length=1000)
