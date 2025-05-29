@@ -71,11 +71,11 @@ def create_listing(request):
             "initial_price": request.POST["initial_price"],
             "picture_url": request.POST["picture_url"],
             "end_at": request.POST["end_at"],
-            "category": request.POST.get("category", ""),
+            "category": request.POST["category"],
             "owner_id": request.user
         }
         for key, value in listing.items():
-            if not value and key != "picture_url":
+            if not value and key != "picture_url" and key != "category":
                 return render(request, "auctions/createListing.html", {
                     "message": f"Please fill {key} field",
                     "today": timezone.now().strftime("%Y-%m-%d")
