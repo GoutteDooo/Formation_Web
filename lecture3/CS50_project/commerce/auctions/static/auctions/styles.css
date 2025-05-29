@@ -17,6 +17,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin: 0 auto;
 }
 
 .listing {
