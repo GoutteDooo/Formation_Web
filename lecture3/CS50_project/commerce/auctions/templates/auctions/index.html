@@ -5,12 +5,12 @@
   <div id="listings">
     {% for listing in listings %}
       <div class="listing">
-        <h3>{{ listing.name }}</h3>
-        <p>{{ listing.description }}</p>
+        <h3>{{ listing.name | default:"no name" }}</h3>
+        <p class="listing-description">{{ listing.description}}</p>
         <p>Initial price: {{ listing.initial_price }}</p>
-        <img src="{{ listing.picture_url }}" alt="{{ listing.name }}">
+        <img src='{{ listing.picture_url | default:"no picture" }}' alt="{{ listing.name }}">
         <p>End at: {{ listing.end_at }}</p>
-        <p>Category: {{ listing.category }}</p>
+        <p>Category: {{ listing.category}}</p>
       </div>
     {% endfor %}
   </div>

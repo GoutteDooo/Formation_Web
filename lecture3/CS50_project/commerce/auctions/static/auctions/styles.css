@@ -29,4 +29,8 @@ body {
 .listing h3 {
     text-align: center;
 }
-.listing
+
+.listing-description {
+    border: 1px solid grey;
+    padding: 10px;
+}
