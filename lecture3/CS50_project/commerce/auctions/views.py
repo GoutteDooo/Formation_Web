@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils import timezone
 
 from .models import User
 
@@ -78,4 +79,6 @@ def create_listing(request):
         listing = Listing.objects.create(name=name, description=description, initial_price=initial_price, picture_url=picture_url, end_at=end_at, owner_id=owner_id, category=category)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "auctions/createListing.html")
+        return render(request, "auctions/createListing.html", {
+            "today": timezone.now().strftime("%Y-%m-%d")
+        })

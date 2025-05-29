@@ -21,7 +21,7 @@
                 <option value="furniture">Furniture</option>
                 <option value="others">Others</option>
             </select>
-            <input type="datetime-local" name="end_at" placeholder="End at" required>
+            <input type="date" name="end_at" placeholder="End at" value="{{ today }}" min="{{ today }}" max="2050-12-31" required>
             <button type="submit">Create Listing</button>
         </form>
     </div>
