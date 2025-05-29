@@ -65,6 +65,7 @@ def register(request):
 
 def create_listing(request):
     if request.method == "POST":
+        print(request.POST)
         name = request.POST["name"]
         description = request.POST["description"]
         initial_price = request.POST["initial_price"]
