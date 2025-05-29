@@ -71,9 +71,9 @@ def create_listing(request):
         initial_price = request.POST["initial_price"]
         picture_url = request.POST["picture_url"]
         end_at = request.POST["end_at"]
-        category = request.POST["category"]
+        category = request.POST.get("category", "")
         owner_id = request.user
-        if category == "":
+        if not category:
             return render(request, "auctions/createListing.html", {
                 "message": "Please select a category"
             })
