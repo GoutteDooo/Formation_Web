@@ -65,19 +65,22 @@ def register(request):
 
 def create_listing(request):
     if request.method == "POST":
-        name = request.POST["name"]
-        description = request.POST["description"]
-        initial_price = request.POST["initial_price"]
-        picture_url = request.POST["picture_url"]
-        end_at = request.POST["end_at"]
-        category = request.POST.get("category", "")
-        owner_id = request.user
-        if not category:
-            return render(request, "auctions/createListing.html", {
-                "message": "Please select a category",
-                "today": timezone.now().strftime("%Y-%m-%d")
-            })
-        listing = Listing.objects.create(name=name, description=description, initial_price=initial_price, picture_url=picture_url, end_at=end_at, owner_id=owner_id, category=category)
+        listing = {
+            "name": request.POST["name"],
+            "description": request.POST["description"],
+            "initial_price": request.POST["initial_price"],
+            "picture_url": request.POST["picture_url"],
+            "end_at": request.POST["end_at"],
+            "category": request.POST.get("category", ""),
+            "owner_id": request.user
+        }
+        for key, value in listing.items():
+            if not value and key != "picture_url":
+                return render(request, "auctions/createListing.html", {
+                    "message": f"Please fill {key} field",
+                    "today": timezone.now().strftime("%Y-%m-%d")
+                })
+        listing = Listing.objects.create(**listing)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/createListing.html", {
