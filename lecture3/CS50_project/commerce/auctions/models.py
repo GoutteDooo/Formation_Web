@@ -17,6 +17,7 @@ class Listing(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     end_at = models.DateTimeField()
     bids_count = models.IntegerField(default=0)
+    category = models.CharField(default="others", max_length=64)
     last_bid_id = models.ForeignKey("Bid", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
