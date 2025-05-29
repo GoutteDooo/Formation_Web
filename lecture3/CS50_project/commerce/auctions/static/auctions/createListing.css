@@ -1,4 +1,9 @@
 #listing {
   background: red;
-  height: 100vh;
+  height: 500px;
+}
+
+#listing form {
+  height: 100%;
+  display: flex;
 }
