@@ -13,6 +13,7 @@ class Listing(models.Model):
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
     name = models.CharField(max_length=64)
     description = models.TextField()
+    initial_price = models.DecimalField(default=0,max_digits=10, decimal_places=2)
     picture_url = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
     end_at = models.DateTimeField()
