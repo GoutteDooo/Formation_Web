@@ -6,7 +6,7 @@
     {% for listing in listings %}
       <div class="listing">
         <h3>{{ listing.name | default:"no name" }}</h3>
-        <p class="listing-description">{{ listing.description}}</p>
+        <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
         <p>Initial price: {{ listing.initial_price }}</p>
         <img src='{{ listing.picture_url | default:"nopic.jpg" }}' alt="{{ listing.name }}">
         <p>End at: {{ listing.end_at }}</p>
