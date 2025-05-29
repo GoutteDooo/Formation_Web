@@ -64,6 +64,7 @@ def register(request):
         return render(request, "auctions/register.html")
 
 def create_listing(request):
+    default_end = timezone.now() + timezone.timedelta(days=7)
     if request.method == "POST":
         listing = {
             "name": request.POST["name"],
@@ -78,11 +79,11 @@ def create_listing(request):
             if not value and key != "picture_url":
                 return render(request, "auctions/createListing.html", {
                     "message": f"Please fill {key} field",
-                    "today": timezone.now().strftime("%Y-%m-%d")
+                    "default_end": default_end.strftime("%Y-%m-%d")
                 })
         listing = Listing.objects.create(**listing)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/createListing.html", {
-            "today": timezone.now().strftime("%Y-%m-%d")
+            "default_end": default_end.strftime("%Y-%m-%d")
         })
