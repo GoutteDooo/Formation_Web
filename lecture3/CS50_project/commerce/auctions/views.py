@@ -72,9 +72,9 @@ def create_listing(request):
         end_at = request.POST["end_at"]
         category = request.POST.get("category", "")
         owner_id = request.user
-        if not category or not initial_price or not name or not description or not picture_url or not end_at:
+        if not category:
             return render(request, "auctions/createListing.html", {
-                "message": "Please fill all the fields"
+                "message": "Please select a category",
                 "today": timezone.now().strftime("%Y-%m-%d")
             })
         listing = Listing.objects.create(name=name, description=description, initial_price=initial_price, picture_url=picture_url, end_at=end_at, owner_id=owner_id, category=category)
