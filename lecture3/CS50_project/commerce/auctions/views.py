@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import User
+from .models import User, Listing
 
 
 def index(request):
