@@ -71,7 +71,11 @@ def create_listing(request):
         end_at = request.POST["end_at"]
         category = request.POST["category"]
         owner_id = request.user
-        listing = Listing.objects.create(name=name, description=description, initial_price=initial_price, picture_url=picture_url, end_at=end_at, owner_id=owner_id)
+        if category == "":
+            return render(request, "auctions/createListing.html", {
+                "message": "Please select a category"
+            })
+        listing = Listing.objects.create(name=name, description=description, initial_price=initial_price, picture_url=picture_url, end_at=end_at, owner_id=owner_id, category=category)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/createListing.html")
