@@ -1,14 +1,17 @@
 {% extends "auctions/layout.html" %} 
 {% block body %}
-<h2>Active Listings</h2>
+  <h2>Active Listings</h2>
 
-{% for listing in listings %}
-    <div class="listing">
+  <div id="listings">
+    {% for listing in listings %}
+      <div class="listing">
         <h3>{{ listing.name }}</h3>
         <p>{{ listing.description }}</p>
         <p>Initial price: {{ listing.initial_price }}</p>
+        <img src="{{ listing.picture_url }}" alt="{{ listing.name }}">
         <p>End at: {{ listing.end_at }}</p>
         <p>Category: {{ listing.category }}</p>
-    </div>
-{% endfor %}
- {% endblock %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

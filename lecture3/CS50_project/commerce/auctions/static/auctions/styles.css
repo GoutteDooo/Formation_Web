@@ -13,6 +13,12 @@ body {
     border-color: #f5c6cb;
 }
 
+#listings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .listing {
     border: 1px solid #ccc;
     padding: 10px;
@@ -21,4 +27,6 @@ body {
 }
 
 .listing h3 {
+    text-align: center;
 }
+.listing
