@@ -11,8 +11,12 @@
   gap: 10px;
 }
 
+#listing form * {
+  padding: 5px;
+
+}
+
 #listing form #description {
     height: 100px;
     text-align: left;
-
 }
