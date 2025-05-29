@@ -11,6 +11,14 @@
             <input type="number" name="initial_price" placeholder="Initial price" required>
             <label for="picture_url">Select an image:</label> 
             <input type="file" id="picture_url" accept="image/*"> 
+            <select name="category" id="category">
+                <option value="" disabled selected>Select a category</option>
+                <option value="books">Books</option>
+                <option value="clothes">Clothes</option>
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <option value="others">Others</option>
+            </select>
             <input type="datetime-local" name="end_at" placeholder="End at" required>
             <button type="submit">Create Listing</button>
         </form>
