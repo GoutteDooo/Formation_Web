@@ -4,6 +4,7 @@
 
   <div id="listings">
     {% for listing in listings %}
+    <a href="{% url 'listing' listing.id %}">
       <div class="listing">
         <h3>{{ listing.name | default:"no name" | capfirst }}</h3>
         <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
@@ -16,6 +17,7 @@
           {% endif %}
         <p>End at: {{ listing.end_at }}</p>
       </div>
+    </a>
     {% endfor %}
   </div>
 {% endblock %}
