@@ -1,6 +1,9 @@
 {% extends "auctions/layout.html" %} 
 {% block title %}{{ listing.name }}{% endblock %}
 {% block body %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %}
     <h2>{{ listing.name }}</h2>
     <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
     <p>Initial price: {{ listing.initial_price }}</p>
@@ -11,4 +14,5 @@
         <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
     {% endif %}
     <p>End at: {{ listing.end_at }}</p>
+    {% endif %}
 {% endblock %}

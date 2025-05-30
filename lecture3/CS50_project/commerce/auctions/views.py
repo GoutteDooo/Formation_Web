@@ -111,12 +111,12 @@ def create_listing(request):
         })
 
 def listing(request, listing_id):
-    listing = Listing.objects.get(pk=listing_id)
-    if listing:
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
         return render(request, "auctions/listing.html", {
-            "listing": listing
+            "error": "Listing not found"
         })
-    else:
-        return render(request, "auctions/listing.html", {
-            "message": "Listing not found"
-        })
+    return render(request, "auctions/listing.html", {
+        "listing": listing
+    })
