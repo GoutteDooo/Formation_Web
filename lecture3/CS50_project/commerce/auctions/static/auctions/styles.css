@@ -23,7 +23,6 @@ body {
 #listings a {
     text-decoration: inherit;
     color: inherit;
-    cursor: auto;
 }
 
 .listing {
@@ -31,6 +30,11 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     width: 300px;
+}
+
+.listing:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
 }
 
 .listing h3 {
