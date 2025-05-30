@@ -15,7 +15,7 @@ class Listing(models.Model):
     name = models.CharField(max_length=64)
     description = models.TextField()
     initial_price = models.DecimalField(default=0,max_digits=10, decimal_places=2)
-    picture_url = models.URLField()
+    picture_url = models.ImageField(upload_to='images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     end_at = models.DateTimeField()
     bids_count = models.IntegerField(default=0)

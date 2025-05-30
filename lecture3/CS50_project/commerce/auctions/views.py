@@ -68,22 +68,32 @@ def register(request):
 def create_listing(request):
     default_end = timezone.now() + timezone.timedelta(days=7)
     if request.method == "POST":
-        listing = {
-            "name": request.POST["name"],
-            "description": request.POST["description"],
-            "initial_price": request.POST["initial_price"],
-            "picture_url": request.POST["picture_url"],
-            "end_at": request.POST["end_at"],
-            "category": request.POST["category"],
-            "owner_id": request.user
-        }
-        for key, value in listing.items():
-            if not value and key != "picture_url":
-                return render(request, "auctions/createListing.html", {
-                    "message": f"Please fill {key} field",
-                    "default_end": default_end.strftime("%Y-%m-%d")
-                })
-        listing = Listing.objects.create(**listing)
+        # Get form data
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        initial_price = request.POST.get("initial_price")
+        picture = request.FILES.get("picture_url")
+        end_at = request.POST.get("end_at")
+        category = request.POST.get("category")
+        
+        # Validate required fields
+        if not all([name, description, initial_price, end_at]):
+            return render(request, "auctions/createListing.html", {
+                "message": "Please fill all required fields",
+                "default_end": default_end.strftime("%Y-%m-%d")
+            })
+
+        # Create listing
+        listing = Listing(
+            owner_id=request.user,
+            name=name,
+            description=description,
+            initial_price=initial_price,
+            picture_url=picture,
+            end_at=end_at,
+            category=category
+        )
+        listing.save()
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/createListing.html", {
