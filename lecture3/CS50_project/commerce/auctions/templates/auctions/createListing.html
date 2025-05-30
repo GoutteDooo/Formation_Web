@@ -14,8 +14,19 @@
             <input type="text" name="name" placeholder="Name of article" required>
             <textarea id="description" name="description" placeholder="Description" required></textarea>
             <input type="number" name="initial_price" placeholder="Initial price" required>
-            <label for="picture_url">Select an image:</label> 
-            <input type="file" id="picture_url" name="picture_url" accept="image/*"> 
+            <div class="image-input">
+                <label for="picture_url">Image URL (optional):</label>
+                <input type="url" id="picture_url" name="picture_url" placeholder="https://example.com/image.jpg">
+            </div>
+            <div class="image-preview" id="image-preview">
+                <img id="preview-image" src="" alt="Preview">
+            </div>
+            <script>
+                document.getElementById('picture_url').addEventListener('input', function(e) {
+                    const preview = document.getElementById('preview-image');
+                    preview.src = e.target.value;
+                });
+            </script>
             <select name="category" id="category">
                 <option value="" disabled>Select a category</option>
                 <option value="books">Books</option>
