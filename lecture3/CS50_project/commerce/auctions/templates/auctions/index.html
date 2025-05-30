@@ -12,7 +12,7 @@
         {% if listing.picture_url %}
             <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
         {% else %}
-            <img src='{% static "nopic.jpg" %}' alt="No image">
+            <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
         {% endif %}
         <p>End at: {{ listing.end_at }}</p>
       </div>
