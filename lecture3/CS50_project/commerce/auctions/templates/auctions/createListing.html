@@ -9,7 +9,7 @@
     {% endif %}
     <h2>Create Listing</h2>
     <div id="listing">
-        <form action="{% url 'create_listing' %}" method="post">
+        <form action="{% url 'create_listing' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="text" name="name" placeholder="Name of article" required>
             <textarea id="description" name="description" placeholder="Description" required></textarea>

@@ -93,8 +93,18 @@ def create_listing(request):
             end_at=end_at,
             category=category
         )
-        listing.save()
-        return HttpResponseRedirect(reverse("index"))
+        
+        # Save the listing and handle the image upload
+        try:
+            listing.save()
+            if picture:
+                listing.picture_url.save(picture.name, picture, save=True)
+            return HttpResponseRedirect(reverse("index"))
+        except Exception as e:
+            return render(request, "auctions/createListing.html", {
+                "message": f"Error saving listing: {str(e)}",
+                "default_end": default_end.strftime("%Y-%m-%d")
+            })
     else:
         return render(request, "auctions/createListing.html", {
             "default_end": default_end.strftime("%Y-%m-%d")
