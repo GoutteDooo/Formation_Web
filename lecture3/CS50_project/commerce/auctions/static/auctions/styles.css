@@ -20,6 +20,12 @@ body {
     justify-content: center;
 }
 
+#listings a {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
 .listing {
     border: 1px solid #ccc;
     padding: 10px;
