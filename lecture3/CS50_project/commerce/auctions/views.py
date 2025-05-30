@@ -109,3 +109,6 @@ def create_listing(request):
         return render(request, "auctions/createListing.html", {
             "default_end": default_end.strftime("%Y-%m-%d")
         })
+
+def listing(request, listing_id):
+    pass
