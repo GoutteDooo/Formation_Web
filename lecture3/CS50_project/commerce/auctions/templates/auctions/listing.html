@@ -7,6 +7,11 @@
     <h2>{{ listing.name }}</h2>
     <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
     <p>Initial price: {{ listing.initial_price }}</p>
+    {% if listing.last_bid_id %}
+    <p>Current price: {{ listing.last_bid_id.amount }}</p>
+    {% else %}
+    <p>Current price: {{ listing.initial_price }}</p>
+    {% endif %}
     {% if listing.picture_url %}
     <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
     {% else %}
