@@ -30,6 +30,7 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     width: 300px;
+    height: 500px;
 }
 
 .listing:hover {
@@ -49,9 +50,10 @@ body {
 
 .listing img {
     width: 100%;
-    max-height: 200px;
+    height: 200px;
+    max-height: 150px;
     border: 2px solid grey;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 5px;
 }
 
