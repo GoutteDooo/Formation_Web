@@ -145,8 +145,10 @@ def bid(request, listing_id):
         return render(request, "auctions/listing.html", {
             "listing_error": "Listing not found"
         })
+
     if request.method == "POST":
         amount = float(request.POST.get("amount"))
+        
         if listing.last_bid_id and amount <= listing.last_bid_id.amount:
             return render(request, "auctions/listing.html", {
                 "error": "Bid must be higher than last bid",
@@ -157,6 +159,7 @@ def bid(request, listing_id):
                 "error": "Bid must be higher than initial price",
                 "listing": listing
             })
+        
         bid = Bid(
             listing_id=listing,
             user_id=request.user,
