@@ -72,4 +72,5 @@ body {
 .listing-top-buttons {
     display: flex;
     justify-content: space-between;
+    padding: 0px 50px 15px;
 }

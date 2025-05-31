@@ -5,6 +5,7 @@
     {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
     {% else %}
+    <!--  -->
         {% if user.is_authenticated %}
         <div class="listing-top-buttons">
             <form action="{% url 'update_watchlist' listing.id %}" method="post">
