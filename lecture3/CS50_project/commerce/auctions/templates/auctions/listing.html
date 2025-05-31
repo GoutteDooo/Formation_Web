@@ -33,7 +33,7 @@
         {% endif %}
     <div class="listing-page-content">
         {% if listing.winner_id %}
-            <p class="alert alert-success">Winner of this listing: {{ listing.winner_id.username }}</p>
+            <p class="alert {% if user.id == listing.winner_id.id %}alert-success{% else %}alert-warning{% endif %}">Winner of this listing: {{ listing.winner_id.username }} {% if user.id == listing.winner_id.id %}(You){% endif %}</p>
         {% endif %}
         <h2>{{ listing.name }}</h2>
         <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
