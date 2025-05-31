@@ -121,6 +121,7 @@ def listing(request, listing_id):
         "listing": listing
     })
 
+@login_required
 def update_watchlist(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
@@ -135,5 +136,13 @@ def update_watchlist(request, listing_id):
     return HttpResponseRedirect(reverse("listing", args=[listing_id]))
         
 
+@login_required
 def bid(request, listing_id):
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
+        return render(request, "auctions/listing.html", {
+            "error": "Listing not found"
+        })
+    
     pass
