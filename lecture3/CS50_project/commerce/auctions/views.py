@@ -120,3 +120,13 @@ def listing(request, listing_id):
     return render(request, "auctions/listing.html", {
         "listing": listing
     })
+
+def add_to_watchlist(request, listing_id):
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
+        return render(request, "auctions/listing.html", {
+            "error": "Listing not found"
+        })
+    request.user.watchlist.add(listing)
+    return HttpResponseRedirect(reverse("listing", args=[listing_id]))
