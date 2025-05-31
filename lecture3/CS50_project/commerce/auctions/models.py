@@ -26,7 +26,7 @@ class Listing(models.Model):
     winner_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"{self.name}: ${self.initial_price} - end at: {self.end_at}"
+        return f"{self.name}: ${self.initial_price} - end at: {self.end_at.strftime('%Y-%m-%d %H:%M:%S')}"
 
     def get_min_bid_amount(self):
         """Return the minimum bid amount (either last bid amount or initial price)"""
@@ -39,7 +39,10 @@ class Bid(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
 
     def __str__(self):
-        return f"{self.user} bid ${self.amount} on {self.listing}"
+        try:
+            return f"{self.user_id.username} bid ${self.amount} on {self.listing_id.name}"
+        except AttributeError:
+            return f"Bid ${self.amount} (listing/user not available)"
 
 class ListingComment(models.Model):
     id = models.AutoField(primary_key=True)
@@ -49,5 +52,8 @@ class ListingComment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user_id} commented on {self.listing_id}: {self.content}"
+        try:
+            return f"{self.user_id.username} commented on {self.listing_id.name}: {self.content[:50]}..."
+        except AttributeError:
+            return f"Comment: {self.content[:50]}... (listing/user not available)"
         
