@@ -1,10 +1,12 @@
 {% extends "auctions/layout.html" %} 
 {% block title %}{{ listing.name }}{% endblock %}
 {% block body %}
+<div class="listing-page">
     {% if error %}
-        <div class="alert alert-danger">{{ error }}</div>
+    <div class="alert alert-danger">{{ error }}</div>
     {% else %}
-    <div class="listing-page">
+    <button>Add to watchlist</button>
+    <div class="listing-page-content">
         <h2>{{ listing.name }}</h2>
         <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
         <p>Initial price: {{ listing.initial_price }}</p>
@@ -22,4 +24,5 @@
         <p>End at: {{ listing.end_at }}</p>
     </div>
     {% endif %}
+</div>
 {% endblock %}
