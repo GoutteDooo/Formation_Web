@@ -10,8 +10,10 @@ from .models import User, Listing, Bid
 
 
 def index(request):
+    # Get all active listings
+    active_listings = Listing.objects.filter(is_active=True)
     return render(request, "auctions/index.html", {
-        "listings": Listing.objects.all()
+        "listings": active_listings
     })
 
 

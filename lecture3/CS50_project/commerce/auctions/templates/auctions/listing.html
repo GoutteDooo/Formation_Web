@@ -7,25 +7,25 @@
     {% else %} <!-- When there is no error, display the listing -->
         {% if listing.is_active %}
             {% if user.is_authenticated %}
-        <div class="listing-top-buttons">
-            <form action="{% url 'update_watchlist' listing.id %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-primary" type="submit">{% if listing in user.watchlist.all %}Remove from watchlist{% else %}Add to watchlist{% endif %}</button>
-            </form>
-            {% if user.id != listing.owner_id.id %}
-            <form action="{% url 'bid' listing.id %}" method="post">
-                {% csrf_token %}
-                <input type="number" name="amount" min="{{ listing.get_min_bid_amount }}" step="0.01" value="{{ listing.get_min_bid_amount }}" required>
-                <button class="btn btn-primary" type="submit">Bid</button>
-            </form>
-            {% endif %}
-            {% if user.id == listing.owner_id.id %}
+            <div class="listing-top-buttons">
+                <form action="{% url 'update_watchlist' listing.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-primary" type="submit">{% if listing in user.watchlist.all %}Remove from watchlist{% else %}Add to watchlist{% endif %}</button>
+                </form>
+                {% if user.id != listing.owner_id.id %}
+                <form action="{% url 'bid' listing.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" name="amount" min="{{ listing.get_min_bid_amount }}" step="0.01" value="{{ listing.get_min_bid_amount }}" required>
+                    <button class="btn btn-primary" type="submit">Bid</button>
+                </form>
+                {% endif %}
+                {% if user.id == listing.owner_id.id %}
                 <form action="{% url 'close_listing' listing.id %}" method="post">
                     {% csrf_token %}
                     <button class="btn btn-danger" type="submit">Close listing</button>
                 </form>
                 {% endif %}
-        </div>
+            </div>
             {% endif %}
         {% endif %}
         {% if error %}
@@ -49,7 +49,6 @@
         <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
         {% endif %}
         <p>End at: {{ listing.end_at }}</p>
-    {% endif %}
     </div>
     {% endif %}
 </div>
