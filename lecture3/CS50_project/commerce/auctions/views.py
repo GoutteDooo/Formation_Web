@@ -76,6 +76,7 @@ def watchlist(request):
 
 def categories(request):
     categories = Listing.objects.values_list("category", flat=True).distinct()
+    print("categories:", categories)
     return render(request, "auctions/categories.html", {
         "categories": categories
     })
