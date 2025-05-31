@@ -60,15 +60,30 @@ body {
 .listing-page-content {
     padding: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
     border: 1px solid #ccc;
 }
 
-.listing-page-content img {
+.listing-content-img {
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.listing-content-img img {
     object-fit: contain;
-    width: 80%;
+    width: 400px;
+    height: 500px;
     margin: 0 auto;
+}
+
+.listing-content-text {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    border-radius: 15px;
+    width: 600px;
+    padding: 20px;
 }
 
 .listing-top-buttons {

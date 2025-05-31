@@ -45,17 +45,17 @@
         </div>
         <div class="listing-content-text">  
         <h2>{{ listing.name }}</h2>
-        <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
-        <p>Initial price: ${{ listing.initial_price }}</p>
+        <p><b>Description:</b> <br>{{ listing.description}}</p>
+        <p><b>Initial price:</b> ${{ listing.initial_price }}</p>
         {% if listing.last_bid_id %}
-            <p>Current price: ${{ listing.last_bid_id.amount }}</p>
-            <p>Current bidder: {{ listing.last_bid_id.user_id.username }}</p>
+            <p><b>Current price:</b> ${{ listing.last_bid_id.amount }}</p>
+            <p><b>Current bidder:</b> {{ listing.last_bid_id.user_id.username }}</p>
         {% else %}
-            <p>Current price: ${{ listing.initial_price }}</p>
-            <p>Current bidder: no bidder yet</p>
+            <p><b>Current price:</b> ${{ listing.initial_price }}</p>
+            <p><b>Current bidder:</b> no bidder yet</p>
         {% endif %}
-        <p>End at: {{ listing.end_at }}</p>
-        <p>Seller: {{ listing.owner_id.username }}</p>
+        <p><b>End at:</b> {{ listing.end_at }}</p>
+        <p><b>Seller:</b> {{ listing.owner_id.username }}</p>
     </div>
     {% endif %} 
     <div class="listing-comments">
