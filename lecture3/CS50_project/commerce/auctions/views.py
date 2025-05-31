@@ -153,9 +153,9 @@ def bid(request, listing_id):
         amount = round(amount, 2)
         last_bid_amount = round(last_bid_amount, 2)
 
-        print("amount:", amount)
-        print("last_bid_amount:", last_bid_amount)
-        print("amount == last_bid_amount:", amount == last_bid_amount)
+        print("amount:", format(amount, '.2f'))
+        print("last_bid_amount:", format(last_bid_amount, '.2f'))
+        print("amount == last_bid_amount:", format(amount, '.2f') == format(last_bid_amount, '.2f'))
 
         if listing.last_bid_id and format(amount, '.2f') <= format(last_bid_amount, '.2f'):
             return render(request, "auctions/listing.html", {
@@ -173,10 +173,6 @@ def bid(request, listing_id):
             user_id=request.user,
             amount=amount
         )
-        bid.save()
-        # Update listing with Decimal value
-        listing.last_bid_id = bid
-        listing.save()
         bid.save()
         listing.last_bid_id = bid
         listing.save()
