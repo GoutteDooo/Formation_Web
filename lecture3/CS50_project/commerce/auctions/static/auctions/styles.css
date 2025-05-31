@@ -68,3 +68,8 @@ body {
     width: 80%;
     margin: 0 auto;
 }
+
+.listing-top-buttons {
+    display: flex;
+    justify-content: center;
+}
