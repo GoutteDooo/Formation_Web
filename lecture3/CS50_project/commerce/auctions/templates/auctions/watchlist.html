@@ -5,7 +5,9 @@
 
 <div id="listings">
     {% for listing in watchlist %}
-    {% include "auctions/listing_component.html" with listing=listing %}
+        {% if listing.is_active %}
+            {% include "auctions/listing_component.html" with listing=listing %}
+        {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
