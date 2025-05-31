@@ -116,7 +116,7 @@ def create_listing(request):
 def listing(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
-        comments = ListingComment.objects.filter(listing_id=listing_id)
+        comments = ListingComment.objects.filter(listing_id=listing_id).order_by("-created_at")
     except Listing.DoesNotExist:
         return render(request, "auctions/listing.html", {
             "listing_error": "Listing not found"
