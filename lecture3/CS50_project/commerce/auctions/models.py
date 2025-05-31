@@ -26,6 +26,10 @@ class Listing(models.Model):
     def __str__(self):
         return f"{self.name}: ${self.last_bid_id.amount} - end at: {self.end_at}"
 
+    def get_min_bid_amount(self):
+        """Return the minimum bid amount (either last bid amount or initial price)"""
+        return self.last_bid_id.amount if self.last_bid_id else self.initial_price
+
 class Bid(models.Model):
     id = models.AutoField(primary_key=True)
     listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="bids")
