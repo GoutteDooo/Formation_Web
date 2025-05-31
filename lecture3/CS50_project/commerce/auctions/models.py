@@ -25,8 +25,8 @@ class Listing(models.Model):
     is_active = models.BooleanField(default=True)
     winner_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
-    def __str__(self):
-        return f"{self.name}: ${self.last_bid_id.amount} - end at: {self.end_at}"
+    # def __str__(self):
+    #     return f"{self.name}: ${self.last_bid_id.amount} - end at: {self.end_at}"
 
     def get_min_bid_amount(self):
         """Return the minimum bid amount (either last bid amount or initial price)"""
@@ -38,8 +38,8 @@ class Bid(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
 
-    def __str__(self):
-        return f"{self.user_id} bid ${self.amount} on {self.listing_id}"
+    # def __str__(self):
+    #     return f"{self.user_id} bid ${self.amount} on {self.listing_id}"
 
 class ListingComment(models.Model):
     id = models.AutoField(primary_key=True)
