@@ -21,9 +21,9 @@ class Listing(models.Model):
     end_at = models.DateTimeField()
     bids_count = models.IntegerField(default=0)
     category = models.CharField(default="others", max_length=64)
-    last_bid_id = models.ForeignKey("Bid", on_delete=models.SET_NULL, null=True)
+    last_bid_id = models.ForeignKey("Bid", on_delete=models.SET_NULL, null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    winner_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    winner_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f"{self.name}: ${self.initial_price} - end at: {self.end_at.strftime('%Y-%m-%d %H:%M:%S')}"
@@ -38,8 +38,8 @@ class Bid(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
 
-    # def __str__(self):
-    #     return f"{self.id}: Bid ${self.amount} by {self.user_id.username} on {self.listing_id.name}"
+    def __str__(self):
+        return f"{self.id}: Bid ${self.amount} by {self.user_id.username} on {self.listing_id.name}"
 
 class ListingComment(models.Model):
     id = models.AutoField(primary_key=True)
