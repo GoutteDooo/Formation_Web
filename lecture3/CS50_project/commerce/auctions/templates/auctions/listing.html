@@ -56,9 +56,18 @@
     </div>
     {% endif %} 
     <div class="listing-comments">
-        {% for comment in comments %}
+        {% if user.is_authenticated %}
+        <form action="{% url 'comment' listing.id %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="content" required>
+            <button type="submit">Add comment</button>
+        </form>
+        {% endif %}
+        <div class="listing-comments-container">
+            {% for comment in comments %}
             <p>{{ comment.user_id.username }}: {{ comment.content }}</p>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

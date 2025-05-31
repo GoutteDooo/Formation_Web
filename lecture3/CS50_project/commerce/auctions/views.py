@@ -200,3 +200,21 @@ def close_listing(request, listing_id):
         listing.winner_id = set_winner(listing)
         listing.save()
         return HttpResponseRedirect(reverse("listing", args=[listing_id]))
+
+@login_required
+def comment(request, listing_id):
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
+        return render(request, "auctions/listing.html", {
+            "listing_error": "Listing not found"
+        })
+    if request.method == "POST":
+        content = request.POST.get("content")
+        comment = ListingComment(
+            listing_id=listing,
+            user_id=request.user,
+            content=content
+        )
+        comment.save()
+        return HttpResponseRedirect(reverse("listing", args=[listing_id]))
