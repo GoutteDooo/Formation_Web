@@ -49,6 +49,7 @@
         <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
         {% endif %}
         <p>End at: {{ listing.end_at }}</p>
+        <p>Seller: {{ listing.owner_id.username }}</p>
     </div>
     {% endif %}
 </div>
