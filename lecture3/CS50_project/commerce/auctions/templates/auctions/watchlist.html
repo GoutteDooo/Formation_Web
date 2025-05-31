@@ -2,4 +2,23 @@
 
 {% block body %}
 <h2>Watchlist</h2>
+
+<div id="listings">
+    {% for listing in watchlist %}
+    <a href="{% url 'listing' listing.id %}">
+        <div class="listing">
+            <h3>{{ listing.name | default:"no name" | capfirst }}</h3>
+            <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
+            <p>Initial price: {{ listing.initial_price }}</p>
+            {% if listing.picture_url %}
+                <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
+            {% else %}
+                {% load static %}
+                <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
+            {% endif %}
+            <p>End at: {{ listing.end_at }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
 {% endblock %}

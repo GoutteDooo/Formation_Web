@@ -5,7 +5,13 @@
   <div id="listings">
     {% for listing in listings %}
     <a href="{% url 'listing' listing.id %}">
-      <div class="listing">
+      <div class="listing {% if listing in user.watchlist.all %}alert-warning{% endif %}">
+        {% if user.is_authenticated %}
+        <form action="{% url 'update_watchlist' listing.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit">{% if listing in user.watchlist.all %}Remove from watchlist{% else %}Add to watchlist{% endif %}</button>
+        </form>
+        {% endif %}
         <h3>{{ listing.name | default:"no name" | capfirst }}</h3>
         <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
         <p>Initial price: {{ listing.initial_price }}</p>
