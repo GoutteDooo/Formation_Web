@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
+from decimal import Decimal, ROUND_HALF_UP
 
 
 class User(AbstractUser):
@@ -34,7 +35,7 @@ class Bid(models.Model):
     id = models.AutoField(primary_key=True)
     listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="bids")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
 
     def __str__(self):
         return f"{self.user_id} bid ${self.amount} on {self.listing_id}"

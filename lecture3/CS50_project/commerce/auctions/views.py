@@ -1,10 +1,10 @@
-from math import floor
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 from django.utils import timezone
+from decimal import Decimal, ROUND_HALF_UP
 from django.contrib.auth.decorators import login_required
 
 from .models import User, Listing, Bid
@@ -148,11 +148,11 @@ def bid(request, listing_id):
         })
 
     if request.method == "POST":
-        amount = float(request.POST.get("amount"))
+        amount = Decimal(request.POST.get("amount")).quantize(Decimal('0.00'), rounding=ROUND_HALF_UP)
         last_bid_amount = listing.last_bid_id.amount if listing.last_bid_id else listing.initial_price
 
-        amount = floor(amount, 2)
-        last_bid_amount = floor(last_bid_amount, 2)
+        # Convert to Decimal for proper comparison
+        last_bid_amount = Decimal(str(last_bid_amount)).quantize(Decimal('0.00'), rounding=ROUND_HALF_UP)
 
         print("amount:", amount)
         print("last_bid_amount:", last_bid_amount)
@@ -174,6 +174,10 @@ def bid(request, listing_id):
             user_id=request.user,
             amount=amount
         )
+        bid.save()
+        # Update listing with Decimal value
+        listing.last_bid_id = bid
+        listing.save()
         bid.save()
         listing.last_bid_id = bid
         listing.save()
