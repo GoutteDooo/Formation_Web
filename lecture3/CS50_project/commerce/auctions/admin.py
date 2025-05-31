@@ -5,3 +5,4 @@ from .models import Listing, Bid
 
 admin.site.register(Listing)
 admin.site.register(Bid)
+admin.site.register(ListingComment)
