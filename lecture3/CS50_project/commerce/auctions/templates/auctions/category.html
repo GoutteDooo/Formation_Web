@@ -2,7 +2,17 @@
 
 {% block body %}
 <h2>Category: {{ category }}</h2>
+<div id="listings">
 {% for listing in listings %}
+    <div class="listing-container">    
     {% include "auctions/listing_component.html" with listing=listing %}
+    {% if user.is_authenticated %}
+    <form action="{% url 'update_watchlist' listing.id %}" method="post">
+      {% csrf_token %}
+      <button class="btn btn-primary listing-watchlist-btn" type="submit">{% if listing in user.watchlist.all %}Remove from watchlist{% else %}Add to watchlist{% endif %}</button>
+    </form>
+    {% endif %}
+    </div>
 {% endfor %}
+</div>
 {% endblock %}
