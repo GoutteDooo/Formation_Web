@@ -16,6 +16,12 @@
                 <input type="number" name="amount" min="{{ listing.get_min_bid_amount }}" step="0.01" value="{{ listing.get_min_bid_amount }}" required>
                 <button class="btn btn-primary" type="submit">Bid</button>
             </form>
+            {% if user.id == listing.owner_id.id %}
+                <form action="{% url 'close_listing' listing.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Close listing</button>
+                </form>
+            {% endif %}
         </div>
         {% endif %}
         {% if error %}
