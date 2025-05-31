@@ -39,7 +39,7 @@ class Bid(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
 
     def __str__(self):
-        return f"{self.user_id} bid ${self.amount} on {self.listing_id}"
+        return f"{self.user} bid ${self.amount} on {self.listing}"
 
 class ListingComment(models.Model):
     id = models.AutoField(primary_key=True)
