@@ -134,3 +134,6 @@ def update_watchlist(request, listing_id):
         request.user.watchlist.add(listing)
     return HttpResponseRedirect(reverse("listing", args=[listing_id]))
         
+
+def bid(request, listing_id):
+    pass

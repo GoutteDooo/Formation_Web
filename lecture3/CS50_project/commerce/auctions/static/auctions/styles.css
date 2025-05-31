@@ -71,5 +71,5 @@ body {
 
 .listing-top-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
