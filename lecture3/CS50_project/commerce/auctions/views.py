@@ -68,6 +68,12 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
+def watchlist(request):
+    watchlist = request.user.watchlist.all()
+    return render(request, "auctions/watchlist.html", {
+        "watchlist": watchlist
+    })
+
 def create_listing(request):
     default_end = timezone.now() + timezone.timedelta(days=7)
     if request.method == "POST":
