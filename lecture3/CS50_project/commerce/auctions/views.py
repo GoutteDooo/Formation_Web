@@ -216,9 +216,9 @@ def close_listing(request, listing_id):
             "listing_error": "Listing not found"
         })
     if request.method == "POST":
-        listing.is_active = False
         listing.winner_id = set_winner(listing)
         if listing.winner_id:
+            listing.is_active = False
             listing.save()
             return HttpResponseRedirect(reverse("listing", args=[listing_id]))
         else:

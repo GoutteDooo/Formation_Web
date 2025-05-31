@@ -1,2 +1,4 @@
 def set_winner(listing):
-  return listing.last_bid_id.user_id
+  if listing.last_bid_id:
+    return listing.last_bid_id.user_id
+  return None
