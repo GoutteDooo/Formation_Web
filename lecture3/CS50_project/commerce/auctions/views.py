@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
-from .models import User, Listing, Bid
+from .models import User, Listing, Bid, ListingComment
 from .functions import set_winner
 
 def index(request):
@@ -116,6 +116,7 @@ def create_listing(request):
 def listing(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
+        comments = ListingComment.objects.filter(listing_id=listing_id)
     except Listing.DoesNotExist:
         return render(request, "auctions/listing.html", {
             "listing_error": "Listing not found"
@@ -126,7 +127,8 @@ def listing(request, listing_id):
             "error": "This listing is closed"
         })
     return render(request, "auctions/listing.html", {
-        "listing": listing
+        "listing": listing,
+        "comments": comments
     })
 
 @login_required
