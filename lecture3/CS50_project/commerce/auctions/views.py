@@ -74,6 +74,19 @@ def watchlist(request):
         "watchlist": watchlist
     })
 
+def categories(request):
+    categories = Listing.objects.values_list("category", flat=True).distinct()
+    return render(request, "auctions/categories.html", {
+        "categories": categories
+    })
+
+def category(request, category):
+    listings = Listing.objects.filter(category=category)
+    return render(request, "auctions/category.html", {
+        "category": category,
+        "listings": listings
+    })
+
 def create_listing(request):
     default_end = timezone.now() + timezone.timedelta(days=7)
     if request.method == "POST":
