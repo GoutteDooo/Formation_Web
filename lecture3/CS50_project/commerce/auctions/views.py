@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 from .models import User, Listing, Bid
-
+from .functions import set_winner
 
 def index(request):
     # Get all active listings
@@ -185,6 +185,7 @@ def bid(request, listing_id):
         listing.save()
         return HttpResponseRedirect(reverse("listing", args=[listing_id]))
 
+@login_required
 def close_listing(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
@@ -194,6 +195,6 @@ def close_listing(request, listing_id):
         })
     if request.method == "POST":
         listing.is_active = False
+        listing.winner_id = set_winner(listing)
         listing.save()
         return HttpResponseRedirect(reverse("listing", args=[listing_id]))
-        
