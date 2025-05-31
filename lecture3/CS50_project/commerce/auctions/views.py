@@ -1,10 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.shortcuts import render
+from django.urls import reverse
 from django.utils import timezone
-from decimal import Decimal, ROUND_HALF_UP
 from django.contrib.auth.decorators import login_required
 
 from .models import User, Listing, Bid
@@ -148,11 +147,11 @@ def bid(request, listing_id):
         })
 
     if request.method == "POST":
-        amount = Decimal(request.POST.get("amount")).quantize(Decimal('0.00'), rounding=ROUND_HALF_UP)
+        amount = float(request.POST.get("amount"))
         last_bid_amount = listing.last_bid_id.amount if listing.last_bid_id else listing.initial_price
 
-        # Convert to Decimal for proper comparison
-        last_bid_amount = Decimal(str(last_bid_amount)).quantize(Decimal('0.00'), rounding=ROUND_HALF_UP)
+        amount = round(amount, 2)
+        last_bid_amount = round(last_bid_amount, 2)
 
         print("amount:", amount)
         print("last_bid_amount:", last_bid_amount)
