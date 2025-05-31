@@ -157,7 +157,7 @@ def bid(request, listing_id):
         print("last_bid_amount:", last_bid_amount)
         print("amount == last_bid_amount:", amount == last_bid_amount)
 
-        if listing.last_bid_id and amount < last_bid_amount:
+        if listing.last_bid_id and format(amount, '.2f') <= format(last_bid_amount, '.2f'):
             return render(request, "auctions/listing.html", {
                 "error": f"Bid must be higher than last bid (which is ${last_bid_amount})",
                 "listing": listing
