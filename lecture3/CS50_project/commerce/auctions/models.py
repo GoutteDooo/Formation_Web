@@ -23,6 +23,7 @@ class Listing(models.Model):
     category = models.CharField(default="others", max_length=64)
     last_bid_id = models.ForeignKey("Bid", on_delete=models.SET_NULL, null=True)
     is_active = models.BooleanField(default=True)
+    winner_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f"{self.name}: ${self.last_bid_id.amount} - end at: {self.end_at}"
