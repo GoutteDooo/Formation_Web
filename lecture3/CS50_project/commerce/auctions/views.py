@@ -144,5 +144,23 @@ def bid(request, listing_id):
         return render(request, "auctions/listing.html", {
             "error": "Listing not found"
         })
-    
-    pass
+    if request.method == "POST":
+        amount = request.POST.get("amount")
+        print("type amount:", type(amount))
+        if listing.last_bid_id and amount <= listing.last_bid_id.amount:
+            return render(request, "auctions/listing.html", {
+                "error": "Bid must be higher than last bid"
+            })
+        elif amount < listing.initial_price:
+            return render(request, "auctions/listing.html", {
+                "error": "Bid must be higher than initial price"
+            })
+        bid = Bid(
+            listing_id=listing,
+            user_id=request.user,
+            amount=amount
+        )
+        bid.save()
+        listing.last_bid_id = bid
+        listing.save()
+        return HttpResponseRedirect(reverse("listing", args=[listing_id]))
