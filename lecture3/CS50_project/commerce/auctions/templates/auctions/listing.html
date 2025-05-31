@@ -35,6 +35,15 @@
         {% if listing.winner_id %}
             <p class="alert {% if user.id == listing.winner_id.id %}alert-success{% else %}alert-warning{% endif %}">Winner of this listing: {{ listing.winner_id.username }} {% if user.id == listing.winner_id.id %}(You){% endif %}</p>
         {% endif %}
+        <div class="listing-content-img">
+            {% if listing.picture_url %}
+            <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
+            {% else %}
+            {% load static %}
+            <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
+            {% endif %}
+        </div>
+        <div class="listing-content-text">  
         <h2>{{ listing.name }}</h2>
         <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
         <p>Initial price: ${{ listing.initial_price }}</p>
@@ -44,12 +53,6 @@
         {% else %}
             <p>Current price: ${{ listing.initial_price }}</p>
             <p>Current bidder: no bidder yet</p>
-        {% endif %}
-        {% if listing.picture_url %}
-        <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
-        {% else %}
-        {% load static %}
-        <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
         {% endif %}
         <p>End at: {{ listing.end_at }}</p>
         <p>Seller: {{ listing.owner_id.username }}</p>
