@@ -148,13 +148,21 @@ def bid(request, listing_id):
 
     if request.method == "POST":
         amount = float(request.POST.get("amount"))
+        last_bid_amount = listing.last_bid_id.amount if listing.last_bid_id else listing.initial_price
+
         amount = round(amount, 2)
-        if listing.last_bid_id and amount <= float(listing.last_bid_id.amount):
+        last_bid_amount = round(last_bid_amount, 2)
+
+        print("amount:", amount)
+        print("last_bid_amount:", last_bid_amount)
+        print("amount == last_bid_amount:", amount == last_bid_amount)
+
+        if listing.last_bid_id and amount <= last_bid_amount:
             return render(request, "auctions/listing.html", {
-                "error": f"Bid must be higher than last bid (which is ${listing.last_bid_id.amount})",
+                "error": f"Bid must be higher than last bid (which is ${last_bid_amount})",
                 "listing": listing
             })
-        elif amount <= float(listing.initial_price):
+        elif amount <= listing.initial_price:
             return render(request, "auctions/listing.html", {
                 "error": f"Bid must be higher than initial price (which is ${listing.initial_price})",
                 "listing": listing
