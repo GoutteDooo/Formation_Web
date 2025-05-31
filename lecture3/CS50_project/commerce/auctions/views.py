@@ -211,6 +211,11 @@ def comment(request, listing_id):
         })
     if request.method == "POST":
         content = request.POST.get("content")
+        if not content:
+            return render(request, "auctions/listing.html", {
+                "listing": listing,
+                "error": "Comment cannot be empty"
+            })
         comment = ListingComment(
             listing_id=listing,
             user_id=request.user,
