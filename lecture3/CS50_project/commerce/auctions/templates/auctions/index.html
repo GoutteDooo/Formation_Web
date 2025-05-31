@@ -4,21 +4,8 @@
 
   <div id="listings">
     {% for listing in listings %}
-    <div class="listing-container">
-    <a href="{% url 'listing' listing.id %}">
-      <div class="listing {% if listing in user.watchlist.all %}alert-warning{% endif %}">
-        <h3>{{ listing.name | default:"no name" | capfirst }}</h3>
-        <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
-        <p>Initial price: {{ listing.initial_price }}</p>
-          {% if listing.picture_url %}
-            <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
-          {% else %}
-            {% load static %}
-            <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
-          {% endif %}
-        <p>End at: {{ listing.end_at }}</p>
-      </div>
-    </a>
+    <div class="listing-container">    
+    {% include "auctions/listing_component.html" with listing=listing %}
     {% if user.is_authenticated %}
     <form action="{% url 'update_watchlist' listing.id %}" method="post">
       {% csrf_token %}

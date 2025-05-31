@@ -3,6 +3,6 @@
 {% block body %}
 <h2>Category: {{ category }}</h2>
 {% for listing in listings %}
-    <a href="{% url 'listing' listing.id %}">{{ listing.name }}</a>
+    {% include "auctions/listing_component.html" with listing=listing %}
 {% endfor %}
 {% endblock %}
