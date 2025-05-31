@@ -2,14 +2,20 @@
 <a href="{% url 'listing' listing.id %}">
   <div class="listing {% if listing in user.watchlist.all %}alert-warning{% endif %}">
     <h3>{{ listing.name | default:"no name" | capfirst }}</h3>
-    <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
-    <p>Initial price: {{ listing.initial_price }}</p>
-      {% if listing.picture_url %}
+    <p class="listing-description"> <em style="font-weight: bold; text-decoration: underline;">Description:</em> <br>{{ listing.description}}</p>
+    <p><b>Initial price:</b> ${{ listing.initial_price }}</p>
+    {% if listing.last_bid_id %}
+    <p><b>Current price:</b> ${{ listing.last_bid_id.amount }}</p>
+    {% else %}
+    <p><b>Current price:</b> ${{ listing.initial_price }}</p>
+    {% endif %}
+    {% if listing.picture_url %}
         <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
-      {% else %}
+    {% else %}
         {% load static %}
         <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
-      {% endif %}
-    <p>End at: {{ listing.end_at }}</p>
+    {% endif %}
+    <p><b>End at:</b> {{ listing.end_at }}</p>
+    <p><b>Seller:</b> {{ listing.owner_id.username }}</p>
   </div>
 </a>
