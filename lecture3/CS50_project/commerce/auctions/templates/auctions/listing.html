@@ -32,6 +32,9 @@
             <div class="alert alert-danger">{{ error }}</div>
         {% endif %}
     <div class="listing-page-content">
+        {% if listing.winner_id %}
+            <p class="alert alert-success">Winner of this listing: {{ listing.winner_id.username }}</p>
+        {% endif %}
         <h2>{{ listing.name }}</h2>
         <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
         <p>Initial price: ${{ listing.initial_price }}</p>
