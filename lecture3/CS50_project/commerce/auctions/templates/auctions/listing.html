@@ -56,7 +56,9 @@
     </div>
     {% endif %} 
     <div class="listing-comments">
-        {}
+        {% for comment in comments %}
+            <p>{{ comment.user_id.username }}: {{ comment.content }}</p>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
