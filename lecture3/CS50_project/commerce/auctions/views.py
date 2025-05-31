@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from .models import User, Listing
 
@@ -115,7 +116,7 @@ def listing(request, listing_id):
         listing = Listing.objects.get(pk=listing_id)
     except Listing.DoesNotExist:
         return render(request, "auctions/listing.html", {
-            "error": "Listing not found"
+            "listing_error": "Listing not found"
         })
     return render(request, "auctions/listing.html", {
         "listing": listing
@@ -127,7 +128,7 @@ def update_watchlist(request, listing_id):
         listing = Listing.objects.get(pk=listing_id)
     except Listing.DoesNotExist:
         return render(request, "auctions/listing.html", {
-            "error": "Listing not found"
+            "listing_error": "Listing not found"
         })
     if listing in request.user.watchlist.all():
         request.user.watchlist.remove(listing)
@@ -142,18 +143,19 @@ def bid(request, listing_id):
         listing = Listing.objects.get(pk=listing_id)
     except Listing.DoesNotExist:
         return render(request, "auctions/listing.html", {
-            "error": "Listing not found"
+            "listing_error": "Listing not found"
         })
     if request.method == "POST":
-        amount = request.POST.get("amount")
-        print("type amount:", type(amount))
+        amount = float(request.POST.get("amount"))
         if listing.last_bid_id and amount <= listing.last_bid_id.amount:
             return render(request, "auctions/listing.html", {
-                "error": "Bid must be higher than last bid"
+                "error": "Bid must be higher than last bid",
+                "listing": listing
             })
         elif amount < listing.initial_price:
             return render(request, "auctions/listing.html", {
-                "error": "Bid must be higher than initial price"
+                "error": "Bid must be higher than initial price",
+                "listing": listing
             })
         bid = Bid(
             listing_id=listing,

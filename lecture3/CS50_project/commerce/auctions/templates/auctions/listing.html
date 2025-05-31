@@ -2,8 +2,8 @@
 {% block title %}{{ listing.name }}{% endblock %}
 {% block body %}
 <div class="listing-page">
-    {% if error %}
-    <div class="alert alert-danger">{{ error }}</div>
+    {% if listing_error %}
+    <div class="alert alert-danger">{{ listing_error }}</div>
     {% else %} <!-- When there is no error, display the listing -->
         {% if user.is_authenticated %}
         <div class="listing-top-buttons">
@@ -17,6 +17,9 @@
                 <button class="btn btn-primary" type="submit">Bid</button>
             </form>
         </div>
+        {% endif %}
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
         {% endif %}
     <div class="listing-page-content">
         <h2>{{ listing.name }}</h2>
