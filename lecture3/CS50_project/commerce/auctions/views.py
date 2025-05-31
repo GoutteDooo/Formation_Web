@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
-from .models import User, Listing
+from .models import User, Listing, Bid
 
 
 def index(request):
@@ -152,7 +152,7 @@ def bid(request, listing_id):
                 "error": "Bid must be higher than last bid",
                 "listing": listing
             })
-        elif amount < listing.initial_price:
+        elif amount <= listing.initial_price:
             return render(request, "auctions/listing.html", {
                 "error": "Bid must be higher than initial price",
                 "listing": listing
