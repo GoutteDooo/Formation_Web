@@ -1,3 +1,4 @@
+from math import floor
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -150,8 +151,8 @@ def bid(request, listing_id):
         amount = float(request.POST.get("amount"))
         last_bid_amount = listing.last_bid_id.amount if listing.last_bid_id else listing.initial_price
 
-        amount = round(amount, 2)
-        last_bid_amount = round(last_bid_amount, 2)
+        amount = floor(amount, 2)
+        last_bid_amount = floor(last_bid_amount, 2)
 
         print("amount:", amount)
         print("last_bid_amount:", last_bid_amount)
