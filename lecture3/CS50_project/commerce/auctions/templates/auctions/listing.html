@@ -45,7 +45,7 @@
         </div>
         <div class="listing-content-text">  
         <h2>{{ listing.name }}</h2>
-        <p><b>Description:</b> <br>{{ listing.description}}</p>
+        <p><em style="text-decoration: underline;">Description:</em> <br>{{ listing.description}}</p>
         <p><b>Initial price:</b> ${{ listing.initial_price }}</p>
         {% if listing.last_bid_id %}
             <p><b>Current price:</b> ${{ listing.last_bid_id.amount }}</p>
