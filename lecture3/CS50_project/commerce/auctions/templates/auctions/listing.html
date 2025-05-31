@@ -5,26 +5,28 @@
     {% if listing_error %}
     <div class="alert alert-danger">{{ listing_error }}</div>
     {% else %} <!-- When there is no error, display the listing -->
-        {% if user.is_authenticated %}
+        {% if listing.is_active %}
+            {% if user.is_authenticated %}
         <div class="listing-top-buttons">
             <form action="{% url 'update_watchlist' listing.id %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-primary" type="submit">{% if listing in user.watchlist.all %}Remove from watchlist{% else %}Add to watchlist{% endif %}</button>
             </form>
-            {% if listing.is_active and user.id != listing.owner_id.id %}
+            {% if user.id != listing.owner_id.id %}
             <form action="{% url 'bid' listing.id %}" method="post">
                 {% csrf_token %}
                 <input type="number" name="amount" min="{{ listing.get_min_bid_amount }}" step="0.01" value="{{ listing.get_min_bid_amount }}" required>
                 <button class="btn btn-primary" type="submit">Bid</button>
             </form>
             {% endif %}
-            {% if user.id == listing.owner_id.id and listing.is_active %}
+            {% if user.id == listing.owner_id.id %}
                 <form action="{% url 'close_listing' listing.id %}" method="post">
                     {% csrf_token %}
                     <button class="btn btn-danger" type="submit">Close listing</button>
                 </form>
-            {% endif %}
+                {% endif %}
         </div>
+            {% endif %}
         {% endif %}
         {% if error %}
             <div class="alert alert-danger">{{ error }}</div>
@@ -49,5 +51,6 @@
         <p>End at: {{ listing.end_at }}</p>
     {% endif %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}
