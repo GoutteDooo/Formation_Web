@@ -121,23 +121,16 @@ def listing(request, listing_id):
         "listing": listing
     })
 
-def add_to_watchlist(request, listing_id):
+def update_watchlist(request, listing_id):
     try:
         listing = Listing.objects.get(pk=listing_id)
     except Listing.DoesNotExist:
         return render(request, "auctions/listing.html", {
             "error": "Listing not found"
         })
-    request.user.watchlist.add(listing)
+    if listing in request.user.watchlist.all():
+        request.user.watchlist.remove(listing)
+    else:
+        request.user.watchlist.add(listing)
     return HttpResponseRedirect(reverse("listing", args=[listing_id]))
-
-def remove_from_watchlist(request, listing_id):
-    try:
-        listing = Listing.objects.get(pk=listing_id)
-    except Listing.DoesNotExist:
-        return render(request, "auctions/listing.html", {
-            "error": "Listing not found"
-        })
-    request.user.watchlist.remove(listing)
-    return HttpResponseRedirect(reverse("listing", args=[listing_id]))
-    
+        

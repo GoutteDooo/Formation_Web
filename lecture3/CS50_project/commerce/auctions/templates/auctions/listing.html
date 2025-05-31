@@ -6,17 +6,31 @@
     <div class="alert alert-danger">{{ error }}</div>
     {% else %}
     {% if user.is_authenticated %}
+    <form action="{% url 'update_watchlist' listing.id %}" method="post">
+        {% csrf_token %}
         {% if listing in user.watchlist.all %}
-        <form action="{% url 'remove_from_watchlist' listing.id %}" method="post">
-            {% csrf_token %}
             <button class="btn btn-primary" type="submit">Remove from watchlist</button>
-        </form>
         {% else %}
-        <form action="{% url 'add_to_watchlist' listing.id %}" method="post">
-            {% csrf_token %}
             <button class="btn btn-primary" type="submit">Add to watchlist</button>
-        </form>
         {% endif %}
+    </form>
+    {% endif %}
+    <div class="listing-page-content">
+        <h2>{{ listing.name }}</h2>
+        <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
+        <p>Initial price: {{ listing.initial_price }}</p>
+        {% if listing.last_bid_id %}
+            <p>Current price: {{ listing.last_bid_id.amount }}</p>
+        {% else %}
+            <p>Current price: {{ listing.initial_price }}</p>
+        {% endif %}
+        {% if listing.picture_url %}
+        <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
+        {% else %}
+        {% load static %}
+        <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
+        {% endif %}
+        <p>End at: {{ listing.end_at }}</p>
     {% endif %}
     <div class="listing-page-content">
         <h2>{{ listing.name }}</h2>
