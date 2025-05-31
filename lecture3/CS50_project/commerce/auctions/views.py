@@ -218,8 +218,14 @@ def close_listing(request, listing_id):
     if request.method == "POST":
         listing.is_active = False
         listing.winner_id = set_winner(listing)
-        listing.save()
-        return HttpResponseRedirect(reverse("listing", args=[listing_id]))
+        if listing.winner_id:
+            listing.save()
+            return HttpResponseRedirect(reverse("listing", args=[listing_id]))
+        else:
+            return render(request, "auctions/listing.html", {
+                "listing": listing,
+                "error": "Nobody bid, please wait for one before closing !"
+            })
 
 @login_required
 def comment(request, listing_id):
