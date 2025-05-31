@@ -4,8 +4,7 @@
 <div class="listing-page">
     {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
-    {% else %}
-    <!--  -->
+    {% else %} <!-- When there is no error, display the listing -->
         {% if user.is_authenticated %}
         <div class="listing-top-buttons">
             <form action="{% url 'update_watchlist' listing.id %}" method="post">
