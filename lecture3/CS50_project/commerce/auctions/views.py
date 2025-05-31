@@ -118,6 +118,11 @@ def listing(request, listing_id):
         return render(request, "auctions/listing.html", {
             "listing_error": "Listing not found"
         })
+    if not listing.is_active:
+        return render(request, "auctions/listing.html", {
+            "listing": listing,
+            "error": "This listing is closed"
+        })
     return render(request, "auctions/listing.html", {
         "listing": listing
     })
