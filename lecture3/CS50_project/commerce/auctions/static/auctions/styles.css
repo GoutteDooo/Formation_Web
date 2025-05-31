@@ -54,3 +54,16 @@ body {
     object-fit: cover;
     border-radius: 5px;
 }
+
+.listing-page {
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.listing-page img {
+    object-fit: contain;
+    width: 80%;
+    margin: 0 auto;
+}
