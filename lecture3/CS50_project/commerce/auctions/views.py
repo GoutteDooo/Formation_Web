@@ -177,3 +177,16 @@ def bid(request, listing_id):
         listing.last_bid_id = bid
         listing.save()
         return HttpResponseRedirect(reverse("listing", args=[listing_id]))
+
+def close_listing(request, listing_id):
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
+        return render(request, "auctions/listing.html", {
+            "listing_error": "Listing not found"
+        })
+    if request.method == "POST":
+        listing.is_active = False
+        listing.save()
+        return HttpResponseRedirect(reverse("listing", args=[listing_id]))
+        
