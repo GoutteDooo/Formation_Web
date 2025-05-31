@@ -5,19 +5,21 @@
         <div class="alert alert-danger">{{ error }}</div>
     {% else %}
     <h2>{{ listing.name }}</h2>
-    <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
-    <p>Initial price: {{ listing.initial_price }}</p>
-    {% if listing.last_bid_id %}
-    <p>Current price: {{ listing.last_bid_id.amount }}</p>
-    {% else %}
-    <p>Current price: {{ listing.initial_price }}</p>
-    {% endif %}
-    {% if listing.picture_url %}
-    <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
-    {% else %}
+    <div class="listing">
+        <p class="listing-description"> <em>description: </em> <br>{{ listing.description}}</p>
+        <p>Initial price: {{ listing.initial_price }}</p>
+        {% if listing.last_bid_id %}
+        <p>Current price: {{ listing.last_bid_id.amount }}</p>
+        {% else %}
+        <p>Current price: {{ listing.initial_price }}</p>
+        {% endif %}
+        {% if listing.picture_url %}
+        <img src='{{ listing.picture_url.url }}' alt="{{ listing.name }}">
+        {% else %}
         {% load static %}
         <img src='{% static "auctions/nopic.jpg" %}' alt="No image">
-    {% endif %}
-    <p>End at: {{ listing.end_at }}</p>
+        {% endif %}
+        <p>End at: {{ listing.end_at }}</p>
+    </div>
     {% endif %}
 {% endblock %}
