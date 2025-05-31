@@ -149,7 +149,7 @@ def update_watchlist(request, listing_id):
         request.user.watchlist.remove(listing)
     else:
         request.user.watchlist.add(listing)
-    return HttpResponseRedirect(reverse("listing", args=[listing_id]))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         
 
 @login_required
