@@ -5,6 +5,7 @@ from django.utils import timezone
 
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
+    watchlist = models.ManyToManyField("Listing", blank=True, related_name="watchlisted_by")
 
     def __str__(self):
         return self.username
