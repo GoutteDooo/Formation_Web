@@ -56,6 +56,7 @@ async function send_mail(e) {
   .then(r => r.json())
   .then(res => {
     console.log(res);
+    document.querySelector("#user-info").textContent = res.message;
     compose_email()
   })
   .catch(err => {
