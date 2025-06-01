@@ -41,30 +41,31 @@ async function send_mail(e) {
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
   
-  try {
-    const response = 
-    await fetch("/emails", {
+  try 
+  {
+    const response = await fetch("/emails", {
       method: "POST",
       body: JSON.stringify({recipients,subject,body}),
       headers: {
         "Content-Type":"application/json",
       }
     });
+    
+    const data = await response.json();
+    
+    if (response.ok)
+    {
+      document.querySelector("#user-info").textContent = data.message;
+      compose_email();
+    }
+    else
+    {
+      document.querySelector("#user-info").textContent = data.error;
+    }
   }
-
-  const data = await response.json();
-
-  if (response.ok) {
-    document.querySelector("#user-info").textContent = data.message
+  catch (err)
+  {
+    console.error("Unexpected error:",err);
+    document.querySelector("#user-info").textContent = "Sorry, an unknown error happened. Please try again.";
   }
-  .then(r => r.json())
-  .then(res => {
-    console.log('response:',res);
-    document.querySelector("#user-info").textContent = res.message;
-  })
-  .catch(err => {
-    console.error("error:", err);
-    document.querySelector("#user-info").textContent = err.message;
-  })
-  .then(compose_email)
 }
