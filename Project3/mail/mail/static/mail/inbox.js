@@ -9,9 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // By default, load the inbox
   load_mailbox('inbox');
 
-  document.querySelector('#compose-submit').addEventListener("click", (e) => {
-    send_mail(e);
-  })
+  document.querySelector('#compose-submit').addEventListener("click", send_mail);
 });
 
 function compose_email() {
@@ -60,6 +58,6 @@ async function send_mail(e) {
     compose_email()
   })
   .catch(err => {
-    console.error(err);
+    console.error("error:", err);
   })
 }
