@@ -53,11 +53,12 @@ async function send_mail(e) {
   })
   .then(r => r.json())
   .then(res => {
-    console.log(res);
+    console.log('response:',res);
     document.querySelector("#user-info").textContent = res.message;
-    compose_email()
   })
   .catch(err => {
     console.error("error:", err);
+    document.querySelector("#user-info").textContent = err.message;
   })
+  .then(compose_email)
 }
