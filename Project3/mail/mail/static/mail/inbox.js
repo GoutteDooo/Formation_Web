@@ -41,15 +41,22 @@ async function send_mail(e) {
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
   
-  
-  await fetch("/emails", {
-    method: "POST",
-    body: JSON.stringify({
-      recipients,
-      subject,
-      body
-    })
-  })
+  try {
+    const response = 
+    await fetch("/emails", {
+      method: "POST",
+      body: JSON.stringify({recipients,subject,body}),
+      headers: {
+        "Content-Type":"application/json",
+      }
+    });
+  }
+
+  const data = await response.json();
+
+  if (response.ok) {
+    document.querySelector("#user-info").textContent = data.message
+  }
   .then(r => r.json())
   .then(res => {
     console.log('response:',res);
