@@ -44,7 +44,7 @@ async function send_mail(e) {
   const body = document.querySelector('#compose-body').value;
   console.log(recipients, subject, body);
   
-  /*
+  
   await fetch("/emails", {
     method: "POST",
     body: JSON.stringify({
@@ -56,8 +56,9 @@ async function send_mail(e) {
   .then(r => r.json())
   .then(res => {
     console.log(res);
+    compose_email()
   })
   .catch(err => {
     console.error(err);
-  })*/
+  })
 }
