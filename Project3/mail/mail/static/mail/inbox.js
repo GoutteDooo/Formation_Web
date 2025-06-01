@@ -33,5 +33,5 @@ function load_mailbox(mailbox) {
 }
 
 function send_mail(email) { 
-
+  const 
 }
