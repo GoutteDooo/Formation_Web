@@ -40,6 +40,7 @@ async function send_mail(e) {
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
+  const infoElement = document.querySelector("#user-info");
   
   try 
   {
@@ -55,17 +56,20 @@ async function send_mail(e) {
     
     if (response.ok)
     {
-      document.querySelector("#user-info").textContent = data.message;
+      infoElement.textContent = data.message;
       compose_email();
+      infoElement.style.color = "green";
     }
     else
     {
-      document.querySelector("#user-info").textContent = data.error;
+      infoElement.textContent = data.error;
+      infoElement.style.color = "red";
     }
   }
   catch (err)
   {
     console.error("Unexpected error:",err);
-    document.querySelector("#user-info").textContent = "Sorry, an unknown error happened. Please try again.";
+    infoElement.textContent = "Sorry, an unknown error happened. Please try again.";
+    infoElement.style.color = "red";
   }
 }
