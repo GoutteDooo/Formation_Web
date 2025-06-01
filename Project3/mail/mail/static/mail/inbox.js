@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // By default, load the inbox
   load_mailbox('inbox');
+
+  document.querySelector('#compose-submit').addEventListener("click", (e) => {
+    send_mail(e);
+  })
 });
 
 function compose_email() {
@@ -33,11 +37,14 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 }
 
-async function send_mail(email) { 
-  const recipients = email.querySelector('#compose-recipients').value.split(',');
-  const subject = email.querySelector('#compose-subject').value;
-  const body = email.querySelector('#compose-body').value;
-
+async function send_mail(e) { 
+  e.preventDefault();
+  const recipients = document.querySelector('#compose-recipients').value;
+  const subject = document.querySelector('#compose-subject').value;
+  const body = document.querySelector('#compose-body').value;
+  console.log(recipients, subject, body);
+  
+  /*
   await fetch("/emails", {
     method: "POST",
     body: JSON.stringify({
@@ -52,9 +59,5 @@ async function send_mail(email) {
   })
   .catch(err => {
     console.error(err);
-  })
+  })*/
 }
-
-document.querySelector('#compose-submit').addEventListener("click", () => {
-  console.log("it works");
-})
