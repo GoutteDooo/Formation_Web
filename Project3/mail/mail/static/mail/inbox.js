@@ -20,6 +20,7 @@ function compose_email() {
   document.querySelector('#compose-recipients').value = '';
   document.querySelector('#compose-subject').value = '';
   document.querySelector('#compose-body').value = '';
+
 }
 
 function load_mailbox(mailbox) {
@@ -48,6 +49,8 @@ function send_mail(email) {
   .then(r => r.json())
   .then(res => {
     console.log(res);
-    
+  })
+  .catch(err => {
+    console.error(err);
   })
 }
