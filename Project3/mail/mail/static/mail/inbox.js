@@ -33,12 +33,12 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 }
 
-function send_mail(email) { 
+async function send_mail(email) { 
   const recipients = email.querySelector('#compose-recipients').value.split(',');
   const subject = email.querySelector('#compose-subject').value;
   const body = email.querySelector('#compose-body').value;
 
-  fetch("/emails", {
+  await fetch("/emails", {
     method: "POST",
     body: JSON.stringify({
       recipients,
@@ -54,3 +54,7 @@ function send_mail(email) {
     console.error(err);
   })
 }
+
+document.querySelector('#compose-submit').addEventListener("click", () => {
+  console.log("it works");
+})
