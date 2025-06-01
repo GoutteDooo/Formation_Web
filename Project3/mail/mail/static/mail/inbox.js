@@ -40,7 +40,6 @@ async function send_mail(e) {
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
-  console.log(recipients, subject, body);
   
   
   await fetch("/emails", {
