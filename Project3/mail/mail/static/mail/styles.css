@@ -16,6 +16,6 @@ textarea {
     cursor: pointer;
 }
 
-.mail-envelope-container {
-    
+.mail-envelope-buttons {
+    margin-left: auto;
 }
