@@ -29,7 +29,7 @@ function compose_email(e,mailData = null) {
   // Clear out composition fields
   document.querySelector('#compose-recipients').value = `${mailData ? mailData.sender : ""}`;
   document.querySelector('#compose-subject').value = `${mailData ? displaySubject(mailData.subject) : ""}`;
-  document.querySelector('#compose-body').value = "";
+  document.querySelector('#compose-body').value = `${mailData ? displayBody(mailData.body, mailData.timestamp) : ""}`;
   infoElement.textContent = "";
 
 }
@@ -105,7 +105,7 @@ function display_mails(mails, mailbox) {
     displaying += `
     <div class="mail-envelope" style="color:${color}">
       <div class="mail-envelope-container" id=mail-${mails[i].id}>
-        <h4>from: ${mails[i].sender}</h4>
+        ${mailbox === "sent" ? `<h4>to: ${displayRecipients(mails[i].recipients)}</h4>` : `<h4>from: ${mails[i].sender}</h4>`}
         <h3><b>subject:</b> ${mails[i].subject}</h3>
         <p>${mails[i].body.slice(0,40)}(...)</p>
         <em>${mails[i].timestamp}</em>
@@ -203,7 +203,7 @@ function displayRecipients(rec) {
 function displaySubject(subject) {
   console.log(subject.slice(0,4));
   
-  return subject.slice(0,4) == "RE: " ? subject : `RE: ${subject}`;
+  return subject.slice(0,4) == "Re: " ? subject : `Re: ${subject}`;
 }
 
 function displayTime(timestamp) {
@@ -213,6 +213,10 @@ function displayTime(timestamp) {
    */
 
   return timestamp;
+}
+
+function displayBody(body) {
+  return `On ${}`
 }
 
 function generateArchiveBtn(isArchived) {
