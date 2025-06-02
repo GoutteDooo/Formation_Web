@@ -99,6 +99,7 @@ async function send_mail() {
 
 function display_mails(mails, mailbox) {
   console.log("mails response:",mails);
+  const archivingBtn = mailbox != "archive";
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
   {
@@ -112,7 +113,7 @@ function display_mails(mails, mailbox) {
         <p>${mails[i].body.slice(0,40)}(...)</p>
         <em>${mails[i].timestamp}</em>
       </div>
-      ${generateArchiveBtn(mailbox)}
+      ${archivingBtn && generateArchiveBtn()}
     </div>`
   }
 
@@ -176,7 +177,8 @@ function displayTime(timestamp) {
   
 }
 
-function generateArchiveBtn(mails) {
-  console.log("generate archive:",mails);
+function generateArchiveBtn(mailbox) {
+  console.log("archivebtn");
+  return <button>archive</button>
   
 }
