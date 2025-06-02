@@ -184,7 +184,9 @@ function displayRecipients(rec) {
 }
 
 function displaySubject(subject) {
-  return subject.slice(4) == "RE: " ? subject : `RE: ${subject}`;
+  console.log(subject.slice(0,4));
+  
+  return subject.slice(0,4) == "RE: " ? subject : `RE: ${subject}`;
 }
 
 function displayTime(timestamp) {
