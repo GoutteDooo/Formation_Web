@@ -124,22 +124,20 @@ function display_mails(mails) {
 async function view_email(mail) {
   console.log(mail.id.slice(5));
   const id = mail.id.slice(5);
-  const mailRead = mail.read;
   try {
     const response = await fetch(`emails/${id}`)
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
-    const mail = await response.json();
+    const mailData = await response.json();
     console.log("mail view:",mail);
-    console.log("mail read before try:",mail.read);
     emailView.innerHTML = `
       <div class="single-mail">
-        <div class="sm-time">received ${displayTime(mail.timestamp)}</div>
-        <div class="sm-sender"><em>from:</em> <b>${mail.sender}</b></div>
-        <div class="sm-recipients"><em>to:</em> <b>${displayRecipients(mail.recipients)}</b></div>
-        <div class="sm-subject"><em>subject:</em> <b>${mail.subject}</b></div>
-        <div class="sm-body">${mail.body}</div>
+        <div class="sm-time">received ${displayTime(mailData.timestamp)}</div>
+        <div class="sm-sender"><em>from:</em> <b>${mailData.sender}</b></div>
+        <div class="sm-recipients"><em>to:</em> <b>${displayRecipients(mailData.recipients)}</b></div>
+        <div class="sm-subject"><em>subject:</em> <b>${mailData.subject}</b></div>
+        <div class="sm-body">${mailData.body}</div>
       </div>
     `
   }
@@ -149,11 +147,10 @@ async function view_email(mail) {
 
   //mark the mail as read
   try {
-    console.log("mail read:",mailRead);
     const res = await fetch(`emails/${id}`, {
       method:"PUT",
       body: JSON.stringify({
-        read:!mailRead,
+        read:true,
       })
     })
 
