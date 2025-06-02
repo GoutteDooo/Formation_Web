@@ -196,12 +196,16 @@ function generateArchiveBtn(isArchived) {
 }
 
 async function archive(emailId, mail) {
-      console.log("mail:", mail);
+      console.log("mail archived:", mail);
+      if (mail.archived) {
+        console.log("unarchived");
+      }
+      
       try {
         const res = await fetch(`emails/${emailId}`, {
           method:"PUT",
           body:JSON.stringify({
-            archived:true,
+            archived:!mail.archived,
           })
         });
         load_mailbox("inbox");
