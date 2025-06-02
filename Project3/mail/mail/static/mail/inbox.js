@@ -144,6 +144,17 @@ async function view_email(mail) {
   catch (error) {
     console.error("Unexpected error when fetch mail: ",error);
   }
+
+  //mark the mail as read
+  try {
+    const res = await fetch(`emails/${id}`, {
+      method:"PUT",
+      body:{
+        
+      }
+    })
+  }
+
 }
 
 function displayRecipients(rec) {
