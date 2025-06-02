@@ -1,5 +1,4 @@
-let formElement;
-let emailView;
+let formElement, emailView, infoElement;
 document.addEventListener('DOMContentLoaded', function() {
 
   // Use buttons to toggle between views
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   formElement = document.querySelector("#compose-form");
   emailView = document.querySelector("#emails-view");
+  infoElement = document.querySelector("#user-info");
   
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -27,11 +27,10 @@ function compose_email(e,mailData = null) {
   document.querySelector('#compose-view').style.display = 'block';
 
   // Clear out composition fields
-  console.log("mailData:",mailData);
-  
   document.querySelector('#compose-recipients').value = `${mailData ? displayRecipients(mailData.recipients) : ""}`;
   document.querySelector('#compose-subject').value = `${mailData ? displaySubject(mailData.subject) : ""}`;
   document.querySelector('#compose-body').value = "";
+  infoElement.textContent = "";
 
 }
 
@@ -60,7 +59,6 @@ async function load_mailbox(mailbox) {
 
 async function send_mail() {
 
-  const infoElement = document.querySelector("#user-info");
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
@@ -75,14 +73,12 @@ async function send_mail() {
       body: JSON.stringify({recipients,subject,body}),
     });
 
-    console.log("response status:", response.status);
     const data = await response.json();
-    console.log("try works! data:",data);
     
     if (response.ok)
     {
-      infoElement.textContent = data.message;
       compose_email();
+      infoElement.textContent = data.message;
       infoElement.style.color = "green";
     }
     else
@@ -100,7 +96,6 @@ async function send_mail() {
 }
 
 function display_mails(mails, mailbox) {
-  console.log("mails response:",mails);
   const archivingBtn = mailbox != "sent";
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
@@ -176,33 +171,6 @@ async function view_email(mailElement) {
     console.error("unexpected error when trying to mark mail as read:",err);
     
   }
-
-}
-
-function displayRecipients(rec) {
-  return rec.length > 1 ? rec.split(", ") : rec[0];
-}
-
-function displaySubject(subject) {
-  console.log(subject.slice(0,4));
-  
-  return subject.slice(0,4) == "RE: " ? subject : `RE: ${subject}`;
-}
-
-function displayTime(timestamp) {
-  /**
-   * This function is used to timestamp to local UTC datetime
-   * BUT it needs to be implemented
-   */
-
-  return timestamp;
-  
-}
-
-function generateArchiveBtn(isArchived) {
-  const text = isArchived ? "unarchive" : "archive";
-  return `<button class="archive-btn">${text}</button>`;
-  
 }
 
 async function archive(emailId, mail) {
@@ -224,4 +192,31 @@ async function archive(emailId, mail) {
       console.error("unexpected error when trying to trigger archive button:", err);
       
     }
+}
+
+/* Helpers functions */
+
+function displayRecipients(rec) {
+  return rec.length > 1 ? rec.split(", ") : rec[0];
+}
+
+function displaySubject(subject) {
+  console.log(subject.slice(0,4));
+  
+  return subject.slice(0,4) == "RE: " ? subject : `RE: ${subject}`;
+}
+
+function displayTime(timestamp) {
+  /**
+   * This function is used to timestamp to local UTC datetime
+   * BUT it needs to be implemented
+   */
+
+  return timestamp;
+}
+
+function generateArchiveBtn(isArchived) {
+  const text = isArchived ? "unarchive" : "archive";
+  return `<button class="archive-btn">${text}</button>`;
+  
 }
