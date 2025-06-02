@@ -133,9 +133,9 @@ async function view_email(mail) {
     console.log("mail view:",mail);
     emailView.innerHTML = `
       <div class="single-mail">
-        <div class="sm-sender">${mail.sender}</div>
-        <div class="sm-subject">${mail.subject}</div>
-        <div class="sm-recipients">${displayRecipients(mail.recipients)}</div>
+        <div class="sm-sender"><em>from:</em> <b>${mail.sender}</b></div>
+        <div class="sm-recipients"><em>to:</em> <b>${displayRecipients(mail.recipients)}</b></div>
+        <div class="sm-subject"><em>subject:</em> <b>${mail.subject}</b></div>
         <div class="sm-body">${mail.body}</div>
       </div>
     `

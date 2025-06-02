@@ -20,8 +20,21 @@ textarea {
 
 .single-mail {
     height: 100vh;
+    border: 1px solid black;
+    padding: 20px;
 }
 
-.sm-sender {
-    
+.sm-sender, .sm-recipients, .sm-subject {
+    border: 1px solid grey;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.sm-subject {
+    font-size: 1.1rem;
+}
+
+.sm-body {
+
 }
