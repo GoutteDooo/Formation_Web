@@ -126,7 +126,13 @@ function display_mails(mails, mailbox) {
     mail.addEventListener("click", () => view_email(mail))
   });
   //to archive
-  emailView.querySelectorAll("")
+  emailView.querySelectorAll(".archive-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      console.dir(btn);
+      console.log("archive mail:", mails[0]);
+      
+    })
+  })
 }
 
 async function view_email(mailElement) {
@@ -185,6 +191,6 @@ function displayTime(timestamp) {
 
 function generateArchiveBtn(isArchived) {
   const text = isArchived ? "unarchive" : "archive";
-  return `<button>${text}</button>`;
+  return `<button class="archive-btn">${text}</button>`;
   
 }
