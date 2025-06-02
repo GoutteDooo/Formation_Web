@@ -41,9 +41,7 @@ async function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
   //Make a get request for the current mailbox
   try {
-    const response = await fetch(`email/${mailbox}`, {
-      method: "GET",
-    });
+    const response = await fetch(`email/${mailbox}`)
     console.log(response.json());
     
   }
