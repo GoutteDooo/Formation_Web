@@ -98,13 +98,14 @@ async function send_mail() {
 
 function display_mails(mails) {
   console.log("mails response:",mails);
+  const emailView = document.querySelector("#emails-view");
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
   {
     let color;
     if (mails[i].read) color = "grey";
     displaying += `
-    <div class="mail-envelope" style="color:${color}">
+    <div class="mail-envelope" id=mail-${mails[i].id} style="color:${color}">
       <div class="mail-envelope-container">
         <h4>from: ${mails[i].sender}</h4>
         <h3><b>subject:</b> ${mails[i].subject}</h3>
@@ -113,7 +114,10 @@ function display_mails(mails) {
       </div>
     </div>`
   }
-  document.querySelector("#emails-view").innerHTML = displaying;
+  emailView.innerHTML = displaying;
+  emailView.forEach(mail => {
+    mail.addEventListener("click", view_email(mail));
+  })
 }
 
 function view_email(mail) {
