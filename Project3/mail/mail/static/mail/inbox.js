@@ -98,11 +98,16 @@ async function send_mail() {
 
 function display_mails(mails) {
   console.log("mails response:",mails);
+  let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
   {
-    
+    displaying += `
+    <div class="mail-envelope">
+      <h3>${mails[i].sender}</h3>
+      <h3>${mails[i].subject}</h3>
+      <h3>${mails[i].recipients.map(r => r + ",")}</h3>
+      <p>${mails[i].timestamp}</p>
+    </div>`
   }
-  document.querySelector("#emails-view").innerHTML = `
-    
-  `
+  document.querySelector("#emails-view").innerHTML = displaying;
 }
