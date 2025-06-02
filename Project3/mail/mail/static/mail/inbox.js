@@ -20,16 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-function compose_email() {
+function compose_email(mailData = null) {
 
   // Show compose view and hide other views
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
 
   // Clear out composition fields
-  document.querySelector('#compose-recipients').value = '';
-  document.querySelector('#compose-subject').value = '';
-  document.querySelector('#compose-body').value = '';
+    document.querySelector('#compose-recipients').value = `${displayRecipients(mailData.recipients)}`;
+    document.querySelector('#compose-subject').value = `${mailData.subject}`;
+    document.querySelector('#compose-body').value = `${mailData.body}`;
 
 }
 
@@ -155,10 +155,7 @@ async function view_email(mailElement) {
         <div class="sm-body">${mailData.body}</div>
       </div>
     `
-    document.querySelector(".sm-reply").addEventListener("click", () => {
-      console.log("it works on", mailElement);
-      
-    })
+    document.querySelector(".sm-reply").addEventListener("click", () => compose_email(mailData))
   }
   catch (error) {
     console.error("Unexpected error when fetch mail: ",error);
