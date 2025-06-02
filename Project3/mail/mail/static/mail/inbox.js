@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // By default, load the inbox
   load_mailbox('inbox');
 
-  document.querySelector('#compose-submit').addEventListener("click", send_mail);
+  const formElement = document.querySelector("#compose-form");
+  formElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+    send_mail();
+  });
 });
 
 function compose_email() {
@@ -43,9 +47,7 @@ async function load_mailbox(mailbox) {
   catch {}
 }
 
-async function send_mail(e) { 
-  e.preventDefault();
-  const formElement = document.querySelector("#compose-form");
+async function send_mail() {
   const infoElement = document.querySelector("#user-info");
 
   const formData = new FormData(formElement);
@@ -61,10 +63,9 @@ async function send_mail(e) {
       body: formData
     });
 
-    console.log(await response.json());
-    
     
     const data = await response.json();
+    console.log("try works! data:",data);
     
     if (response.ok)
     {
