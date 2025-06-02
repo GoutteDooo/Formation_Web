@@ -30,8 +30,8 @@ function compose_email(e,mailData = null) {
   console.log("mailData:",mailData);
   
   document.querySelector('#compose-recipients').value = `${mailData ? displayRecipients(mailData.recipients) : ""}`;
-  document.querySelector('#compose-subject').value = `${mailData ? mailData.subject : ""}`;
-  document.querySelector('#compose-body').value = `${mailData ? mailData.body : ""}`;
+  document.querySelector('#compose-subject').value = `${mailData ? displaySubject(mailData.subject) : ""}`;
+  document.querySelector('#compose-body').value = "";
 
 }
 
@@ -157,7 +157,7 @@ async function view_email(mailElement) {
         <div class="sm-body">${mailData.body}</div>
       </div>
     `
-    document.querySelector(".sm-reply").addEventListener("click", () => compose_email(mailData))
+    document.querySelector(".sm-reply").addEventListener("click", (e) => compose_email(e,mailData))
   }
   catch (error) {
     console.error("Unexpected error when fetch mail: ",error);
@@ -181,6 +181,10 @@ async function view_email(mailElement) {
 
 function displayRecipients(rec) {
   return rec.length > 1 ? rec.split(", ") : rec[0];
+}
+
+function displaySubject(subject) {
+  return subject.slice(4) == "RE: " ? subject : `RE: ${subject}`;
 }
 
 function displayTime(timestamp) {
