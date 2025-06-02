@@ -112,9 +112,7 @@ function display_mails(mails) {
         <p>${mails[i].body.slice(0,40)}(...)</p>
         <em>${mails[i].timestamp}</em>
       </div>
-      <div class="mail-envelope-buttons">
-        <button>archive</button>
-      </div>
+      ${generateArchiveBtn(mails)}
     </div>`
   }
 
@@ -175,5 +173,10 @@ function displayTime(timestamp) {
    */
 
   return timestamp;
+  
+}
+
+function generateArchiveBtn(mails) {
+  console.log("generate archive:",mails);
   
 }
