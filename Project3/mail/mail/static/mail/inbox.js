@@ -101,8 +101,10 @@ function display_mails(mails) {
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
   {
+    let color;
+    if (mails[i].read) color = "grey";
     displaying += `
-    <div class="mail-envelope">
+    <div class="mail-envelope" style="color:${color}">
       <div class="mail-envelope-container">
         <h4>from: ${mails[i].sender}</h4>
         <h3><b>subject:</b> ${mails[i].subject}</h3>
