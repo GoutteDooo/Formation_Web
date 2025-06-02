@@ -130,8 +130,7 @@ function display_mails(mails, mailbox) {
     btn.addEventListener("click", () => {
       const emailId = btn.parentNode.previousElementSibling.id.slice(5);
       const mailData = mails.find(m => m.id === +emailId);
-      console.log("mail:", mailData);
-      fetch("emails/${id}")
+      archive(mailData);
     })
   })
 }
@@ -194,4 +193,20 @@ function generateArchiveBtn(isArchived) {
   const text = isArchived ? "unarchive" : "archive";
   return `<button class="archive-btn">${text}</button>`;
   
+}
+
+async function archive(mail) {
+      console.log("mail:", mail);
+      try {
+        const res = await fetch(`emails/${id}`, {
+          method:"PUT",
+          body:{
+            archived:true,
+          }
+        });
+    }
+    catch (err) {
+      console.error("unexpected error when trying to trigger archive button:", err);
+      
+    }
 }
