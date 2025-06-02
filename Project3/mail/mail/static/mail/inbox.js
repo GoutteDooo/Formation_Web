@@ -143,7 +143,6 @@ async function view_email(mail) {
   }
   catch (error) {
     console.error("Unexpected error when fetch mail: ",error);
-    
   }
 }
 
