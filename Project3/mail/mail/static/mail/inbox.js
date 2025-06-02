@@ -152,7 +152,11 @@ function displayRecipients(rec) {
 }
 
 function displayTime(timestamp) {
-  const date = new Date();
-  console.log(date);
+  /**
+   * This function is used to timestamp to local UTC datetime
+   * BUT it needs to be implemented
+   */
+
+  return timestamp;
   
 }
