@@ -131,6 +131,7 @@ async function view_email(mail) {
     }
     const mail = await response.json();
     console.log("mail view:",mail);
+    console.log("mail read before try:",mail.read);
     emailView.innerHTML = `
       <div class="single-mail">
         <div class="sm-time">received ${displayTime(mail.timestamp)}</div>
@@ -155,8 +156,7 @@ async function view_email(mail) {
       })
     })
 
-    // const data = await res.json();
-    // console.log("read! data:", res.json());
+    console.log("mail read:",mail.read);
     
   }
   catch (err) {
