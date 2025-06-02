@@ -10,9 +10,7 @@ textarea {
     margin-bottom: 10px;
 }
 
-.mail-envelope:hover {
-    transform: scale(1.02);
-    transition: 0.2s;
+.mail-envelope-container:hover {
     cursor: pointer;
 }
 
