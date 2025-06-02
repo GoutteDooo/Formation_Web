@@ -129,10 +129,9 @@ function display_mails(mails, mailbox) {
   emailView.querySelectorAll(".archive-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const emailId = btn.parentNode.previousElementSibling.id.slice(5);
-      console.dir(btn);
-      console.log("archive id:",btn.parentNode.previousElementSibling.id.slice(5));
-      console.log("archive mail:", mails.find(m => m.id === emailId));
-      
+      const mailData = mails.find(m => m.id === +emailId);
+      console.log("mail:", mailData);
+      fetch("emails/${id}")
     })
   })
 }
