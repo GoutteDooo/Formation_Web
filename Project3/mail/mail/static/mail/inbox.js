@@ -98,5 +98,11 @@ async function send_mail() {
 
 function display_mails(mails) {
   console.log("mails response:",mails);
-  
+  for (let i = 0, len = mails.length; i < len; i++)
+  {
+    
+  }
+  document.querySelector("#emails-view").innerHTML = `
+    
+  `
 }
