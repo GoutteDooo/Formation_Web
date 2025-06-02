@@ -20,16 +20,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-function compose_email(mailData = null) {
+function compose_email(e,mailData = null) {
 
   // Show compose view and hide other views
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
 
   // Clear out composition fields
-    document.querySelector('#compose-recipients').value = `${displayRecipients(mailData.recipients)}`;
-    document.querySelector('#compose-subject').value = `${mailData.subject}`;
-    document.querySelector('#compose-body').value = `${mailData.body}`;
+  console.log("mailData:",mailData);
+  
+  document.querySelector('#compose-recipients').value = `${mailData ? displayRecipients(mailData.recipients) : ""}`;
+  document.querySelector('#compose-subject').value = `${mailData ? mailData.subject : ""}`;
+  document.querySelector('#compose-body').value = `${mailData ? mailData.body : ""}`;
 
 }
 
