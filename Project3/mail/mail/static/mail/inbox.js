@@ -151,7 +151,7 @@ async function view_email(mailElement) {
         <div class="sm-recipients"><em>to:</em> <b>${displayRecipients(mailData.recipients)}</b></div>
         <div class="sm-subject"><em>subject:</em> <b>${mailData.subject}</b></div>
         <button class="sm-reply">Reply</button>
-        <div class="sm-body">${displayBody(mailData.body)}</div>
+        <div class="sm-body">${displayHTMLBody(mailData.body)}</div>
       </div>
     `
     document.querySelector(".sm-reply").addEventListener("click", (e) => compose_email(e,mailData))
@@ -222,6 +222,11 @@ function displayBody(mail) {
   ----------
   On ${mail.timestamp}, ${mail.sender} wrote: \n
   ${mail.body}`
+}
+
+function displayHTMLBody(body) {
+  return body.split("\n").join("<br />");
+  
 }
 
 function generateArchiveBtn(isArchived) {
