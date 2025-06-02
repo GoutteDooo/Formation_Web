@@ -98,6 +98,7 @@ async function send_mail() {
 
 function display_mails(mails) {
   console.log("mails response:",mails);
+  const mails_object = mails;
   const emailView = document.querySelector("#emails-view");
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
@@ -114,6 +115,7 @@ function display_mails(mails) {
       </div>
     </div>`
   }
+
   emailView.innerHTML = displaying;
   emailView.querySelectorAll(".mail-envelope-container").forEach(mail => {
     mail.addEventListener("click", () => view_email(mail))
