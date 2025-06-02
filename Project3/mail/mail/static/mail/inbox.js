@@ -130,7 +130,7 @@ function display_mails(mails, mailbox) {
     btn.addEventListener("click", () => {
       const emailId = btn.parentNode.previousElementSibling.id.slice(5);
       const mailData = mails.find(m => m.id === +emailId);
-      archive(mailData);
+      archive(emailId, mailData);
     })
   })
 }
@@ -195,15 +195,16 @@ function generateArchiveBtn(isArchived) {
   
 }
 
-async function archive(mail) {
+async function archive(emailId, mail) {
       console.log("mail:", mail);
       try {
-        const res = await fetch(`emails/${id}`, {
+        const res = await fetch(`emails/${emailId}`, {
           method:"PUT",
-          body:{
+          body:JSON.stringify({
             archived:true,
-          }
+          })
         });
+        load_mailbox("inbox");
     }
     catch (err) {
       console.error("unexpected error when trying to trigger archive button:", err);
