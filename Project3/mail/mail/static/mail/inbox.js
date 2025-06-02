@@ -124,6 +124,7 @@ function display_mails(mails) {
 async function view_email(mail) {
   console.log(mail.id.slice(5));
   const id = mail.id.slice(5);
+  const mailRead = mail.read;
   try {
     const response = await fetch(`emails/${id}`)
     if (!response.ok) {
@@ -148,15 +149,14 @@ async function view_email(mail) {
 
   //mark the mail as read
   try {
+    console.log("mail read:",mailRead);
     const res = await fetch(`emails/${id}`, {
       method:"PUT",
       body: JSON.stringify({
-        ...mail,
-        read:!mail.read,
+        read:!mailRead,
       })
     })
 
-    console.log("mail read:",mail.read);
     
   }
   catch (err) {
