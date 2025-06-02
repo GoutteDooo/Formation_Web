@@ -208,7 +208,7 @@ async function archive(emailId, mail) {
             archived:!mail.archived,
           })
         });
-        load_mailbox("inbox");
+        load_mailbox(mail.archived ? "archive" : "inbox");
     }
     catch (err) {
       console.error("unexpected error when trying to trigger archive button:", err);
