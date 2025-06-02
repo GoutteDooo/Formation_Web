@@ -151,6 +151,7 @@ async function view_email(mailElement) {
         <div class="sm-sender"><em>from:</em> <b>${mailData.sender}</b></div>
         <div class="sm-recipients"><em>to:</em> <b>${displayRecipients(mailData.recipients)}</b></div>
         <div class="sm-subject"><em>subject:</em> <b>${mailData.subject}</b></div>
+        <button class="sm-reply">Reply</button>
         <div class="sm-body">${mailData.body}</div>
       </div>
     `
