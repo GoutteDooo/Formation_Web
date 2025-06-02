@@ -128,8 +128,10 @@ function display_mails(mails, mailbox) {
   //to archive
   emailView.querySelectorAll(".archive-btn").forEach(btn => {
     btn.addEventListener("click", () => {
+      const emailId = btn.parentNode.previousElementSibling.id.slice(5);
       console.dir(btn);
-      console.log("archive mail:", mails[0]);
+      console.log("archive id:",btn.parentNode.previousElementSibling.id.slice(5));
+      console.log("archive mail:", mails.find(m => m.id === emailId));
       
     })
   })
