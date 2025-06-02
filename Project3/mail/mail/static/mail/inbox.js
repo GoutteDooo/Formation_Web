@@ -99,7 +99,7 @@ async function send_mail() {
 
 function display_mails(mails, mailbox) {
   console.log("mails response:",mails);
-  const archivingBtn = mailbox == "sent";
+  const archivingBtn = mailbox != "sent";
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
   {
@@ -114,15 +114,19 @@ function display_mails(mails, mailbox) {
         <em>${mails[i].timestamp}</em>
       </div>
     <div class="mail-envelope-buttons">
-      ${archivingBtn ? "" : generateArchiveBtn(mails[i].archived)}
+      ${archivingBtn ? generateArchiveBtn(mails[i].archived) : ""}
     </div>
     </div>`
   }
 
   emailView.innerHTML = displaying;
+  /* create event handlers */
+  //attach event handler to view mails
   emailView.querySelectorAll(".mail-envelope-container").forEach(mail => {
     mail.addEventListener("click", () => view_email(mail))
   });
+  //to archive
+  emailView.querySelectorAll("")
 }
 
 async function view_email(mailElement) {
