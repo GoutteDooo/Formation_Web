@@ -156,7 +156,7 @@ async function view_email(mailElement) {
       </div>
     `
     document.querySelector(".sm-reply").addEventListener("click", () => {
-      console.log("it works");
+      console.log("it works on", mailElement);
       
     })
   }
