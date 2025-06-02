@@ -106,8 +106,8 @@ function display_mails(mails) {
     let color;
     if (mails[i].read) color = "grey";
     displaying += `
-    <div class="mail-envelope" id=mail-${mails[i].id} style="color:${color}">
-      <div class="mail-envelope-container">
+    <div class="mail-envelope" style="color:${color}">
+      <div class="mail-envelope-container" id=mail-${mails[i].id}>
         <h4>from: ${mails[i].sender}</h4>
         <h3><b>subject:</b> ${mails[i].subject}</h3>
         <p>${mails[i].body.slice(0,40)}(...)</p>
@@ -122,7 +122,14 @@ function display_mails(mails) {
   });
 }
 
-function view_email(mail) {
-  console.log("mail:",mail);
-  
+async function view_email(mail) {
+  console.log(mail.id.slice(5));
+  const id = mail.id.slice(5);
+  try {
+    const res = await fetch(`emails/${mail.id.slice(5)}`)
+  }
+  catch (error) {
+    console.error("Unexpected error when fetch mail: ",error);
+    
+  }
 }
