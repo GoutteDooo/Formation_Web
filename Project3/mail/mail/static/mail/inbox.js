@@ -45,8 +45,7 @@ async function load_mailbox(mailbox) {
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
-    console.log(response.json());
-    const mails = response.json();
+    const mails = await response.json();
     display_mails(mails);
     
   }
@@ -95,4 +94,9 @@ async function send_mail() {
     infoElement.textContent = "Sorry, an unknown error happened. Please try again.";
     infoElement.style.color = "red";
   }
+}
+
+function display_mails(mails) {
+  console.log("mails response:",mails);
+  
 }
