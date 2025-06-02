@@ -121,16 +121,16 @@ function display_mails(mails) {
   });
 }
 
-async function view_email(mail) {
-  console.log(mail.id.slice(5));
-  const id = mail.id.slice(5);
+async function view_email(mailElement) {
+  console.log(mailElement.id.slice(5));
+  const id = mailElement.id.slice(5);
   try {
     const response = await fetch(`emails/${id}`)
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
     const mailData = await response.json();
-    console.log("mail view:",mail);
+    console.log("mail view:",mailData);
     emailView.innerHTML = `
       <div class="single-mail">
         <div class="sm-time">received ${displayTime(mailData.timestamp)}</div>
@@ -153,8 +153,6 @@ async function view_email(mail) {
         read:true,
       })
     })
-
-    
   }
   catch (err) {
     console.error("unexpected error when trying to mark mail as read:",err);
