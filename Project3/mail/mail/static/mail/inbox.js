@@ -27,7 +27,7 @@ function compose_email(e,mailData = null) {
   document.querySelector('#compose-view').style.display = 'block';
 
   // Clear out composition fields
-  document.querySelector('#compose-recipients').value = `${mailData ? displayRecipients(mailData.recipients) : ""}`;
+  document.querySelector('#compose-recipients').value = `${mailData ? mailData.sender : ""}`;
   document.querySelector('#compose-subject').value = `${mailData ? displaySubject(mailData.subject) : ""}`;
   document.querySelector('#compose-body').value = "";
   infoElement.textContent = "";
