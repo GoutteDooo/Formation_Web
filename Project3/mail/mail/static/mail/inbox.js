@@ -43,7 +43,8 @@ async function load_mailbox(mailbox) {
   try {
     const response = await fetch(`email/${mailbox}`, {
       method: "GET",
-    })
+    });
+    
 
   }
   catch {}
@@ -55,7 +56,7 @@ async function send_mail() {
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
-  
+
   try 
   {
     const response = await fetch("/emails", {
