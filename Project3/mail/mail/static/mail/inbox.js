@@ -55,8 +55,6 @@ async function send_mail() {
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
-
-  const data = {recipients,subject,body};
   
   try 
   {
@@ -65,7 +63,7 @@ async function send_mail() {
       headers:{
         "Content-Type":"application/json"
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({recipients,subject,body}),
     });
 
     console.log("response status:", response.status);
