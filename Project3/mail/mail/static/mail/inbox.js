@@ -1,4 +1,5 @@
 let formElement;
+let emailView;
 document.addEventListener('DOMContentLoaded', function() {
 
   // Use buttons to toggle between views
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   load_mailbox('inbox');
 
   formElement = document.querySelector("#compose-form");
+  emailView = document.querySelector("#emails-view");
   
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -47,7 +49,6 @@ async function load_mailbox(mailbox) {
     }
     const mails = await response.json();
     display_mails(mails);
-    
   }
   catch (error) {
     console.error("unexpected error:",error);
@@ -98,8 +99,6 @@ async function send_mail() {
 
 function display_mails(mails) {
   console.log("mails response:",mails);
-  const mails_object = mails;
-  const emailView = document.querySelector("#emails-view");
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
   {
@@ -126,7 +125,15 @@ async function view_email(mail) {
   console.log(mail.id.slice(5));
   const id = mail.id.slice(5);
   try {
-    const res = await fetch(`emails/${mail.id.slice(5)}`)
+    const response = await fetch(`emails/${id}`)
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const mail = await response.json();
+    console.log("mail view:",mail);
+    emailView.innerHTML = `
+      
+    `
   }
   catch (error) {
     console.error("Unexpected error when fetch mail: ",error);
