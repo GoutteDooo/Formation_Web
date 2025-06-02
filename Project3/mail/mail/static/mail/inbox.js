@@ -41,11 +41,13 @@ async function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
   //Make a get request for the current mailbox
   try {
-    const response = await fetch(`email/${mailbox}`);
+    const response = await fetch(`emails/${mailbox}`);
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
     console.log(response.json());
+    const mails = response.json();
+    display_mails(mails);
     
   }
   catch (error) {
