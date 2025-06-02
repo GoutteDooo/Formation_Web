@@ -62,6 +62,8 @@ async function send_mail() {
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
+  console.log("body:",body);
+  
 
   try 
   {
@@ -149,7 +151,7 @@ async function view_email(mailElement) {
         <div class="sm-recipients"><em>to:</em> <b>${displayRecipients(mailData.recipients)}</b></div>
         <div class="sm-subject"><em>subject:</em> <b>${mailData.subject}</b></div>
         <button class="sm-reply">Reply</button>
-        <div class="sm-body">${mailData.body}</div>
+        <div class="sm-body">${displayBody(mailData.body)}</div>
       </div>
     `
     document.querySelector(".sm-reply").addEventListener("click", (e) => compose_email(e,mailData))
