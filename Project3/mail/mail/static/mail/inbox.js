@@ -45,16 +45,20 @@ async function load_mailbox(mailbox) {
 
 async function send_mail(e) { 
   e.preventDefault();
-  const recipients = document.querySelector('#compose-recipients').value;
-  const subject = document.querySelector('#compose-subject').value;
-  const body = document.querySelector('#compose-body').value;
+  const formElement = document.querySelector("#compose-form");
   const infoElement = document.querySelector("#user-info");
+
+  const formData = new FormData(formElement);
+  console.log("formElement:",formElement);
+  
+  console.log("formData:",formData);
+  
   
   try 
   {
     const response = await fetch("/emails", {
       method: "POST",
-      body: JSON.stringify({recipients,subject,body}),
+      body: JSON.stringify(formData),
       headers: {
         "Content-Type":"application/json",
       }
