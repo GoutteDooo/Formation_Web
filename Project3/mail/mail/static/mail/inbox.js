@@ -29,7 +29,7 @@ function compose_email(e,mailData = null) {
   // Clear out composition fields
   document.querySelector('#compose-recipients').value = `${mailData ? mailData.sender : ""}`;
   document.querySelector('#compose-subject').value = `${mailData ? displaySubject(mailData.subject) : ""}`;
-  document.querySelector('#compose-body').value = `${mailData ? displayBody(mailData.body, mailData.timestamp) : ""}`;
+  document.querySelector('#compose-body').value = `${mailData ? displayBody(mailData) : ""}`;
   infoElement.textContent = "";
 
 }
@@ -215,8 +215,11 @@ function displayTime(timestamp) {
   return timestamp;
 }
 
-function displayBody(body) {
-  return `On ${}`
+function displayBody(mail) {
+  return `\n
+  ----------
+  On ${mail.timestamp}, ${mail.sender} wrote: \n
+  ${mail.body}`
 }
 
 function generateArchiveBtn(isArchived) {
