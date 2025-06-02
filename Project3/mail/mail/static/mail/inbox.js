@@ -149,10 +149,15 @@ async function view_email(mail) {
   try {
     const res = await fetch(`emails/${id}`, {
       method:"PUT",
-      body:{
-        
-      }
+      body: JSON.stringify({
+        ...mail,
+        read:true,
+      })
     })
+
+    const data = res.json();
+    console.log("read! data:", res.json());
+    
   }
 
 }
