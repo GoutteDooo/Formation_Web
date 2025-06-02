@@ -27,6 +27,11 @@ textarea {
     margin: 20px 0;
 }
 
+.sm-time {
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
 .sm-sender, .sm-recipients, .sm-subject {
     border: 1px solid grey;
     margin: 10px 0;
