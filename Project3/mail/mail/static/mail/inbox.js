@@ -105,7 +105,7 @@ function display_mails(mails) {
     if (mails[i].read) color = "grey";
     displaying += `
     <div class="mail-envelope" style="color:${color}">
-      <div class="mail-envelope-container" onclick="() => view_email(${mails[i]})">
+      <div class="mail-envelope-container">
         <h4>from: ${mails[i].sender}</h4>
         <h3><b>subject:</b> ${mails[i].subject}</h3>
         <p>${mails[i].body.slice(0,40)}(...)</p>
