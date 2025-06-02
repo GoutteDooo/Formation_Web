@@ -58,11 +58,11 @@ async function send_mail(e) {
   {
     const response = await fetch("/emails", {
       method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type":"application/json",
-      }
+      body: formData
     });
+
+    console.log(await response.json());
+    
     
     const data = await response.json();
     
