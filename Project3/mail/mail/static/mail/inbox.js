@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   load_mailbox('inbox');
 
   formElement = document.querySelector("#compose-form");
+  
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
     send_mail();
