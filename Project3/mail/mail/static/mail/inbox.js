@@ -33,6 +33,10 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+  //Make a get request for the current mailbox
+  try {
+    const response = await fetch("")
+  }
 }
 
 async function send_mail(e) { 
