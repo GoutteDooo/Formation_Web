@@ -48,7 +48,7 @@ async function load_mailbox(mailbox) {
       throw new Error(`Response status: ${response.status}`);
     }
     const mails = await response.json();
-    display_mails(mails);
+    display_mails(mails,mailbox);
   }
   catch (error) {
     console.error("unexpected error:",error);
@@ -97,7 +97,7 @@ async function send_mail() {
   }
 }
 
-function display_mails(mails) {
+function display_mails(mails, mailbox) {
   console.log("mails response:",mails);
   let displaying = "";
   for (let i = 0, len = mails.length; i < len; i++)
@@ -112,7 +112,7 @@ function display_mails(mails) {
         <p>${mails[i].body.slice(0,40)}(...)</p>
         <em>${mails[i].timestamp}</em>
       </div>
-      ${generateArchiveBtn(mails)}
+      ${generateArchiveBtn(mailbox)}
     </div>`
   }
 
