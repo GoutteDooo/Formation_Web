@@ -51,6 +51,7 @@ async function load_mailbox(mailbox) {
 
 async function send_mail() {
 
+  const formElement = document.querySelector("#compose-form");
   const infoElement = document.querySelector("#user-info");
   const formData = new FormData(formElement);
 
@@ -65,21 +66,22 @@ async function send_mail() {
       body: formData
     });
 
+    console.log("response status:", response.status);
     
     const data = await response.json();
     console.log("try works! data:",data);
     
-    // if (response.ok)
-    // {
-    //   infoElement.textContent = data.message;
-    //   compose_email();
-    //   infoElement.style.color = "green";
-    // }
-    // else
-    // {
-    //   infoElement.textContent = data.error;
-    //   infoElement.style.color = "red";
-    // }
+    if (response.ok)
+    {
+      infoElement.textContent = data.message;
+      compose_email();
+      infoElement.style.color = "green";
+    }
+    else
+    {
+      infoElement.textContent = data.error;
+      infoElement.style.color = "red";
+    }
   }
   catch (err)
   {
