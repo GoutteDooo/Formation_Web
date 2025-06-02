@@ -132,11 +132,19 @@ async function view_email(mail) {
     const mail = await response.json();
     console.log("mail view:",mail);
     emailView.innerHTML = `
-      
+      <div class="single-mail">
+        <div class="sm-sender">${mail.sender}</div>
+        <div class="sm-subject">${mail.subject}</div>
+        <div class="sm-recipients">${displayRecipients(mail.recipients)}</div>
+      </div>
     `
   }
   catch (error) {
     console.error("Unexpected error when fetch mail: ",error);
     
   }
+}
+
+function displayRecipients(rec) {
+  return rec.split(", ");
 }
