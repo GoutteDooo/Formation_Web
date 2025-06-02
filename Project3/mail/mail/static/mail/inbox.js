@@ -151,12 +151,16 @@ async function view_email(mail) {
       method:"PUT",
       body: JSON.stringify({
         ...mail,
-        read:true,
+        read:!mail.read,
       })
     })
 
-    const data = res.json();
-    console.log("read! data:", res.json());
+    // const data = await res.json();
+    // console.log("read! data:", res.json());
+    
+  }
+  catch (err) {
+    console.error("unexpected error when trying to mark mail as read:",err);
     
   }
 
