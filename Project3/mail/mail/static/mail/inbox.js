@@ -44,10 +44,13 @@ async function load_mailbox(mailbox) {
     const response = await fetch(`email/${mailbox}`, {
       method: "GET",
     });
+    console.log(response.json());
     
-
   }
-  catch {}
+  catch (error) {
+    console.error("unexpected error:",error);
+    
+  }
 }
 
 async function send_mail() {
