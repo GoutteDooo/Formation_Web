@@ -103,10 +103,15 @@ function display_mails(mails) {
   {
     displaying += `
     <div class="mail-envelope">
-      <h4>from: ${mails[i].sender}</h4>
-      <h3><b>subject:</b> ${mails[i].subject}</h3>
-      <p>${mails[i].body.slice(0,40)}(...)</p>
-      <em>${mails[i].timestamp}</em>
+      <div class="mail-envelope-container">
+        <h4>from: ${mails[i].sender}</h4>
+        <h3><b>subject:</b> ${mails[i].subject}</h3>
+        <p>${mails[i].body.slice(0,40)}(...)</p>
+        <em>${mails[i].timestamp}</em>
+      </div>
+      <div class="mail-envelope-buttons">
+        <button>archive</button>
+      </div>
     </div>`
   }
   document.querySelector("#emails-view").innerHTML = displaying;
