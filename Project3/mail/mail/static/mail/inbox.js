@@ -25,7 +25,7 @@ function compose_email() {
 
 }
 
-function load_mailbox(mailbox) {
+async function load_mailbox(mailbox) {
   
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
@@ -35,8 +35,12 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
   //Make a get request for the current mailbox
   try {
-    const response = await fetch("")
+    const response = await fetch(`email/${mailbox}`, {
+      method: "GET",
+    })
+
   }
+  catch {}
 }
 
 async function send_mail(e) { 
