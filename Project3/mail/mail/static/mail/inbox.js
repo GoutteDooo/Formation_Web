@@ -136,6 +136,7 @@ async function view_email(mail) {
         <div class="sm-sender">${mail.sender}</div>
         <div class="sm-subject">${mail.subject}</div>
         <div class="sm-recipients">${displayRecipients(mail.recipients)}</div>
+        <div class="sm-body">${mail.body}</div>
       </div>
     `
   }
@@ -146,5 +147,5 @@ async function view_email(mail) {
 }
 
 function displayRecipients(rec) {
-  return rec.split(", ");
+  return rec.length > 1 ? rec.split(", ") : rec[0];
 }

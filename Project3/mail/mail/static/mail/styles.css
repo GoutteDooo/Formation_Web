@@ -17,3 +17,7 @@ textarea {
 .mail-envelope-buttons {
     margin-left: auto;
 }
+
+.single-mail {
+    height: 100vh;
+}
