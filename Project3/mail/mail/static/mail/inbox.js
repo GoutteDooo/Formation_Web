@@ -103,10 +103,9 @@ function display_mails(mails) {
   {
     displaying += `
     <div class="mail-envelope">
-      <h3>${mails[i].sender}</h3>
-      <h3>${mails[i].subject}</h3>
-      <h3>${mails[i].recipients.map(r => r + ",")}</h3>
-      <p>${mails[i].timestamp}</p>
+      <h4>from: ${mails[i].sender}</h4>
+      <h3><b>subject:</b> ${mails[i].subject}</h3>
+      <em>${mails[i].timestamp}</em>
     </div>`
   }
   document.querySelector("#emails-view").innerHTML = displaying;

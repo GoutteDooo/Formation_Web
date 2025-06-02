@@ -3,5 +3,14 @@ textarea {
 }
 
 .mail-envelope {
-    background: red;
+    padding: 15px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.mail-envelope:hover {
+    transform: scale(1.02);
+    transition: 0.2s;
+    cursor: pointer;
 }
