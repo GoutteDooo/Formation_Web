@@ -155,6 +155,10 @@ async function view_email(mailElement) {
         <div class="sm-body">${mailData.body}</div>
       </div>
     `
+    document.querySelector(".sm-reply").addEventListener("click", () => {
+      console.log("it works");
+      
+    })
   }
   catch (error) {
     console.error("Unexpected error when fetch mail: ",error);

@@ -46,7 +46,9 @@ textarea {
 .sm-reply {
     width: 150px;
     position: relative;
-    right: 0;
+    right: -100%;
+    transform: translateX(-100%);
+    margin: 15px 0;
 }
 
 .sm-body {
