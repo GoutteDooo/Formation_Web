@@ -1,3 +1,4 @@
+let formElement;
 document.addEventListener('DOMContentLoaded', function() {
 
   // Use buttons to toggle between views
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // By default, load the inbox
   load_mailbox('inbox');
 
-  const formElement = document.querySelector("#compose-form");
+  formElement = document.querySelector("#compose-form");
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
     send_mail();
@@ -48,11 +49,11 @@ async function load_mailbox(mailbox) {
 }
 
 async function send_mail() {
-  const infoElement = document.querySelector("#user-info");
 
+  const infoElement = document.querySelector("#user-info");
   const formData = new FormData(formElement);
+
   console.log("formElement:",formElement);
-  
   console.log("formData:",formData);
   
   
@@ -67,17 +68,17 @@ async function send_mail() {
     const data = await response.json();
     console.log("try works! data:",data);
     
-    if (response.ok)
-    {
-      infoElement.textContent = data.message;
-      compose_email();
-      infoElement.style.color = "green";
-    }
-    else
-    {
-      infoElement.textContent = data.error;
-      infoElement.style.color = "red";
-    }
+    // if (response.ok)
+    // {
+    //   infoElement.textContent = data.message;
+    //   compose_email();
+    //   infoElement.style.color = "green";
+    // }
+    // else
+    // {
+    //   infoElement.textContent = data.error;
+    //   infoElement.style.color = "red";
+    // }
   }
   catch (err)
   {
