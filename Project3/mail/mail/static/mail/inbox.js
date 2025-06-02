@@ -115,9 +115,9 @@ function display_mails(mails) {
     </div>`
   }
   emailView.innerHTML = displaying;
-  emailView.forEach(mail => {
-    mail.addEventListener("click", view_email(mail));
-  })
+  emailView.querySelectorAll(".mail-envelope-container").forEach(mail => {
+    mail.addEventListener("click", () => view_email(mail))
+  });
 }
 
 function view_email(mail) {
