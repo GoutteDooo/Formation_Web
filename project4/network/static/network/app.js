@@ -76,6 +76,7 @@ function display_posts(posts) {
     const newPost = document.createElement("div");
     newPost.classList.add("post");
     newPost.id = `post-${post.id}`
+    newPost.textContent = post.content;
     view.appendChild(newPost);
   }
 }
