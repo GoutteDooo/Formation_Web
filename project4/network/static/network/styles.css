@@ -53,11 +53,11 @@ textarea {
 }
 
 .post-time {
-  left: 15px;
+  right: 15px;
   font-style: italic;
   font-size: 0.8rem;
 }
 
 .post-likes {
-  right: 15px;
+  left: 15px;
 }

@@ -93,5 +93,5 @@ def load_posts(request, posts_type):
     # var posts_type can be "all", "following" or "user"
     if posts_type == "all":
         posts = Post.objects.all()
-    print(posts)
+    posts = posts.order_by("-timestamp").all()
     return JsonResponse([post.serialize() for post in posts], safe=False)
