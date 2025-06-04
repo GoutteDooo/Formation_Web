@@ -6,4 +6,5 @@ class User(AbstractUser):
     pass
 
 class Post:
-    user_id = 
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="posts")
+    
