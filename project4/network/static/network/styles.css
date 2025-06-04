@@ -12,6 +12,14 @@
   flex-direction: column;
 }
 
+#new-post__form > input[type="submit"] {
+  margin-top: 20px;
+}
+
 #id_content {
   width: 600px;
+}
+
+textarea {
+  padding: 10px;
 }
