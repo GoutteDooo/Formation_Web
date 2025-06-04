@@ -73,10 +73,27 @@ function display_posts(posts) {
   const view = document.querySelector("#posts-view");
   for (const post of posts) {
     console.log(post);
-    const newPost = document.createElement("div");
-    newPost.classList.add("post");
-    newPost.id = `post-${post.id}`
-    newPost.textContent = post.content;
-    view.appendChild(newPost);
+    const postElement = document.createElement("div");
+    const userElement = document.createElement("div");
+    const textElement = document.createElement("p");
+    const timeElement = document.createElement("div");
+    const likeCounterElement = document.createElement("div");
+    
+    
+    postElement.classList.add("post");
+    postElement.id = `post-${post.id}`
+    
+    userElement.classList.add("post-user");
+    userElement.textContent = post.user;
+
+    textElement.classList.add("post-text");
+    textElement.textContent = post.content;
+
+    timeElement.classList.add("post-time");
+    timeElement.textContent = post.timestamp;
+
+    likeCounterElement.classList.add("post-likes");
+    likeCounterElement.textContent = post.likes;
+    view.appendChild(postElement);
   }
 }
