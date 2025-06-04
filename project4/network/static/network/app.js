@@ -47,18 +47,20 @@ async function send_post(e) {
   }
 }
 
-async function load_posts(postType) {
+async function load_posts(postsType) {
   document.querySelector("#new-post").style.display = "none";
   document.querySelector("#posts-view").style.display = "block";
-  if (postType == "all") {
+  if (postsType == "all") {
     document.querySelector("#new-post").style.display = "block";
     try {
       //query for all posts
-      const res = await fetch("load_posts")
+      const res = await fetch(`load_posts/${postsType}`)
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`)
       }
       const posts = await res.json();
+      console.log(posts);
+      
       display_posts(posts);
     }
     catch (err) {
