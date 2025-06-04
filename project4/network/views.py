@@ -72,6 +72,7 @@ def new_post(request):
     form = PostForm(request.POST)
     if form.is_valid():
         content = form.cleaned_data["content"]
+        print(form.cleaned_data)
         return JsonResponse({
             "message":"Post sent successfully!",
             "content":content
