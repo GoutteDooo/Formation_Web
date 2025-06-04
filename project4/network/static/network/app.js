@@ -70,9 +70,12 @@ async function load_posts(postsType) {
 }
 
 function display_posts(posts) {
+  const view = document.querySelector("#posts-view");
   for (const post of posts) {
     console.log(post);
-    
+    const newPost = document.createElement("div");
+    newPost.classList.add("post");
+    newPost.id = `post-${post.id}`
+    view.appendChild(newPost);
   }
-  document.querySelector("#posts-view");
 }

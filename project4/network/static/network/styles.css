@@ -27,3 +27,14 @@ textarea {
 #message {
   margin: 20px;
 }
+
+#posts-view {
+  height: 100%;
+  width: 100%;
+}
+
+.post {
+  height: 100px;
+  width: 80%;
+  background: red;
+}
