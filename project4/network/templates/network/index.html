@@ -2,9 +2,9 @@
 
 {% block body %}
     <div id="new-post">
-        <form action="{% url 'new_post' new_post %}">
-            <textarea name="new-post" id="new-post-area"></textarea>
+        <form id="new-post__form">
+            <label>New post</label>
+            <textarea name="new-post" id="new-post__textarea" placeholder="How do you feel today ?"></textarea>
         </form>
-
     </div>
 {% endblock %}
