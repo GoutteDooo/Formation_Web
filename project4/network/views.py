@@ -69,5 +69,6 @@ def new_post(request):
         return JsonResponse({"error": "POST request required."}, status=400)
 
     # Check if post length > 5 chars
+    print(request)
     form = PostForm()
     return render(request, "network/index.html", { "form":form })
