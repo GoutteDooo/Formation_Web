@@ -16,9 +16,9 @@ async function send_post(datas) {
       method:"POST",
       headers:{
         "Content-Type":"application/json"
-        ""
       },
-      body: JSON.stringify({content})
+      body: JSON.stringify({content}),
+      credentials: 'same-origin',
     });
     // console.log(await res.json());
   }
