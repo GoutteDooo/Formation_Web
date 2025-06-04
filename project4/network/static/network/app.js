@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function send_post(e) {
   const url = form.dataset.url;
-  const content = e.target[1].value;
+  let content = e.target[1].value;
   const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
   const data = new FormData();
@@ -35,7 +35,7 @@ async function send_post(e) {
       message.classList.add("alert-danger");
     }
     //remove text written by user
-    content = "";
+    document.querySelector("#id_content").value = "";
   }
   catch (err) {
     console.error("unexpected error when sending post:",err);
