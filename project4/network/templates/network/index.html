@@ -3,9 +3,7 @@
 
 {% block body %}
     {% if user.is_authenticated %}
-        {% if message %}
-            <p>{{message}}</p>
-        {% endif %}
+        <p>{{message}}</p>
         <div id="new-post">
             <form id="new-post__form" data-url="{% url 'new_post' %}">
                 {% csrf_token %}
