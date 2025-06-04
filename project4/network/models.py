@@ -16,5 +16,6 @@ class Post(models.Model):
             "id":self.id,
             "user":self.user.username,
             "content":self.content,
-            "timestamp": self.timestamp.strftime("%b %d %Y, %Y %M %p")
+            "timestamp": self.timestamp.strftime("%b %d %Y, %Y %M %p"),
+            "likes": self.likes
         }

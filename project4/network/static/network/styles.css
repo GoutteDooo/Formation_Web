@@ -29,14 +29,14 @@ textarea {
 }
 
 #posts-view {
-  /* height: 1000px;
-  width: 1000px; */
+  color: inherit;
 }
 
 .post {
-  height: 100px;
+  height: 200px;
   width: 80%;
   border: 1px solid grey;
   border-radius: 15px;
   margin: 15px auto;
+  padding: 10px;
 }

@@ -79,7 +79,6 @@ function display_posts(posts) {
     const timeElement = document.createElement("div");
     const likeCounterElement = document.createElement("div");
     
-    
     postElement.classList.add("post");
     postElement.id = `post-${post.id}`
     
@@ -94,6 +93,11 @@ function display_posts(posts) {
 
     likeCounterElement.classList.add("post-likes");
     likeCounterElement.textContent = post.likes;
+
+    postElement.appendChild(userElement);
+    postElement.appendChild(textElement);
+    postElement.appendChild(timeElement);
+    postElement.appendChild(likeCounterElement);
     view.appendChild(postElement);
   }
 }
