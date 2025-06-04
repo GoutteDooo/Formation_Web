@@ -7,5 +7,6 @@ class PostForm(forms.Form):
         min_length=5,
         widget=forms.Textarea(attrs={
             'placeholder': 'How are you feeling today?',
+            'rows':3
         })
     )

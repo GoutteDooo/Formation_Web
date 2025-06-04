@@ -1,6 +1,11 @@
+
 #username {
   margin-left: auto;
   margin-right: 50px;
+}
+
+#new-post {
+  width: auto;
 }
 
 #new-post__form {
@@ -22,6 +27,7 @@
 
 textarea {
   padding: 10px;
+  border-radius: 15px;
 }
 
 #message {
