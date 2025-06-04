@@ -53,7 +53,6 @@ async function load_mailbox(mailbox) {
   }
   catch (error) {
     console.error("unexpected error:",error);
-    
   }
 }
 

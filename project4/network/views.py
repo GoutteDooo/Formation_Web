@@ -94,4 +94,6 @@ def load_posts(request, posts_type):
     if posts_type == "all":
         posts = Post.objects.all()
         print(posts)
-    pass
+    return JsonResponse({
+        "message":"posts fetching success! ",
+    })
