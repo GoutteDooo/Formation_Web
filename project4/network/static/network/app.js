@@ -45,8 +45,10 @@ async function send_post(e) {
 }
 
 async function load_posts(postType) {
+  document.querySelector("#new-post").style.display = "none";
+  document.querySelector("#posts-view").style.display = "block";
   if (postType == "all") {
-
+    document.querySelector("#new-post").style.display = "block";
   }
   
 }
