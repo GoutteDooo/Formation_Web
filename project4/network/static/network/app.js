@@ -25,10 +25,15 @@ async function send_post(e) {
     
     const json = await res.json();
     console.log(json);
-    
-    document.querySelector("#message").textContent = json.message;
-    if (json.ok) {
-      
+    const message = document.querySelector("#message")
+    message.textContent = json.message;
+    console.dir(message);
+    if (res.ok) {
+      message.style.color = "green";
+    }
+    else {
+      message.style.color = "alert alert-danger";
+
     }
   }
   catch (err) {
