@@ -29,7 +29,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                     </li>
-                    <div id="username">Welcome {{ user.username }} !</div>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Log In</a>
@@ -40,6 +39,7 @@
                 {% endif %}
               </ul>
             </div>
+            <div id="username">Welcome {{ user.username }} !</div>
           </nav>
         
         <div class="body">
