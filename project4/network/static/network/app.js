@@ -1,6 +1,9 @@
 let form;
 document.addEventListener('DOMContentLoaded', () => {
   form = document.querySelector("#new-post__form");
+  // document.querySelector("#user").addEventListener("click", () => load_posts("user"));
+  // document.querySelector("#all-posts").addEventListener("click", () => load_posts("all"));
+  // document.querySelector("#following").addEventListener("click", () => load_posts("following"));
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();

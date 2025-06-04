@@ -90,7 +90,7 @@ def new_post(request):
         return JsonResponse({"message": "Invalid form", "details": form.errors}, status=400)
 
 def load_posts(request, posts_type):
-    # var posts_type can be "all", "follows" or "user"
+    # var posts_type can be "all", "following" or "user"
     if posts_type == "all":
         posts = Post.objects.all()
         print(posts)
