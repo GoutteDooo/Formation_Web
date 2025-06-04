@@ -54,7 +54,7 @@ async function load_posts(postType) {
     document.querySelector("#new-post").style.display = "block";
     try {
       //query for all posts
-      const res = await fetch("load_posts/")
+      const res = await fetch("load_posts")
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`)
       }
@@ -65,4 +65,8 @@ async function load_posts(postType) {
       console.error("Unexpected error when fetching posts:",err);
     }
   }
+}
+
+function display_posts(posts) {
+  return;
 }
