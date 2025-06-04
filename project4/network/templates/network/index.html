@@ -3,7 +3,7 @@
 
 {% block body %}
     {% if user.is_authenticated %}
-        {% if message % }
+        {% if message %}
             <p>{{message}}</p>
         {% endif %}
         <div id="new-post">

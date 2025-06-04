@@ -72,4 +72,4 @@ def new_post(request):
     form = PostForm()
     return render(request, "network/index.html", { 
         "form":form,
-        "message":"Post sent succesfully!" })
+        "message": "Post sent succesfully!" })

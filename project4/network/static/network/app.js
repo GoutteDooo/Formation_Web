@@ -12,11 +12,16 @@ async function send_post(datas) {
   try {
     const res = await fetch("new_post/", {
       method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
       body: JSON.stringify({content})
     });
-
     console.log(await res.json());
     
   }
-  catch (err) {}
+  catch (err) {
+    console.error("unexpected error when sending post:",err);
+    
+  }
 }
