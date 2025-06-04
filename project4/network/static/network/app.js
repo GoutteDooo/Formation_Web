@@ -30,6 +30,7 @@ async function send_post(e) {
     const json = await res.json();
     const message = document.querySelector("#message")
     message.textContent = json.message;
+
     if (res.ok) {
       message.classList.add("alert");
       message.classList.add("alert-success");
@@ -38,8 +39,6 @@ async function send_post(e) {
       message.classList.add("alert");
       message.classList.add("alert-danger");
     }
-    //remove text written by user
-    document.querySelector("#id_content").value = "";
   }
   catch (err) {
     console.error("unexpected error when sending post:",err);
