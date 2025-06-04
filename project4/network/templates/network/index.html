@@ -1,11 +1,15 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-    <div id="new-post">
-        <form id="new-post__form">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Post">
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        <div id="new-post">
+            <form id="new-post__form">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Post">
+            </form>
+        </div>
+    {% else %}
+    <p>Log if u want to make a new post :)</p>
+    {% endif %}
 {% endblock %}
