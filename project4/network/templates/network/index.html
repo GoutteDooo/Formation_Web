@@ -1,5 +1,10 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-    TODO
+    <div id="new-post">
+        <form action="{% url 'new_post' new_post %}">
+            <textarea name="new-post" id="new-post-area"></textarea>
+        </form>
+
+    </div>
 {% endblock %}
