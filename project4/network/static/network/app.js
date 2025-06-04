@@ -24,15 +24,15 @@ async function send_post(e) {
     });
     
     const json = await res.json();
-    console.log(json);
     const message = document.querySelector("#message")
     message.textContent = json.message;
-    console.dir(message);
     if (res.ok) {
-      message.style.color = "green";
+      message.classList.add("alert");
+      message.classList.add("alert-success");
     }
     else {
-      message.style.color = "alert alert-danger";
+      message.classList.add("alert");
+      message.classList.add("alert-danger");
 
     }
   }
