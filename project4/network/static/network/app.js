@@ -92,7 +92,7 @@ function display_posts(posts) {
     timeElement.textContent = post.timestamp;
 
     likeCounterElement.classList.add("post-likes");
-    likeCounterElement.textContent = post.likes;
+    likeCounterElement.textContent = "likes: " + post.likes;
 
     postElement.appendChild(userElement);
     postElement.appendChild(textElement);

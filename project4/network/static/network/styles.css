@@ -33,10 +33,31 @@ textarea {
 }
 
 .post {
+  position: relative;
   height: 200px;
   width: 80%;
   border: 1px solid grey;
   border-radius: 15px;
   margin: 15px auto;
   padding: 10px;
+}
+
+.post-user {
+  font-style: bold;
+  font-size: 1.5rem;
+}
+
+.post-time, .post-likes {
+  position: absolute;
+  bottom: 10px;
+}
+
+.post-time {
+  left: 15px;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.post-likes {
+  right: 15px;
 }
