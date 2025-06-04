@@ -73,6 +73,15 @@ def new_post(request):
     if form.is_valid():
         content = form.cleaned_data["content"]
         print(form.cleaned_data)
+        # create post object
+        # add all necessary datas
+        post = Post(
+            user = request.user,
+            content = content,
+        )
+        # save it to db
+        post.save()
+
         return JsonResponse({
             "message":"Post sent successfully!",
             "content":content
