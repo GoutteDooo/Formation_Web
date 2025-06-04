@@ -89,3 +89,5 @@ def new_post(request):
     else:
         return JsonResponse({"message": "Invalid form", "details": form.errors}, status=400)
 
+def load_posts(request, posts):
+    
