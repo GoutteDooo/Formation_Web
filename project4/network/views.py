@@ -94,4 +94,4 @@ def load_posts(request, posts_type):
     if posts_type == "all":
         posts = Post.objects.all()
     print(posts)
-    return JsonResponse([posts.serialize() for post in posts], safe=False)
+    return JsonResponse([post.serialize() for post in posts], safe=False)
