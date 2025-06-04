@@ -12,8 +12,11 @@ async function send_post(datas) {
   try {
     const res = await fetch("new_post/", {
       method:"POST",
-      body: JSON.stringify({content});
+      body: JSON.stringify({content})
     });
+
+    console.log(await res.json());
+    
   }
   catch (err) {}
 }

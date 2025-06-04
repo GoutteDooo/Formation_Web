@@ -3,6 +3,9 @@
 
 {% block body %}
     {% if user.is_authenticated %}
+        {% if message % }
+            <p>{{message}}</p>
+        {% endif %}
         <div id="new-post">
             <form id="new-post__form">
                 {% csrf_token %}
