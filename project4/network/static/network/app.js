@@ -22,7 +22,9 @@ async function send_post(e) {
       headers: { "X-CSRFToken": csrfToken },
       body: data,
     });
-    console.log(await res.json());
+    
+    const json = await res.json();
+    document.querySelector("#message").textContent = json.message;
   }
   catch (err) {
     console.error("unexpected error when sending post:",err);
