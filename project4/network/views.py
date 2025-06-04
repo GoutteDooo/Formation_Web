@@ -76,4 +76,5 @@ def new_post(request):
             "content":content
         })
     else:
-        return JsonResponse({"message": "Error: form is not valid."})
+        return JsonResponse({"message": "Invalid form", "details": form.errors}, status=400)
+

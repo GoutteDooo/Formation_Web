@@ -24,6 +24,8 @@ async function send_post(e) {
     });
     
     const json = await res.json();
+    console.log(json);
+    
     document.querySelector("#message").textContent = json.message;
   }
   catch (err) {
