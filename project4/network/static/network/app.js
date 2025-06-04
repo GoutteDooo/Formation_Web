@@ -17,7 +17,7 @@ async function send_post(datas) {
       },
       body: JSON.stringify({content})
     });
-    console.log(await res.json());
+    // console.log(await res.json());
     
   }
   catch (err) {
