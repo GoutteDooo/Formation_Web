@@ -9,8 +9,11 @@ from .forms import PostForm
 
 
 def index(request):
-    form = PostForm()
-    return render(request, "network/index.html", {"form":form})
+    if request.user.is_authenticated:
+        form = PostForm()
+        return render(request, "network/index.html", { "form":form })
+    else:
+        return HttpResponseRedirect(reverse("login"))
 
 
 def login_view(request):
