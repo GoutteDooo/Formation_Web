@@ -8,17 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 })
 
-async function send_post(datas) {
+async function send_post(e) {
   const url = form.dataset.url;
-  const content = datas.target[1].value;
+  const content = e.target[1].value;
+
+  const data = new FormData();
+  data.append('content', content);
   try {
     const res = await fetch(url, {
       method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({content}),
-      credentials: 'same-origin',
+      headers: { "X-CSRFToken": '{{csrf_token}}' },
+      body: data,
     });
     // console.log(await res.json());
   }
