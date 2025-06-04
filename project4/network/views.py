@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.views.decorators.http import require_POST
 
 from .models import User
 from .forms import PostForm
@@ -64,12 +65,15 @@ def register(request):
     else:
         return render(request, "network/register.html")
 
+
+@require_POST
 def new_post(request):
-    if request.method != "POST":
-        return JsonResponse({"error": "POST request required."}, status=400)
-
-
-    form = PostForm()
-    return render(request, "network/index.html", { 
-        "form":form,
-        "message": "Post sent succesfully!" })
+    form = PostForm(request.POST)
+    if form.is_valid():
+        content = form.cleaned_data["content"]
+        return JsonResponse({
+            "message":"Post sent successfully!",
+            "content":content
+        })
+    else:
+        return JsonResponse({"message":"Error: form is not valid."})
