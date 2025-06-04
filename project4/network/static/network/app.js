@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     send_post(e);
   })
+
+  load_posts("all");
 })
 
 async function send_post(e) {
@@ -40,4 +42,11 @@ async function send_post(e) {
   catch (err) {
     console.error("unexpected error when sending post:",err);
   }
+}
+
+async function load_posts(postType) {
+  if (postType == "all") {
+
+  }
+  
 }
