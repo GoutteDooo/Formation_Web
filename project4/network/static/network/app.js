@@ -1,9 +1,9 @@
 let form;
 document.addEventListener('DOMContentLoaded', () => {
   form = document.querySelector("#new-post__form");
-  // document.querySelector("#user").addEventListener("click", () => load_posts("user"));
-  // document.querySelector("#all-posts").addEventListener("click", () => load_posts("all"));
-  // document.querySelector("#following").addEventListener("click", () => load_posts("following"));
+  document.querySelector("#user").addEventListener("click", () => load_posts("user"));
+  document.querySelector("#all-posts").addEventListener("click", () => load_posts("all"));
+  document.querySelector("#following").addEventListener("click", () => load_posts("following"));
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -52,6 +52,9 @@ async function load_posts(postType) {
   document.querySelector("#posts-view").style.display = "block";
   if (postType == "all") {
     document.querySelector("#new-post").style.display = "block";
+    //query for all posts
+    fetch("load_posts/")
+    .then(r = r.json())
   }
   
 }
