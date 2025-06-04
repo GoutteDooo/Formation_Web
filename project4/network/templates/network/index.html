@@ -3,7 +3,7 @@
 {% block body %}
     {% if user.is_authenticated %}
         <div id="new-post">
-            <form id="new-post__form">
+            <form id="new-post__form" method="post" action="new_post">
                 {% csrf_token %}
                 {{ form }}
                 <input type="submit" value="Post">

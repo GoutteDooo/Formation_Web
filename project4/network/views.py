@@ -70,3 +70,4 @@ def new_post(request):
 
     # Check if post length > 5 chars
     print(request)
+    return render(request, "network/index.html", { "form":form })
