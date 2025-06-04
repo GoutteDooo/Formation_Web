@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector("#following").addEventListener("click", () => load_posts("following"));
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
     send_post(e);
   })
 

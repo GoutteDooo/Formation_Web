@@ -1,3 +1,6 @@
+:root {
+  --main-width: 800px;
+}
 
 #username {
   margin-left: auto;
@@ -5,7 +8,8 @@
 }
 
 #new-post {
-  width: auto;
+  width: var(--main-width);
+  margin: auto;
 }
 
 #new-post__form {

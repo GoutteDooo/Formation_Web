@@ -2,7 +2,7 @@ from django import forms
 
 class PostForm(forms.Form):
     content = forms.CharField(
-        label="New post",
+        label="",
         max_length=1000,
         min_length=5,
         widget=forms.Textarea(attrs={
