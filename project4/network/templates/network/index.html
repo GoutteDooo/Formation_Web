@@ -3,8 +3,9 @@
 {% block body %}
     <div id="new-post">
         <form id="new-post__form">
-            <label>New post</label>
-            <textarea name="new-post" id="new-post__textarea" placeholder="How do you feel today ?"></textarea>
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Post">
         </form>
     </div>
 {% endblock %}

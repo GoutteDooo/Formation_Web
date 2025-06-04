@@ -5,10 +5,12 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from .models import User
+from .forms import PostForm
 
 
 def index(request):
-    return render(request, "network/index.html")
+    form = PostForm()
+    return render(request, "network/index.html", {"form":form})
 
 
 def login_view(request):
