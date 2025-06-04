@@ -27,6 +27,9 @@ async function send_post(e) {
     console.log(json);
     
     document.querySelector("#message").textContent = json.message;
+    if (json.ok) {
+      
+    }
   }
   catch (err) {
     console.error("unexpected error when sending post:",err);
