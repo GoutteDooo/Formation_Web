@@ -2,3 +2,7 @@
   margin-left: auto;
   margin-right: 50px;
 }
+
+#new-post {
+  display: flex;
+}
