@@ -33,8 +33,9 @@ async function send_post(e) {
     else {
       message.classList.add("alert");
       message.classList.add("alert-danger");
-
     }
+    //remove text written by user
+    content = "";
   }
   catch (err) {
     console.error("unexpected error when sending post:",err);
