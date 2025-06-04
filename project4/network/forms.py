@@ -6,7 +6,5 @@ class PostForm(forms.Form):
         max_length=1000,
         widget=forms.Textarea(attrs={
             'placeholder': 'How are you feeling today?',
-            'rows': 6,  # Optional: control height
-            'cols': 50  # Optional: control width
         })
     )
