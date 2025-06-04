@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("OK");
-  
+  const submitPost = document.querySelector("#new-post__form");
+
+
+  submitPost.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch("new_post/", () => {
+      
+    }
+  })
 })
