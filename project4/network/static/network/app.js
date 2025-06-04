@@ -59,7 +59,7 @@ async function load_posts(postsType) {
         throw new Error(`Response status: ${res.status}`)
       }
       const posts = await res.json();
-      console.log(posts);
+      console.log("fetching posts success");
       
       display_posts(posts);
     }
@@ -70,5 +70,9 @@ async function load_posts(postsType) {
 }
 
 function display_posts(posts) {
-  return;
+  for (const post of posts) {
+    console.log(post);
+    
+  }
+  document.querySelector("#posts-view");
 }
