@@ -103,7 +103,7 @@ def profile(request, user_id):
         - number of following (int)
         - following button (bool)
     """
-    follower_count = FollowModel.objects.count
+    follower_count = FollowModel.objects.count()
     if request.user.is_authenticated:
         following_button = False
         #check if the account is not the user's one
