@@ -101,6 +101,9 @@ def load_posts(request, posts_type):
         # posts_type example : profile-id -> profile-1 (for user "Test")
         poster = User.objects.filter(id = int(posts_type.split("-")[1])).first()
         print("poster:",poster)
+        if not poster:
+            return JsonResponse({"error": "User not found"}, status=404)
+        
         posts = Post.objects.filter(user = poster)
         print("posts:",posts)
 
