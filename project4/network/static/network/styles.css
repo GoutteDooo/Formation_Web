@@ -72,8 +72,9 @@ textarea {
   left: 15px;
 }
 
-.profile {
+#profile {
   display: flex;
   flex-direction: column;
   text-align: center;
+  height: 200px;
 }

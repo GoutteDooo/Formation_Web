@@ -59,7 +59,10 @@ async function load_page(pageType) {
     const profile = document.querySelector("#profile");
     const username = profile.dataset.username;
     profile.style.display = "block";
-    profile.innerHTML = `<h1>${username}</h1>
+    profile.innerHTML = `
+    <h1>${username}</h1>
+    Followers :
+    Following :
     <p>Your posts: </p>`;
   }
 
