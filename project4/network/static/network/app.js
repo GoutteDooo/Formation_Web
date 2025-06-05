@@ -165,7 +165,7 @@ const follow = async () => {
   .then((r) => r.json())
   .then((data) => {
     console.log(data);
-    document.querySelector("#follow-btn").textContent = data.toggle;
+    document.querySelector("#follow-btn").textContent = data.toggle ? "Follow": "Unfollow";
   })
   .catch(err => {
     console.error("erreur lors de la requête follow:",err);
