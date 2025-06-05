@@ -98,8 +98,11 @@ def load_posts(request, posts_type):
         pass
     else: # posts_type = particular profile
         # posts_type example : profile-id -> profile-1 (for user "Test")
+        poster_id = User.objects.filter(
+            id = poster.split("-")[1]
+        )
         posts = Post.objects.filter(
-            
+            user = 
         )
         pass
     posts = posts.order_by("-timestamp").all()
