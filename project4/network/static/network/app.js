@@ -67,15 +67,14 @@ async function load_page(pageType) {
       //I need to get user id to make a good fetching
       const res = await fetch(`profile/${userId}`)
       const data = await res.json()
-      const username = data.username;
       console.log("fetching success:",data);
       
       profileView.style.display = "block";
       profileView.innerHTML = `
-      <h1>${username}</h1>
+      <h1>${data.profile_name}</h1>
       Followers : ${data.followers_count}
       Following : ${data.following_count}
-      ${data.following_button ? `<button>Follow</button>` : ""}
+      ${data.following_button == true ? `<button>Follow</button>` : data.following_button == false ? "<button>Unfollow</button>" : ""}
       <p>Your posts: </p>`;
     }
     catch (err)
