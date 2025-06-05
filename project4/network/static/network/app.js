@@ -56,6 +56,7 @@ async function load_page(pageType) {
 
   if (pageType === "profile") 
   {
+    replace("profile/1")
     const profileView = document.querySelector("#profile-view");
     const userId = document.querySelector("#user").dataset.userId;
     /** datas we need to fetch are :
