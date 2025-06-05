@@ -169,7 +169,14 @@ def follow(request, profile_id):
 
     Then, it will send back a JsonResponse and JS will handle it back.
     """
-    
+    # see if user is already following profile
+    is_follow = FollowModel.objects.filter(
+        follower = request.user,
+        following = profile_id
+    ).exists()
+    print(is_follow)
+        # if it is, remove the row
+        # else, add a new row
     return JsonResponse({
         "message":"success"
     })
