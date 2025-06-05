@@ -63,6 +63,7 @@ async function load_page(pageType) {
      * - username for displaying follow/unfollow button
     */
     try {
+      //I need to get user id to make a good fetching
       const res = await fetch(`profile`)
       const data = await res.json()
       const username = data.username;
@@ -79,8 +80,6 @@ async function load_page(pageType) {
     {
       console.error(err);
     }
-
-
   }
 
   try {
