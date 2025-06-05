@@ -99,5 +99,5 @@ def load_posts(request, posts_type):
 @login_required
 def profile(request):
     if request.user.is_authenticated:
-        return render(request,  "network/profile.html")
+        return JsonResponse({"user":request.user.username})
     return JsonResponse({"error": "Not authenticated"}, status=403)
