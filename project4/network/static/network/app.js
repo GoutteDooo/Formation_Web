@@ -49,9 +49,24 @@ async function load_page(pageType) {
   document.querySelector("#new-post").style.display = "none";
   document.querySelector("#profile").style.display = "none";
   document.querySelector("#posts-view").style.display = "block";
+
+  if (pageType == "all") {
+    document.querySelector("#new-post").style.display = "block";
+  }
+
+  if (pageType === "profile") 
+  {
+    const profile = document.querySelector("#profile");
+    profile.style.display = "block";
+    profile.innerHTML = "<h1>Profile of {{user.username}}</h1>";
+    
+    document.querySelector("#posts-view").textContent = "Your posts: ";
+
+  }
   try {
     //query for all posts
-    const res = await fetch(`load_posts/${pageType}`)
+    // const res = await fetch(`load_posts/${pageType}`)
+    const res = await fetch(`load_posts/all`)
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`)
     }
@@ -61,15 +76,6 @@ async function load_page(pageType) {
   }
   catch (err) {
     console.error("Unexpected error when fetching posts:",err);
-  }
-  if (pageType == "all") {
-    document.querySelector("#new-post").style.display = "block";
-  }
-
-  if (pageType === "profile") 
-  {
-    const profile = document.querySelector("#profile");
-    profile.style.display = "block";
   }
 }
 
