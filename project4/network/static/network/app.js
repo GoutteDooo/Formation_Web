@@ -78,8 +78,10 @@ async function load_page(pageType) {
       <h1>${data.profile_name}</h1>
       Followers : ${data.followers_count}
       Following : ${data.following_count}
-      ${data.following_button == true ? `<button>Unfollow</button>` : data.following_button == false ? "<button>Follow</button>" : ""}
+      ${data.following_button == true ? `<button id="follow-btn">Unfollow</button>` : data.following_button == false ? `<button id="follow-btn">Follow</button>` : ""}
       <p>Your posts: </p>`;
+      profileView.setAttribute("data-profile-id",data.profile_id);
+      document.querySelector("#follow-btn").addEventListener("click", follow);
     }
     catch (err)
     {
@@ -141,6 +143,8 @@ function display_posts(posts) {
   }
 }
 
-function follow(follow_id) {
+const follow = () => {
+  const profileId = document.querySelector("#profile-view").getAttribute("data-profile-id");
+  console.log("profile id:",profileId);
   
 }
