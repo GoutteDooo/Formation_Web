@@ -103,6 +103,8 @@ def profile_view(request, user_id):
         - number of following (int)
         - following button (bool)
     """
+    try:
+        
     follower_count = FollowModel.objects.filter(
         following:
     )
