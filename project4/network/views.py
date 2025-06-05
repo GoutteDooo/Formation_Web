@@ -95,16 +95,23 @@ def load_posts(request, posts_type):
 
     if posts_type == "all":
         posts = Post.objects.all()
+
     elif posts_type == "following":
-        pass
-    else: # posts_type = particular profile
+        posts = Post.objects.none()
+
+    elif posts_type.startswith("profile-"):
         # posts_type example : profile-id -> profile-1 (for user "Test")
-        poster = User.objects.filter(id = int(posts_type.split("-")[1])).first()
+        try:
+            poster_id = int(posts_type.split("-")[1])
+        except:
+            return JsonResponse({"error":"Invalid profile ID"}, status=400)
+
+        poster = User.objects.filter(id = poster_id).first()
         print("poster:",poster)
         if not poster:
             return JsonResponse({"error": "User not found"}, status=404)
         
-        posts = Post.objects.filter(user = poster)
+        posts = Post.objects.filter(user = poster.id)
         print("posts:",posts)
 
     # posts = Post.objects.all() # FOR TESTING
