@@ -87,6 +87,8 @@ async function load_page(pageType) {
   try {
     //query for all posts
     // const res = await fetch(`load_posts/${pageType}`)
+    console.log("searching for posts... pageType=",pageType);
+    
     const res = await fetch(`load_posts/${pageType}`)
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`)

@@ -92,14 +92,15 @@ def new_post(request):
 def load_posts(request, posts_type):
     # var posts_type can be "all", "following" or "user"
     posts = None
-    
+
     if posts_type == "all":
         posts = Post.objects.all()
     elif posts_type == "following":
         pass
     else: # posts_type = particular profile
         # posts_type example : profile-id -> profile-1 (for user "Test")
-        poster_id = User.objects.filter(id = int(poster.split("-")[1]))
+        print("poster_id:",User.objects.filter(id = int(posts_type.split("-")[1])).values())
+        poster_id = User.objects.filter(id = int(posts_type.split("-")[1]))
         posts = Post.objects.filter(user = poster_id)
 
     posts = posts.order_by("-timestamp").all()
