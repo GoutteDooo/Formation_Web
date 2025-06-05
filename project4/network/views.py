@@ -111,6 +111,8 @@ def load_posts(request, posts_type):
     else:
         return JsonResponse({"error": "Invalid posts_type."}, status=400)
     print("posts:",posts)
+    # print("SQL:", Post.objects.filter(user=poster).query)
+
     posts = posts.order_by("-timestamp")
     return JsonResponse([post.serialize() for post in posts], safe=False)
 
