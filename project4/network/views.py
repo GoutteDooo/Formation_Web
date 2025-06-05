@@ -104,6 +104,7 @@ def profile_view(request, user_id):
         - following button (bool)
     """
     user = User.objects.get(pk=user_id)
+    print("test following:", user.following.count())
     if request.user.is_authenticated:
         following_button = False
         #check if the account is not the user's one
@@ -113,8 +114,8 @@ def profile_view(request, user_id):
             following_button = True
         return JsonResponse({
                 "following_button":following_button,
-                "followers_count": user.follower.count()
-                "followers_count": user.following.count()
+                "followers_count": user.followers.count(),
+                "following_count": user.following.count()
             }
             )
     return JsonResponse({"error": "Not authenticated"}, status=403)
