@@ -97,20 +97,19 @@ def load_posts(request, posts_type):
     return JsonResponse([post.serialize() for post in posts], safe=False)
 
 @login_required
-def profile_view(request, user_id):
+def profile_view(request, profile_id):
     """send required datas as follows as a JSON Object:
         - number of followers (int)
         - number of following (int)
         - following button (bool)
     """
-    user = User.objects.get(pk=user_id)
-    print("test following:", user.following.count())
+    profile = User.objects.get(pk=profile_id)
+    print("test following:", profile.following.count())
     if request.user.is_authenticated:
-        following_button = False
-        #check if the account is not the user's one
-            #if it is, then set following btn to True
-            #else following btn stay to False
-        if user_id != request.user.id:
+        if profile_id != request.user.id:
+            #if there is a following button, check if user is already follows
+            following_button = False
+            # go see FollowModel and check if user_id is a follower of profile_id
             following_button = True
         return JsonResponse({
                 "following_button":following_button,
