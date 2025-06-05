@@ -78,7 +78,7 @@ async function load_page(pageType) {
       <h1>${data.profile_name}</h1>
       Followers : ${data.followers_count}
       Following : ${data.following_count}
-      ${data.following_button == true ? `<button>Follow</button>` : data.following_button == false ? "<button>Unfollow</button>" : ""}
+      ${data.following_button == true ? `<button>Unfollow</button>` : data.following_button == false ? "<button>Follow</button>" : ""}
       <p>Your posts: </p>`;
     }
     catch (err)
