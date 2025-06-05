@@ -47,8 +47,8 @@ async function send_post(e) {
 
 async function load_page(pageType) {
   document.querySelector("#new-post").style.display = "none";
+  document.querySelector("#profile").style.display = "none";
   document.querySelector("#posts-view").style.display = "block";
-  document.querySelector("#new-post").style.display = "block";
   try {
     //query for all posts
     const res = await fetch(`load_posts/${pageType}`)
@@ -63,11 +63,13 @@ async function load_page(pageType) {
     console.error("Unexpected error when fetching posts:",err);
   }
   if (pageType == "all") {
+    document.querySelector("#new-post").style.display = "block";
   }
 
   if (pageType === "profile") 
   {
-    
+    const profile = document.querySelector("#profile");
+    profile.style.display = "block";
   }
 }
 
