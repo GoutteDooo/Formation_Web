@@ -99,14 +99,15 @@ def load_posts(request, posts_type):
         pass
     else: # posts_type = particular profile
         # posts_type example : profile-id -> profile-1 (for user "Test")
-        poster = User.objects.filter(id = int(posts_type.split("-")[1]))
+        poster = User.objects.filter(id = int(posts_type.split("-")[1])).first()
         print("poster:",poster)
         posts = Post.objects.filter(user = poster)
         print("posts:",posts)
 
-    posts = Post.objects.all() # FOR TESTING
+    # posts = Post.objects.all() # FOR TESTING
     posts = posts.order_by("-timestamp").all()
     return JsonResponse([post.serialize() for post in posts], safe=False)
+
 
 @login_required
 def profile_view(request, profile_id):
@@ -116,7 +117,6 @@ def profile_view(request, profile_id):
         - following button (bool)
     """
     profile = User.objects.get(pk=profile_id)
-    print("test following:", FollowModel.objects.filter(follower = request.user.id, following = profile_id).exists())
     if request.user.is_authenticated:
         if profile_id != request.user.id:
             #check if profile is already follows
