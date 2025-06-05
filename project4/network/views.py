@@ -96,8 +96,12 @@ def load_posts(request, posts_type):
         posts = Post.objects.all()
     elif posts_type == "following":
         pass
-    else:#posts_type = particular profile
-        # posts_type example : 
+    else: # posts_type = particular profile
+        # posts_type example : profile-id -> profile-1 (for user "Test")
+        posts = Post.objects.filter(
+            
+        )
+        pass
     posts = posts.order_by("-timestamp").all()
     return JsonResponse([post.serialize() for post in posts], safe=False)
 
@@ -115,6 +119,7 @@ def profile_view(request, profile_id):
             #check if profile is already follows
             following_button = FollowModel.objects.filter(follower = request.user.id, following = profile_id).exists()
             return JsonResponse({
+                    "profile_id":profile.id,
                     "profile_name":profile.username,
                     "following_button":following_button,
                     "followers_count": profile.followers.count(),
@@ -123,6 +128,7 @@ def profile_view(request, profile_id):
         else: 
             #this is the user profile
             return JsonResponse({
+                "profile_id":profile.id,
                 "profile_name":profile.username,
                 "followers_count": profile.followers.count(),
                 "following_count": profile.following.count()
