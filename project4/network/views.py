@@ -90,33 +90,30 @@ def new_post(request):
         return JsonResponse({"message": "Invalid form", "details": form.errors}, status=400)
 
 def load_posts(request, posts_type):
-    # var posts_type can be "all", "following" or "user"
-    posts = None
-
     if posts_type == "all":
         posts = Post.objects.all()
 
     elif posts_type == "following":
-        posts = Post.objects.none()
+        posts = Post.objects.none()  # à implémenter plus tard
 
     elif posts_type.startswith("profile-"):
-        # posts_type example : profile-id -> profile-1 (for user "Test")
         try:
             poster_id = int(posts_type.split("-")[1])
-        except:
-            return JsonResponse({"error":"Invalid profile ID"}, status=400)
+        except (IndexError, ValueError):
+            return JsonResponse({"error": "Invalid profile ID"}, status=400)
 
-        poster = User.objects.filter(id = poster_id).first()
-        print("poster:",poster)
+        poster = User.objects.filter(id=poster_id).first()
         if not poster:
             return JsonResponse({"error": "User not found"}, status=404)
-        
-        posts = Post.objects.filter(user = poster.id)
-        print("posts:",posts)
 
-    # posts = Post.objects.all() # FOR TESTING
-    posts = posts.order_by("-timestamp").all()
+        posts = Post.objects.filter(user=poster)
+
+    else:
+        return JsonResponse({"error": "Invalid posts_type."}, status=400)
+    print("posts:",posts)
+    posts = posts.order_by("-timestamp")
     return JsonResponse([post.serialize() for post in posts], safe=False)
+
 
 
 @login_required
