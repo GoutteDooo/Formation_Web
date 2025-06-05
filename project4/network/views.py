@@ -99,10 +99,12 @@ def load_posts(request, posts_type):
         pass
     else: # posts_type = particular profile
         # posts_type example : profile-id -> profile-1 (for user "Test")
-        poster_id = User.objects.filter(id = int(posts_type.split("-")[1])).values().first()["id"]
-        posts = Post.objects.filter(user = poster_id)
-        print("posts:",posts[3].posts)
+        poster = User.objects.filter(id = int(posts_type.split("-")[1]))
+        print("poster:",poster)
+        posts = Post.objects.filter(user = poster)
+        print("posts:",posts)
 
+    posts = Post.objects.all() # FOR TESTING
     posts = posts.order_by("-timestamp").all()
     return JsonResponse([post.serialize() for post in posts], safe=False)
 
