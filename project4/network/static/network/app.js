@@ -57,12 +57,12 @@ async function load_page(pageType) {
   if (pageType === "profile") 
   {
     const profile = document.querySelector("#profile");
+    const username = profile.dataset.username;
     profile.style.display = "block";
-    profile.innerHTML = "<h1>Profile of {{user.username}}</h1>";
-    
-    document.querySelector("#posts-view").textContent = "Your posts: ";
+    profile.innerHTML = `<h1>${username}</h1>
+    <p>Your posts: </p>`;
   }
-  
+
   try {
     //query for all posts
     // const res = await fetch(`load_posts/${pageType}`)

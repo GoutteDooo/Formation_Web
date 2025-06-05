@@ -4,7 +4,7 @@
 {% block body %}
     {% if user.is_authenticated %}
         <p id="message">{{message}}</p>
-        <div id="profile"></div>
+        <div id="profile" data-username="{{ user.username }}"></div>
         <div id="new-post">
             <form id="new-post__form" data-url="{% url 'new_post' %}">
                 {% csrf_token %}

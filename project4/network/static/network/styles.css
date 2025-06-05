@@ -71,3 +71,9 @@ textarea {
 .post-likes {
   left: 15px;
 }
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
