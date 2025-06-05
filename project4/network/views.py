@@ -169,6 +169,7 @@ def follow(request, profile_id):
 
     Then, it will send back a JsonResponse and JS will handle it back.
     """
+    
     return JsonResponse({
         "message":"success"
     })
