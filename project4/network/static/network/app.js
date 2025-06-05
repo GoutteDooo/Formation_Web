@@ -61,8 +61,8 @@ async function load_page(pageType) {
     profile.innerHTML = "<h1>Profile of {{user.username}}</h1>";
     
     document.querySelector("#posts-view").textContent = "Your posts: ";
-
   }
+  
   try {
     //query for all posts
     // const res = await fetch(`load_posts/${pageType}`)
