@@ -95,9 +95,15 @@ def load_posts(request, posts_type):
 
     elif posts_type == "following":
         # displays all posts from the user's following
-        posts = Post.objects.filter(
+        # get the list of all user's following
+        following_list = FollowModel.objects.filter(
             follower = request.user
         )
+        print("following_list:",following_list)
+        posts = Post.objects.filter(
+            user = [u for u in following_list]
+        )
+        print("posts:",posts)
 
     elif posts_type.startswith("profile-"):
         try:
