@@ -94,7 +94,10 @@ def load_posts(request, posts_type):
         posts = Post.objects.all()
 
     elif posts_type == "following":
-        posts = Post.objects.none()  # à implémenter plus tard
+        # displays all posts from the user's following
+        posts = Post.objects.filter(
+            follower = request.user
+        )
 
     elif posts_type.startswith("profile-"):
         try:
