@@ -148,19 +148,31 @@ function display_posts(posts) {
 
 const follow = async () => {
   const profileId = document.querySelector("#profile-view").getAttribute("data-profile-id");
+
+  const csrftoken = getCookie("csrftoken");
+
   await fetch(`follow/${profileId}`, {
     method:"POST",
+    headers: {
+      "Content-Type":"applications/json",
+      "X-CSRFToken":csrftoken,
+    },
     body:{
       profile_id: profileId,
     },
     credentials: "same-origin"
   })
   .then((r) => r.json())
-  .then(() => {
-    console.log(r);
+  .then((data) => {
+    console.log(data);
+  })
+  .catch(err => {
+    console.error("erreur lors de la requête follow:",err);
   })
 }
 
+
+/* Helpers */
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {
