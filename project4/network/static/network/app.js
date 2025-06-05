@@ -86,8 +86,8 @@ async function load_page(pageType) {
     }
   }
 
+  /* query for all posts */
   try {
-    //query for all posts
     console.log("searching for posts... pageType=",pageType);
     
     const res = await fetch(`load_posts/${pageType}`)
