@@ -108,7 +108,7 @@ def profile_view(request, user_id):
         #check if the account is not the user's one
             #if it is, then set following btn to True
             #else following btn stay to False
-        if user_id != user.id:
+        if user_id != request.user.id:
             following_button = True
         return JsonResponse({"user":request.user.username})
     return JsonResponse({"error": "Not authenticated"}, status=403)
