@@ -104,7 +104,7 @@ async function load_page(pageType) {
 
 function display_posts(posts) {
   const view = document.querySelector("#posts-view");
-  console.log("posts to display:",posts);
+  view.innerHTML = "";
   
   for (const post of posts) {
     const postElement = document.createElement("div");
