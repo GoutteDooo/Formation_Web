@@ -61,6 +61,9 @@ async function load_page(pageType) {
      * - number of following
      * - is_user (?) for displaying follow/unfollow button
     */
+    const 
+
+
     const profile = document.querySelector("#profile");
     const username = profile.dataset.username;
     profile.style.display = "block";
