@@ -98,6 +98,15 @@ def load_posts(request, posts_type):
 
 @login_required
 def profile(request, user_id):
+    """send required datas as follows as a JSON Object:
+        - number of followers (int)
+        - number of following (int)
+        - following button (bool)
+    """
+    #check if the account is the user's one
+        #if it is, then set following btn to True
+        #else following btn to False
+
     if request.user.is_authenticated:
         return JsonResponse({"user":request.user.username})
     return JsonResponse({"error": "Not authenticated"}, status=403)
