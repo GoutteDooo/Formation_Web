@@ -65,7 +65,7 @@ async function load_page(pageType) {
     */
     try {
       const res = await fetch(`profile`)
-      console.log(res);
+      console.log("fetch success:", res.json());
     }
     catch (err)
     {
