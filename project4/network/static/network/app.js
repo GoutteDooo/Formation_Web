@@ -1,7 +1,7 @@
 let form;
 document.addEventListener('DOMContentLoaded', () => {
   form = document.querySelector("#new-post__form");
-  const userId = document.querySelector("#user").dataset.userId;
+  const userId = document.querySelector("#user") ? document.querySelector("#user").dataset.userId : "";
   
   document.querySelector("#user").addEventListener("click", () => load_page(`profile-${userId}`));
   document.querySelector("#all-posts").addEventListener("click", () => load_page("all"));

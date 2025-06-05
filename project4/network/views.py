@@ -101,7 +101,7 @@ def load_posts(request, posts_type):
         ).values_list("following", flat=True)
         print("following_list:",following_users)
         posts = Post.objects.filter(
-            user = following_users
+            user__in = following_users
         )
         print("posts:",posts)
 
