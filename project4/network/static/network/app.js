@@ -56,7 +56,8 @@ async function load_page(pageType) {
 
   if (pageType === "profile") 
   {
-    const profile = document.querySelector("#profile");
+    const profileView = document.querySelector("#profile-view");
+    const userId = document.querySelector("#user").dataset.userId;
     /** datas we need to fetch are :
      * - number of followers
      * - number of following
@@ -64,13 +65,13 @@ async function load_page(pageType) {
     */
     try {
       //I need to get user id to make a good fetching
-      const res = await fetch(`profile`)
+      const res = await fetch(`profile/${userId}`)
       const data = await res.json()
       const username = data.username;
       console.log("fetching success:",data);
       
-      profile.style.display = "block";
-      profile.innerHTML = `
+      profileView.style.display = "block";
+      profileView.innerHTML = `
       <h1>${username}</h1>
       Followers :
       Following :
