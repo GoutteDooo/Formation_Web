@@ -155,5 +155,16 @@ def profile_view(request, profile_id):
         })
     return JsonResponse({"error": "Not authenticated"}, status=403)
 
-def follow(request, follow_id):
-    
+@require_post
+def follow(request, profile_id):
+    """
+    If the profile_id is followed by user, this function will insert 
+    into the FollowModel table a new row which is :
+        Follower : user.id
+        Following : profile_id
+    If the profile_id is unfollowed, this function will remove from
+    FollowModel the row concerned.
+
+    Then, it will send back a HttpResponseRedirect
+    """
+
