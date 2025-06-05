@@ -176,21 +176,21 @@ def follow(request, profile_id):
     ).exists()
     if is_follow:
         # if it is, remove the row
-        FollowModel.objects.remove(
+        FollowModel.objects.get(
             follower = request.user,
             following = profile_id
-        )
+        ).delete()
         return JsonResponse({
-            "message":f"You removed {User.profile_id} from your followings."
+            "message":f"You removed {profile_id} from your followings."
         })
     else:
         # else, add a new row
-        FollowModel.objects.add(
+        FollowModel.objects.create(
             follower = request.user,
             following = profile_id
         )
         return JsonResponse({
-            "message":f"You follow {User.profile_id}!"
+            "message":f"You follow {profile_id}!"
         })
     return JsonResponse({
         "error":"Server error."
