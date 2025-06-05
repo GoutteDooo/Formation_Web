@@ -117,6 +117,7 @@ function display_posts(posts) {
     
     postElement.classList.add("post");
     postElement.id = `post-${post.id}`
+    postElement.setAttribute("data-user-id", post.user_id);
     
     userElement.classList.add("post-user");
     userElement.textContent = post.user;

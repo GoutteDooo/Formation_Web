@@ -55,6 +55,7 @@ textarea {
 .post-user {
   font-style: bold;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .post-time, .post-likes {
