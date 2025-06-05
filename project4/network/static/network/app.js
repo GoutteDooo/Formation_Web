@@ -86,7 +86,6 @@ async function load_page(pageType) {
 
   try {
     //query for all posts
-    // const res = await fetch(`load_posts/${pageType}`)
     console.log("searching for posts... pageType=",pageType);
     
     const res = await fetch(`load_posts/${pageType}`)
@@ -107,7 +106,6 @@ function display_posts(posts) {
   view.innerHTML = "";
   console.log("posts:",posts);
   
-  
   for (const post of posts) {
     const postElement = document.createElement("div");
     const userElement = document.createElement("div");
@@ -117,11 +115,11 @@ function display_posts(posts) {
     
     postElement.classList.add("post");
     postElement.id = `post-${post.id}`
-    postElement.setAttribute("data-user-id", post.user_id);
+    postElement.setAttribute("data-user-id", );
     
     userElement.classList.add("post-user");
     userElement.textContent = post.user;
-    userElement.addEventListener("click", load_page("profile"));
+    userElement.addEventListener("click", () => load_page(`profile-${post.user_id}`));
 
     textElement.classList.add("post-text");
     textElement.textContent = post.content;
