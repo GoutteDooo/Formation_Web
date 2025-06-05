@@ -140,3 +140,7 @@ function display_posts(posts) {
     view.appendChild(postElement);
   }
 }
+
+function follow(follow_id) {
+  
+}
