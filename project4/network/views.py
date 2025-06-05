@@ -185,10 +185,12 @@ def follow(request, profile_id):
         })
     else:
         # else, add a new row
-        FollowModel.objects.create(
+        profile_user = User.objects.get(pk=profile_id)
+        new_followModel = FollowModel(
             follower = request.user,
-            following = profile_id
+            following = profile_user
         )
+        new_followModel.save()
         return JsonResponse({
             "message":f"You follow {profile_id}!"
         })
