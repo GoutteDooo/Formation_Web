@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
-from .models import User, Post
+from .models import User, Post, FollowModel
 from .forms import PostForm
 
 
@@ -103,10 +103,13 @@ def profile(request, user_id):
         - number of following (int)
         - following button (bool)
     """
-    #check if the account is the user's one
-        #if it is, then set following btn to True
-        #else following btn to False
-
+    follower_count = FollowModel.objects.count
     if request.user.is_authenticated:
+        following_button = False
+        #check if the account is not the user's one
+            #if it is, then set following btn to True
+            #else following btn stay to False
+        if user_id != user.id:
+            following_button = True
         return JsonResponse({"user":request.user.username})
     return JsonResponse({"error": "Not authenticated"}, status=403)
