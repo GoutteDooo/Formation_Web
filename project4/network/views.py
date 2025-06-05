@@ -96,12 +96,12 @@ def load_posts(request, posts_type):
     elif posts_type == "following":
         # displays all posts from the user's following
         # get the list of all user's following
-        following_list = FollowModel.objects.filter(
+        following_users = FollowModel.objects.filter(
             follower = request.user
-        )
-        print("following_list:",following_list)
+        ).values_list("following", flat=True)
+        print("following_list:",following_users)
         posts = Post.objects.filter(
-            user = [u for u in following_list]
+            user = following_users
         )
         print("posts:",posts)
 
