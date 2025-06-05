@@ -1,7 +1,7 @@
 let form;
 document.addEventListener('DOMContentLoaded', () => {
   form = document.querySelector("#new-post__form");
-  document.querySelector("#user").addEventListener("click", () => load_page("user"));
+  document.querySelector("#user").addEventListener("click", () => load_page("profile"));
   document.querySelector("#all-posts").addEventListener("click", () => load_page("all"));
   document.querySelector("#following").addEventListener("click", () => load_page("following"));
 
@@ -45,32 +45,35 @@ async function send_post(e) {
   }
 }
 
-async function load_page(postsType) {
+async function load_page(pageType) {
   document.querySelector("#new-post").style.display = "none";
   document.querySelector("#posts-view").style.display = "block";
-  if (postsType == "all") {
-    document.querySelector("#new-post").style.display = "block";
-    try {
-      //query for all posts
-      const res = await fetch(`load_page/${postsType}`)
-      if (!res.ok) {
-        throw new Error(`Response status: ${res.status}`)
-      }
-      const posts = await res.json();
-      console.log("fetching posts success");
-      
-      display_posts(posts);
+  document.querySelector("#new-post").style.display = "block";
+  try {
+    //query for all posts
+    const res = await fetch(`load_posts/${pageType}`)
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`)
     }
-    catch (err) {
-      console.error("Unexpected error when fetching posts:",err);
-    }
+    const posts = await res.json();
+    
+    display_posts(posts);
+  }
+  catch (err) {
+    console.error("Unexpected error when fetching posts:",err);
+  }
+  if (pageType == "all") {
+  }
+
+  if (pageType === "profile") 
+  {
+    
   }
 }
 
 function display_posts(posts) {
   const view = document.querySelector("#posts-view");
   for (const post of posts) {
-    console.log(post);
     const postElement = document.createElement("div");
     const userElement = document.createElement("div");
     const textElement = document.createElement("p");
