@@ -71,7 +71,6 @@ async function load_page(pageType) {
       const res = await fetch(`profile/${userId}`)
       const data = await res.json()
       pageType = `profile-${data.profile_id}`;
-      console.log("fetching success:",data);
       
       profileView.style.display = "block";
       profileView.innerHTML = `
@@ -80,8 +79,12 @@ async function load_page(pageType) {
       Following : ${data.following_count}
       ${data.following_button == true ? `<button id="follow-btn">Unfollow</button>` : data.following_button == false ? `<button id="follow-btn">Follow</button>` : ""}
       <p>Your posts: </p>`;
+
       profileView.setAttribute("data-profile-id",data.profile_id);
-      document.querySelector("#follow-btn").addEventListener("click", follow);
+
+      if (document.querySelector("#follow-btn")) {
+        document.querySelector("#follow-btn").addEventListener("click", follow);
+      }
     }
     catch (err)
     {
@@ -145,6 +148,15 @@ function display_posts(posts) {
 
 const follow = () => {
   const profileId = document.querySelector("#profile-view").getAttribute("data-profile-id");
-  console.log("profile id:",profileId);
+  fetch(`follow/${profileId}`, {
+    method:"POST",
+    body:{
+      profile_id: profileId,
+    }
+  })
+  .then((r) => r.json())
+  .then(() => {
+    console.log(r);
+  })
   
 }
