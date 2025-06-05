@@ -180,13 +180,19 @@ def follow(request, profile_id):
             follower = request.user,
             following = profile_id
         )
+        return JsonResponse({
+            "message":f"You removed {User.profile_id} from your followings."
+        })
     else:
         # else, add a new row
         FollowModel.objects.add(
             follower = request.user,
             following = profile_id
         )
+        return JsonResponse({
+            "message":f"You follow {User.profile_id}!"
+        })
     return JsonResponse({
-        "message":"success"
-    })
+        "error":"Server error."
+    }, status=500)
 
