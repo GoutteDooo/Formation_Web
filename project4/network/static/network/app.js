@@ -1,7 +1,9 @@
 let form;
 document.addEventListener('DOMContentLoaded', () => {
   form = document.querySelector("#new-post__form");
-  document.querySelector("#user").addEventListener("click", () => load_page("profile"));
+  const userId = document.querySelector("#user").dataset.userId;
+  
+  document.querySelector("#user").addEventListener("click", () => load_page(`profile-${userId}`));
   document.querySelector("#all-posts").addEventListener("click", () => load_page("all"));
   document.querySelector("#following").addEventListener("click", () => load_page("following"));
 
@@ -115,7 +117,7 @@ function display_posts(posts) {
     
     postElement.classList.add("post");
     postElement.id = `post-${post.id}`
-    postElement.setAttribute("data-user-id", );
+    postElement.setAttribute("data-user-id", post.user_id);
     
     userElement.classList.add("post-user");
     userElement.textContent = post.user;
