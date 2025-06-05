@@ -104,17 +104,18 @@ def profile_view(request, profile_id):
         - following button (bool)
     """
     profile = User.objects.get(pk=profile_id)
-    print("test following:", FollowModel.objects.filter(follower = request.user.id, following = profile_id))
+    print("test following:", FollowModel.objects.filter(follower = request.user.id, following = profile_id).exists())
     if request.user.is_authenticated:
+        following_button = False
         if profile_id != request.user.id:
+            pass
             #if there is a following button, check if user is already follows
-            following_button = False
             # go see FollowModel and check if user_id is a follower of profile_id
             # if FollowModel.objects.filter(follower = request.user.id, following = profile_id):
             #     following_button = True
         return JsonResponse({
                 "following_button":following_button,
-                "followers_count": user.followers.count(),
-                "following_count": user.following.count()
+                "followers_count": profile.followers.count(),
+                "following_count": profile.following.count()
             })
     return JsonResponse({"error": "Not authenticated"}, status=403)
