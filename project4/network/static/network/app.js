@@ -56,6 +56,11 @@ async function load_page(pageType) {
 
   if (pageType === "profile") 
   {
+    /** datas we need to fetch are :
+     * - number of followers
+     * - number of following
+     * - is_user (?) for displaying follow/unfollow button
+    */
     const profile = document.querySelector("#profile");
     const username = profile.dataset.username;
     profile.style.display = "block";

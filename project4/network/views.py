@@ -95,3 +95,4 @@ def load_posts(request, posts_type):
         posts = Post.objects.all()
     posts = posts.order_by("-timestamp").all()
     return JsonResponse([post.serialize() for post in posts], safe=False)
+
