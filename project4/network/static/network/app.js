@@ -73,8 +73,9 @@ async function load_page(pageType) {
       profileView.style.display = "block";
       profileView.innerHTML = `
       <h1>${username}</h1>
-      Followers : ${}
-      Following :
+      Followers : ${data.followers_count}
+      Following : ${data.following_count}
+      ${data.following_button ? `<button>Follow</button>`}
       <p>Your posts: </p>`;
     }
     catch (err)
