@@ -54,10 +54,10 @@ async function load_page(pageType) {
     document.querySelector("#new-post").style.display = "block";
   }
 
-  if (pageType === "profile")
+  if (pageType.startsWith("profile"))
   {
     const profileView = document.querySelector("#profile-view");
-    const userId = document.querySelector("#user").dataset.userId;
+    const userId = pageType.split("-")[1];
     /** datas we need to fetch are :
      * - number of followers
      * - number of following
@@ -121,6 +121,7 @@ function display_posts(posts) {
     
     userElement.classList.add("post-user");
     userElement.textContent = post.user;
+    userElement.addEventListener("click", load_page("profile"));
 
     textElement.classList.add("post-text");
     textElement.textContent = post.content;

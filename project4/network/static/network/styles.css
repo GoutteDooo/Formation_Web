@@ -58,6 +58,10 @@ textarea {
   cursor: pointer;
 }
 
+.post-user:hover {
+  color:darkgrey;
+}
+
 .post-time, .post-likes {
   position: absolute;
   bottom: 10px;
