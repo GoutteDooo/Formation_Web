@@ -57,15 +57,23 @@ async function load_page(pageType) {
   if (pageType === "profile") 
   {
     const profile = document.querySelector("#profile");
-    const username = profile.dataset.username;
     /** datas we need to fetch are :
      * - number of followers
      * - number of following
-     * - is_user (?) for displaying follow/unfollow button
+     * - username for displaying follow/unfollow button
     */
     try {
       const res = await fetch(`profile`)
-      console.log("fetch success:", res.json());
+      const data = await res.json()
+      const username = data.username;
+      console.log("fetching success:",data);
+      
+      profile.style.display = "block";
+      profile.innerHTML = `
+      <h1>${username}</h1>
+      Followers :
+      Following :
+      <p>Your posts: </p>`;
     }
     catch (err)
     {
@@ -73,12 +81,6 @@ async function load_page(pageType) {
     }
 
 
-    profile.style.display = "block";
-    profile.innerHTML = `
-    <h1>${username}</h1>
-    Followers :
-    Following :
-    <p>Your posts: </p>`;
   }
 
   try {

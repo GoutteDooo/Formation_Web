@@ -97,7 +97,7 @@ def load_posts(request, posts_type):
     return JsonResponse([post.serialize() for post in posts], safe=False)
 
 @login_required
-def get_profile(request):
+def get_profile(request, username):
     if request.user.is_authenticated:
         return JsonResponse({"username":request.user.username})
     return JsonResponse({"error": "Not authenticated"}, status=403)
