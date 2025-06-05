@@ -156,6 +156,7 @@ def profile_view(request, profile_id):
     return JsonResponse({"error": "Not authenticated"}, status=403)
 
 @require_POST
+@login_required
 def follow(request, profile_id):
     """
     If the profile_id is followed by user, this function will insert 

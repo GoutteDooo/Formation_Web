@@ -146,17 +146,17 @@ function display_posts(posts) {
   }
 }
 
-const follow = () => {
+const follow = async () => {
   const profileId = document.querySelector("#profile-view").getAttribute("data-profile-id");
-  fetch(`follow/${profileId}`, {
+  await fetch(`follow/${profileId}`, {
     method:"POST",
     body:{
       profile_id: profileId,
-    }
+    },
+    credentials: "same-origin"
   })
   .then((r) => r.json())
   .then(() => {
     console.log(r);
   })
-  
 }
