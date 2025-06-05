@@ -174,9 +174,18 @@ def follow(request, profile_id):
         follower = request.user,
         following = profile_id
     ).exists()
-    print(is_follow)
+    if is_follow:
         # if it is, remove the row
+        FollowModel.objects.remove(
+            follower = request.user,
+            following = profile_id
+        )
+    else:
         # else, add a new row
+        FollowModel.objects.add(
+            follower = request.user,
+            following = profile_id
+        )
     return JsonResponse({
         "message":"success"
     })
