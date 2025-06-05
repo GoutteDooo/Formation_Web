@@ -63,9 +63,14 @@ async function load_page(pageType) {
      * - number of following
      * - is_user (?) for displaying follow/unfollow button
     */
-    const res = await fetch(`profile`)
-    console.log(res);
-    
+    try {
+      const res = await fetch(`profile`)
+      console.log(res);
+    }
+    catch (err)
+    {
+      console.error(err);
+    }
 
 
     profile.style.display = "block";

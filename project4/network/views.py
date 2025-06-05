@@ -98,4 +98,4 @@ def load_posts(request, posts_type):
 
 def get_profile(request):
     user = request.user
-    return JsonResponse({"user":user})
+    return JsonResponse({"user": user})
