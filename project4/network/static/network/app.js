@@ -54,7 +54,7 @@ async function load_page(pageType) {
     document.querySelector("#new-post").style.display = "block";
   }
 
-  if (pageType === "profile") 
+  if (pageType === "profile")
   {
     const profileView = document.querySelector("#profile-view");
     const userId = document.querySelector("#user").dataset.userId;
@@ -67,6 +67,7 @@ async function load_page(pageType) {
       //I need to get user id to make a good fetching
       const res = await fetch(`profile/${userId}`)
       const data = await res.json()
+      pageType = `profile-${data.profile_id}`;
       console.log("fetching success:",data);
       
       profileView.style.display = "block";
@@ -86,7 +87,7 @@ async function load_page(pageType) {
   try {
     //query for all posts
     // const res = await fetch(`load_posts/${pageType}`)
-    const res = await fetch(`load_posts/all`)
+    const res = await fetch(`load_posts/${pageType}`)
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`)
     }
