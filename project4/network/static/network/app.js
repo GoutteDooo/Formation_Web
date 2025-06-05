@@ -56,16 +56,20 @@ async function load_page(pageType) {
 
   if (pageType === "profile") 
   {
+    const profile = document.querySelector("#profile");
+    const username = profile.dataset.username;
     /** datas we need to fetch are :
      * - number of followers
      * - number of following
      * - is_user (?) for displaying follow/unfollow button
     */
-    const 
+    fetch(`profile/${username}`)
+    .then(res => res.json())
+    .then(() => {
+      console.log(res);
+    });
 
 
-    const profile = document.querySelector("#profile");
-    const username = profile.dataset.username;
     profile.style.display = "block";
     profile.innerHTML = `
     <h1>${username}</h1>
