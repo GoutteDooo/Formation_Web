@@ -181,7 +181,8 @@ def follow(request, profile_id):
             following = profile_id
         ).delete()
         return JsonResponse({
-            "message":f"You removed {profile_id} from your followings."
+            "message":f"You removed {profile_id} from your followings.",
+            "toggle":True
         })
     else:
         # else, add a new row
@@ -192,7 +193,8 @@ def follow(request, profile_id):
         )
         new_followModel.save()
         return JsonResponse({
-            "message":f"You follow {profile_id}!"
+            "message":f"You follow {profile_id}!",
+            "toggle":False
         })
     return JsonResponse({
         "error":"Server error."
