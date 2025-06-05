@@ -1,15 +1,15 @@
 let form;
 document.addEventListener('DOMContentLoaded', () => {
   form = document.querySelector("#new-post__form");
-  document.querySelector("#user").addEventListener("click", () => load_posts("user"));
-  document.querySelector("#all-posts").addEventListener("click", () => load_posts("all"));
-  document.querySelector("#following").addEventListener("click", () => load_posts("following"));
+  document.querySelector("#user").addEventListener("click", () => load_page("user"));
+  document.querySelector("#all-posts").addEventListener("click", () => load_page("all"));
+  document.querySelector("#following").addEventListener("click", () => load_page("following"));
 
   form.addEventListener("submit", (e) => {
     send_post(e);
   })
 
-  load_posts("all");
+  load_page("all");
 })
 
 async function send_post(e) {
@@ -45,14 +45,14 @@ async function send_post(e) {
   }
 }
 
-async function load_posts(postsType) {
+async function load_page(postsType) {
   document.querySelector("#new-post").style.display = "none";
   document.querySelector("#posts-view").style.display = "block";
   if (postsType == "all") {
     document.querySelector("#new-post").style.display = "block";
     try {
       //query for all posts
-      const res = await fetch(`load_posts/${postsType}`)
+      const res = await fetch(`load_page/${postsType}`)
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`)
       }
