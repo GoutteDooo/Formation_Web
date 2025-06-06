@@ -97,8 +97,12 @@ async function load_page(pageType) {
   }
 
   /* query for all posts */
+  load_posts(pageType)
+}
+
+const load_posts = async (pageType, page = 1) => {
   try {
-    const res = await fetch(`load_posts/${pageType}`)
+    const res = await fetch(`load_posts/${pageType}?page=${page}`)
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`)
     }
@@ -145,6 +149,8 @@ function display_posts(posts) {
     postElement.appendChild(timeElement);
     postElement.appendChild(likeCounterElement);
     view.appendChild(postElement);
+
+    //TODO: add buttons or links for navigation
   }
 }
 

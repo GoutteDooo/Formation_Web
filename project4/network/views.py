@@ -93,7 +93,7 @@ def new_post(request):
 def load_posts(request, posts_type):
     if posts_type == "all":
         posts = Post.objects.all()
-        
+
 
     elif posts_type == "following":
         # displays all posts from the user's following
@@ -121,6 +121,9 @@ def load_posts(request, posts_type):
 
     else:
         return JsonResponse({"error": "Invalid posts_type."}, status=400)
+
+    page_number = request.GET.get("page",1)
+    
 
     posts = posts.order_by("-timestamp")
     return JsonResponse([post.serialize() for post in posts], safe=False)
