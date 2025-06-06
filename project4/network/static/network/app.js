@@ -201,9 +201,19 @@ const edit_post = (post, edit=true) => {
     editBtnClone.textContent = "Editer";
     editBtnClone.onclick = () => edit_post(post);
     const textArea = document.querySelector(".post-edit__text");
-    textArea.style.display = "none";
+    const registeredText = textArea.value;
+    textArea.remove();
     const content = post.querySelector(".post-text");
     content.style.display = "block";
+
+    const postId = post.id;
+    
+    fetch(`edit_post/${postId}`, {
+      method:"POST",
+      body: {
+        registeredText
+      }
+    })
     
   }
 
