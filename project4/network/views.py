@@ -221,3 +221,6 @@ def follow(request, profile_id):
         "error":"Server error."
     }, status=500)
 
+@require_POST
+def edit_post(request, post_id):
+    print("editing post", post_id)

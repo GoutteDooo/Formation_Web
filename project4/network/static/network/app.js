@@ -206,15 +206,23 @@ const edit_post = (post, edit=true) => {
     const content = post.querySelector(".post-text");
     content.style.display = "block";
 
-    const postId = post.id;
-    
+    const postId = post.id.split("-")[1];
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
     fetch(`edit_post/${postId}`, {
       method:"POST",
+      headers: { "X-CSRFToken": csrfToken },
       body: {
         registeredText
       }
     })
-    
+    .then((r) => r.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.error("error when editing post: ", err);
+    })
   }
 
 }
