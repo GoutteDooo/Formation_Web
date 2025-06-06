@@ -151,16 +151,18 @@ function generate_posts(pageType, posts_data) {
     textElement.classList.add("post-text");
     textElement.textContent = post.content;
 
+    bottomElements.classList.add("post-bottom");
     timeElement.classList.add("post-time");
     timeElement.textContent = post.timestamp;
-
+    
     likeCounterElement.classList.add("post-likes");
     likeCounterElement.textContent = post.likes + " likes";
+    bottomElements.appendChild(timeElement);
+    bottomElements.appendChild(likeCounterElement);
 
     postElement.appendChild(topElements);
     postElement.appendChild(textElement);
-    postElement.appendChild(timeElement);
-    postElement.appendChild(likeCounterElement);
+    postElement.appendChild(bottomElements);
     view.appendChild(postElement);
   }
 

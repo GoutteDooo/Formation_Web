@@ -90,8 +90,16 @@ textarea {
   color:darkgrey;
 }
 
-.post-time, .post-likes {
+.post-bottom {
+  width: 100%;
   position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.post-time, .post-likes {
   bottom: 10px;
 }
 
