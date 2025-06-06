@@ -160,9 +160,7 @@ function generate_posts(pageType, posts_data) {
     bottomElements.appendChild(timeElement);
     if (user_connected) {
       const likeButton = document.createElement("button");
-      console.log(posts_data);
-      
-      likeButton.textContent = `${posts_data.likes}`;
+      likeButton.textContent = `TODO`;
       likeButton.classList.add("post-like__button");
       bottomElements.appendChild(likeButton);
     }
