@@ -1,11 +1,10 @@
-let form;
-let user_connected;
+let form,user_connected,userId;
 document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector("#user")) user_connected = true;
   if (user_connected)
   {
     form = document.querySelector("#new-post__form");
-    const userId = document.querySelector("#user").dataset.userId; 
+    userId = document.querySelector("#user").dataset.userId; 
     document.querySelector("#user").addEventListener("click", () => load_page(`profile-${userId}`));
     document.querySelector("#following").addEventListener("click", () => load_page("following"));
     form.addEventListener("submit", (e) => {
@@ -83,6 +82,7 @@ async function load_page(pageType) {
       ${data.following_button == true ? `<button id="follow-btn">Unfollow</button>` : data.following_button == false ? `<button id="follow-btn">Follow</button>` : ""}
       <p>Your posts: </p>`;
 
+      profileView.style.display = "block";
       profileView.setAttribute("data-profile-id",data.profile_id);
 
       if (document.querySelector("#follow-btn")) {
@@ -106,14 +106,14 @@ const load_posts = async (pageType, page = 1) => {
       throw new Error(`Response status: ${res.status}`)
     }
     const data = await res.json();
-    display_posts(pageType, data);
+    generate_posts(pageType, data);
   }
   catch (err) {
     console.error("Unexpected error when fetching posts:",err);
   }
 }
 
-function display_posts(pageType, posts_data) {
+function generate_posts(pageType, posts_data) {
   const view = document.querySelector("#posts-view");
   view.innerHTML = "";
   console.log("posts:",posts_data);
