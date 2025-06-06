@@ -181,12 +181,12 @@ function generate_posts(pageType, posts_data) {
     window.scrollTo(0,0)
 }
 
-const edit_post = (post) => {
-  console.log(post);
-  const editButton = post.getElementByClassname(".post-edit"),
+const edit_post = (post, edit=true) => {
+  const editButton = post.querySelector(".post-edit"),
     editBtnClone = editButton.cloneNode(true);
-    console.dir(editButton);
+    editButton.parentNode.replaceChild(editBtnClone, editButton);
     editBtnClone.textContent = "Save";
+    editBtnClone.onclick = () => edit_post(post, false);
   const content = post.querySelector(".post-text");
   
 
