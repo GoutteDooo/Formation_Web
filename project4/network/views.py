@@ -122,8 +122,14 @@ def load_posts(request, posts_type):
     else:
         return JsonResponse({"error": "Invalid posts_type."}, status=400)
 
+    #Get page number from query params (?page=2)
     page_number = request.GET.get("page",1)
+
+    #Paginator with 10 posts per page
+    paginator = Paginator(post_list, 10)
+
     
+
 
     posts = posts.order_by("-timestamp")
     return JsonResponse([post.serialize() for post in posts], safe=False)
