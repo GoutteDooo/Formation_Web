@@ -67,6 +67,15 @@ textarea {
   padding: 10px;
 }
 
+.post-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-top button {
+  max-width: 75px;
+}
+
 .post-user {
   font-style: bold;
   font-size: 1.5rem;

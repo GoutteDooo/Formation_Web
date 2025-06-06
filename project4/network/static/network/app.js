@@ -134,9 +134,17 @@ function generate_posts(pageType, posts_data) {
     userElement.classList.add("post-user");
     userElement.textContent = post.user;
     userElement.addEventListener("click", () => load_page(`profile-${post.user_id}`));
-
+    
     topElements.classList.add("post-top");
     topElements.appendChild(userElement);
+    topElements.appendChild(userElement);
+
+    if (post.user_id == userId) {
+      const editButton = document.createElement("button");
+      editButton.textContent = "Editer";
+      editButton.onclick = () => edit_post();
+      topElements.appendChild(editButton);
+    }
 
     textElement.classList.add("post-text");
     textElement.textContent = post.content;
