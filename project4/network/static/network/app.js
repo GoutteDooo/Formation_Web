@@ -141,8 +141,9 @@ function generate_posts(pageType, posts_data) {
 
     if (post.user_id == userId) {
       const editButton = document.createElement("button");
+      editButton.classList.add("post-edit");
       editButton.textContent = "Editer";
-      editButton.onclick = () => edit_post();
+      editButton.onclick = () => edit_post(postElement);
       topElements.appendChild(editButton);
     }
 
@@ -178,6 +179,15 @@ function generate_posts(pageType, posts_data) {
     }
 
     window.scrollTo(0,0)
+}
+
+const edit_post = (post) => {
+  console.log(post);
+  const editButton = post.querySelector(".post-edit");
+  const content = post.querySelector(".post-text");
+  editButton.textContent = "Save";
+  content
+
 }
 
 const follow = async () => {
