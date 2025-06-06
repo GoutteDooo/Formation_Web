@@ -167,20 +167,11 @@ const follow = async () => {
     console.log(data);
     const followBtn = document.querySelector("#follow-btn")
     followBtn.textContent = data.toggle ? "Follow": "Unfollow";
-    followBtn.previousSibling.textContent = formatFollows(followBtn.previousSibling.textContent);
 
   })
   .catch(err => {
     console.error("erreur lors de la requête follow:",err);
   })
-}
-
-function formatFollows(text) {
-  //extract numbers of followers and following in text
-  const followers_count = text.split("");
-  const following_count = text.split("");
-  console.log("followers:",followers_count);
-  console.log("following:",following_count);
 }
 
 
