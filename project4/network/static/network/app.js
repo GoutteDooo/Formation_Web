@@ -55,7 +55,7 @@ async function load_page(pageType) {
     document.querySelector("#new-post").style.display = "none";
     document.querySelector("#profile-view").style.display = "none";
   }
-  document.querySelector("#posts-view").style.display = "block";
+  document.querySelector("#posts-view").style.display = "flex";
 
   if (pageType.startsWith("all") && user_connected) {
     document.querySelector("#new-post").style.display = "block";
@@ -76,7 +76,6 @@ async function load_page(pageType) {
       const data = await res.json()
       pageType = `profile-${data.profile_id}`;
       
-      profileView.style.display = "block";
       profileView.innerHTML = `
       <h1>${data.profile_name}</h1>
       Followers : ${data.followers_count}

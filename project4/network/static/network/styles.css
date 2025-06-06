@@ -46,6 +46,15 @@ textarea {
 
 #posts-view {
   color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#posts-view button {
+  width: 150px;
+  margin: 10px;
 }
 
 .post {
