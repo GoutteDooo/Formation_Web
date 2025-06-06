@@ -225,15 +225,26 @@ def follow(request, profile_id):
 @require_POST
 @login_required
 def edit_post(request, post_id):
+
+    if request.method != "PATCH":
+        return JsonResponse({"error":"PATCH request desired"}, status=405)
+
     #check if post is users one
     user_id = request.user.id
-    user_post_id = Post.objects.get(pk=post_id).user_id
+    try:
+        post = Post.objects.get(pk=post_id)
+    except Post.DoesNotExit:
+        return JsonResponse({"error":"Post not found"}, status=404)
+
+    user_post_id = post.user_id
     print("post:", user_post_id)
     if user_id != user_post_id:
         return JsonResponse({"error":"User post is not their"}, status=403)
     try:
         data = json.loads(request.body)
         registered_text = data.get("registeredText")
+
+        # edit content of post
 
         return JsonResponse({
             "message":"success!",
