@@ -223,4 +223,5 @@ def follow(request, profile_id):
 
 @require_POST
 def edit_post(request, post_id):
-    print("editing post", post_id)
+    print(request.body.get("registered_text"))
+    return JsonResponse({"message":"success!"})
