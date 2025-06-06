@@ -186,7 +186,8 @@ const edit_post = (post) => {
   const editButton = post.querySelector(".post-edit");
   const content = post.querySelector(".post-text");
   editButton.textContent = "Save";
-  content
+  content.tagName = "textarea";
+  console.dir(content)
 
 }
 
