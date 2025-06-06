@@ -223,5 +223,10 @@ def follow(request, profile_id):
 
 @require_POST
 def edit_post(request, post_id):
-    print(request.body.get("registered_text"))
+    try:
+        data = json.loads(request.body)
+        registered_text = data.get("registeredText")
+        print("text:",registered_text)
+    except: json.JSONDecodeError:
+        return JsonResponse({"error":"Invalid JSON"}, status=400)
     return JsonResponse({"message":"success!"})

@@ -212,9 +212,9 @@ const edit_post = (post, edit=true) => {
     fetch(`edit_post/${postId}`, {
       method:"POST",
       headers: { "X-CSRFToken": csrfToken },
-      body: {
+      body: JSON.stringify({
         registeredText
-      }
+      })
     })
     .then((r) => r.json())
     .then((data) => {
