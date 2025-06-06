@@ -120,6 +120,7 @@ function generate_posts(pageType, posts_data) {
   
   for (const post of posts_data.posts) {
     const postElement = document.createElement("div");
+    const topElements = document.createElement("div");
     const userElement = document.createElement("div");
     const textElement = document.createElement("p");
     const timeElement = document.createElement("div");
@@ -129,9 +130,13 @@ function generate_posts(pageType, posts_data) {
     postElement.id = `post-${post.id}`
     postElement.setAttribute("data-user-id", post.user_id);
     
+    
     userElement.classList.add("post-user");
     userElement.textContent = post.user;
     userElement.addEventListener("click", () => load_page(`profile-${post.user_id}`));
+
+    topElements.classList.add("post-top");
+    topElements.appendChild(userElement);
 
     textElement.classList.add("post-text");
     textElement.textContent = post.content;
@@ -142,7 +147,7 @@ function generate_posts(pageType, posts_data) {
     likeCounterElement.classList.add("post-likes");
     likeCounterElement.textContent = post.likes + " likes";
 
-    postElement.appendChild(userElement);
+    postElement.appendChild(topElements);
     postElement.appendChild(textElement);
     postElement.appendChild(timeElement);
     postElement.appendChild(likeCounterElement);
