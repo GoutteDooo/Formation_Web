@@ -93,6 +93,7 @@ def new_post(request):
 def load_posts(request, posts_type):
     if posts_type == "all":
         posts = Post.objects.all()
+        
 
     elif posts_type == "following":
         # displays all posts from the user's following

@@ -57,7 +57,7 @@ async function load_page(pageType) {
   }
   document.querySelector("#posts-view").style.display = "block";
 
-  if (pageType == "all" && user_connected) {
+  if (pageType.startsWith("all") && user_connected) {
     document.querySelector("#new-post").style.display = "block";
   }
 
