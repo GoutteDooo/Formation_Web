@@ -148,14 +148,23 @@ function display_posts(pageType, posts_data) {
     postElement.appendChild(timeElement);
     postElement.appendChild(likeCounterElement);
     view.appendChild(postElement);
+  }
 
     // Add buttons or links for navigation
     if (posts_data.has_previous) {
       const prev = document.createElement("button");
       prev.textContent = "previous";
-      prev.onclick = () => load_posts(pageType, data.current_page - 1)
+      prev.onclick = () => load_posts(pageType, posts_data.current_page - 1)
+      document.querySelector("#posts-view").append(prev);
     }
-  }
+
+    if (posts_data.has_next) {
+      const next = document.createElement("button");
+      next.textContent = "next";
+      next.onclick = () => load_posts(pageType, posts_data.current_page + 1)
+      document.querySelector("#posts-view").append(next);
+    }
+    window.scrollTo(0,0)
 }
 
 const follow = async () => {
