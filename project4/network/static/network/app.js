@@ -204,7 +204,7 @@ const edit_post = (post, edit=true) => {
     textArea.style.display = "none";
     const content = post.querySelector(".post-text");
     content.style.display = "block";
-
+    
   }
 
 }
