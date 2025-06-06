@@ -95,9 +95,9 @@ textarea {
 }
 
 .post-bottom {
+  position: relative;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   padding: 0 20px;
   box-sizing:border-box;
 }
@@ -112,12 +112,9 @@ textarea {
   font-size: 0.8rem;
 }
 
-.post-likes {
-  left: 15px;
-}
-
-.post-like__button {
-  background: red;
+.post-likes, .post-like__button {
+  position: absolute;
+  right: 0;
 }
 
 #profile-view {
