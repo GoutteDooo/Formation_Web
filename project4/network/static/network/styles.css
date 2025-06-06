@@ -92,11 +92,12 @@ textarea {
 
 .post-bottom {
   width: 100%;
-  position: absolute;
+  position: relative;
   bottom: 0;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  box-sizing:border-box;
 }
 
 .post-time, .post-likes {
