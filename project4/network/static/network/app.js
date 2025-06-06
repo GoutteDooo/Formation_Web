@@ -268,6 +268,7 @@ const follow = async () => {
 
 const like_post = (post) => {
   console.log(post);
+  fetch(`like_post/${post.id}`)
 }
 
 
