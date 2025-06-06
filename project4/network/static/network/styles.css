@@ -76,6 +76,10 @@ textarea {
   max-width: 75px;
 }
 
+.post-text {
+  width: 90%;
+}
+
 .post-user {
   font-style: bold;
   font-size: 1.5rem;

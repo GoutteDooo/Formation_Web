@@ -186,8 +186,14 @@ const edit_post = (post) => {
   const editButton = post.querySelector(".post-edit");
   const content = post.querySelector(".post-text");
   editButton.textContent = "Save";
-  content.tagName = "textarea";
-  console.dir(content)
+  editButton.
+
+  //replace content by textarea while editing
+  content.style.display = "none";
+  const textArea = document.createElement("textarea");
+  textArea.value = content.textContent; 
+  textArea.classList.add("post-text");
+  post.appendChild(textArea);
 
 }
 
