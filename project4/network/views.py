@@ -260,3 +260,6 @@ def edit_post(request, post_id):
 
     except json.JSONDecodeError:
         return JsonResponse({"error":"Invalid JSON"}, status=400)
+
+def like_post(request, post_id):
+    return JsonResponse({"message":"server response"})

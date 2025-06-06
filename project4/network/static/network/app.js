@@ -268,7 +268,26 @@ const follow = async () => {
 
 const like_post = (post) => {
   console.log(post);
-  fetch(`like_post/${post.id}`)
+  const csrftoken = getCookie("csrftoken");
+  fetch(`like_post/${post.id}`, {
+    method:"POST",
+    headers: {
+      "Content-Type":"applications/json",
+      "X-CSRFToken":csrftoken,
+    },
+    body:{
+      post_id:post.id
+    }
+  })
+  .then(r => r.json())
+  .then((data) => {
+    console.log(data);
+    
+  })
+  .catch(err => {
+    console.error("error when like:", err);
+    
+  })
 }
 
 
