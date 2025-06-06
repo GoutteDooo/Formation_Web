@@ -218,7 +218,7 @@ const edit_post = (post, edit=true) => {
     })
     .then((r) => r.json())
     .then((data) => {
-      console.log(data);
+      content.textContent = data.edited_text;
     })
     .catch((err) => {
       console.error("error when editing post: ", err);

@@ -229,10 +229,12 @@ def edit_post(request, post_id):
     user_id = request.user.id
     user_post_id = Post.objects.get(pk=post_id).user_id
     print("post:", user_post_id)
+    if user_id != user_post_id:
+        return JsonResponse({"error":"User post is not their"}, status=403)
     try:
         data = json.loads(request.body)
         registered_text = data.get("registeredText")
-        print("text:",registered_text)
+
         return JsonResponse({
             "message":"success!",
             "edited_text":registered_text
@@ -240,4 +242,3 @@ def edit_post(request, post_id):
 
     except json.JSONDecodeError:
         return JsonResponse({"error":"Invalid JSON"}, status=400)
-# <button class="post-edit">Editer</button>
