@@ -38,6 +38,12 @@ textarea {
   margin: 20px;
 }
 
+#if-u-want {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 2rem;
+}
+
 #posts-view {
   color: inherit;
 }

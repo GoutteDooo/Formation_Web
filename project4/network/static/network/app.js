@@ -1,6 +1,8 @@
 let form;
+let user_connected;
 document.addEventListener('DOMContentLoaded', () => {
-  if (document.querySelector("#user"))
+  if (document.querySelector("#user")) user_connected = true;
+  if (user_connected)
   {
     form = document.querySelector("#new-post__form");
     const userId = document.querySelector("#user").dataset.userId; 
@@ -49,11 +51,13 @@ async function send_post(e) {
 }
 
 async function load_page(pageType) {
-  document.querySelector("#new-post").style.display = "none";
-  document.querySelector("#profile-view").style.display = "none";
+  if (user_connected) {
+    document.querySelector("#new-post").style.display = "none";
+    document.querySelector("#profile-view").style.display = "none";
+  }
   document.querySelector("#posts-view").style.display = "block";
 
-  if (pageType == "all") {
+  if (pageType == "all" && user_connected) {
     document.querySelector("#new-post").style.display = "block";
   }
 
