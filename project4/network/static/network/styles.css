@@ -98,7 +98,7 @@ textarea {
   position: relative;
   width: 100%;
   display: flex;
-  padding: 0 20px;
+  padding: 0 10px 0 20px;
   box-sizing:border-box;
 }
 
@@ -115,6 +115,12 @@ textarea {
 .post-likes, .post-like__button {
   position: absolute;
   right: 0;
+}
+
+.post-like__button {
+  bottom: -10px;
+  right: 50px;
+  max-width: 70px;
 }
 
 #profile-view {
