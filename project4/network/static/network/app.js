@@ -150,7 +150,8 @@ function display_posts(posts) {
     postElement.appendChild(likeCounterElement);
     view.appendChild(postElement);
 
-    //TODO: add buttons or links for navigation
+    // Add buttons or links for navigation
+    
   }
 }
 
