@@ -222,34 +222,41 @@ def follow(request, profile_id):
         "error":"Server error."
     }, status=500)
 
-@require_POST
+@csrf_exempt
 @login_required
 def edit_post(request, post_id):
 
     if request.method != "PATCH":
         return JsonResponse({"error":"PATCH request desired"}, status=405)
 
-    #check if post is users one
-    user_id = request.user.id
     try:
         post = Post.objects.get(pk=post_id)
     except Post.DoesNotExit:
         return JsonResponse({"error":"Post not found"}, status=404)
 
+    #check if post is users one
+    user_id = request.user.id
     user_post_id = post.user_id
-    print("post:", user_post_id)
+    
     if user_id != user_post_id:
-        return JsonResponse({"error":"User post is not their"}, status=403)
+        return JsonResponse({"error":"User does not own this post"}, status=403)
+
     try:
         data = json.loads(request.body)
         registered_text = data.get("registeredText")
 
-        # edit content of post
+        if registered_text is not None:
+            # edit content of post
+            post.content = registered_text
+            post.save()
 
-        return JsonResponse({
-            "message":"success!",
-            "edited_text":registered_text
-            })
+            return JsonResponse({
+                "message":"Post updated successfully!",
+                "edited_text":post.content
+                })
+
+        else:
+            return JsonResponse({"error":"RegisteredText is missing"}, status=400)
 
     except json.JSONDecodeError:
         return JsonResponse({"error":"Invalid JSON"}, status=400)

@@ -210,7 +210,7 @@ const edit_post = (post, edit=true) => {
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
     fetch(`edit_post/${postId}`, {
-      method:"POST",
+      method:"PATCH",
       headers: { "X-CSRFToken": csrfToken },
       body: JSON.stringify({
         registeredText
