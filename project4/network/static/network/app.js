@@ -162,6 +162,7 @@ function generate_posts(pageType, posts_data) {
       const likeButton = document.createElement("button");
       likeButton.textContent = `TODO`;
       likeButton.classList.add("post-like__button");
+      likeButton.onclick = () => like_post(post);
       bottomElements.appendChild(likeButton);
     }
     bottomElements.appendChild(likeCounterElement);
@@ -263,6 +264,10 @@ const follow = async () => {
   .catch(err => {
     console.error("erreur lors de la requête follow:",err);
   })
+}
+
+const like_post = (post) => {
+  console.log(post);
 }
 
 
