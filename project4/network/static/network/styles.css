@@ -116,6 +116,10 @@ textarea {
   left: 15px;
 }
 
+.post-like__button {
+  background: red;
+}
+
 #profile-view {
   display: flex;
   flex-direction: column;

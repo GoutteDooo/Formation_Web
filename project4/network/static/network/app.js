@@ -158,6 +158,12 @@ function generate_posts(pageType, posts_data) {
     likeCounterElement.classList.add("post-likes");
     likeCounterElement.textContent = post.likes + " likes";
     bottomElements.appendChild(timeElement);
+    if (user_connected) {
+      const likeButton = document.createElement("button");
+      likeButton.textContent = "Like";
+      likeButton.classList.add("post-like__button");
+      bottomElements.appendChild(likeButton);
+    }
     bottomElements.appendChild(likeCounterElement);
 
     postElement.appendChild(topElements);
