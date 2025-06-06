@@ -240,3 +240,4 @@ def edit_post(request, post_id):
 
     except json.JSONDecodeError:
         return JsonResponse({"error":"Invalid JSON"}, status=400)
+# <button class="post-edit">Editer</button>
