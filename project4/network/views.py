@@ -225,6 +225,10 @@ def follow(request, profile_id):
 @require_POST
 @login_required
 def edit_post(request, post_id):
+    #check if post is users one
+    user_id = request.user.id
+    user_post_id = Post.objects.get(pk=post_id).user_id
+    print("post:", user_post_id)
     try:
         data = json.loads(request.body)
         registered_text = data.get("registeredText")
