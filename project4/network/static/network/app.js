@@ -106,21 +106,20 @@ const load_posts = async (pageType, page = 1) => {
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`)
     }
-    const posts = await res.json();
-    
-    display_posts(posts);
+    const data = await res.json();
+    display_posts(pageType, data);
   }
   catch (err) {
     console.error("Unexpected error when fetching posts:",err);
   }
 }
 
-function display_posts(posts) {
+function display_posts(pageType, posts_data) {
   const view = document.querySelector("#posts-view");
   view.innerHTML = "";
-  console.log("posts:",posts);
+  console.log("posts:",posts_data);
   
-  for (const post of posts) {
+  for (const post of posts_data.posts) {
     const postElement = document.createElement("div");
     const userElement = document.createElement("div");
     const textElement = document.createElement("p");
@@ -151,7 +150,11 @@ function display_posts(posts) {
     view.appendChild(postElement);
 
     // Add buttons or links for navigation
-    
+    if (posts_data.has_previous) {
+      const prev = document.createElement("button");
+      prev.textContent = "previous";
+      prev.onclick = () => load_posts(pageType, data.current_page - 1)
+    }
   }
 }
 
