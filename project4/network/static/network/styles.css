@@ -65,6 +65,8 @@ textarea {
   border-radius: 15px;
   margin: 15px auto;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .post-top {
@@ -92,8 +94,6 @@ textarea {
 
 .post-bottom {
   width: 100%;
-  position: relative;
-  bottom: 0;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
