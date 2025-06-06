@@ -183,10 +183,12 @@ function generate_posts(pageType, posts_data) {
 
 const edit_post = (post) => {
   console.log(post);
-  const editButton = post.querySelector(".post-edit");
+  const editButton = post.querySelector(".post-edit"),
+    editBtnClone = editButton.cloneNode(true);
+    editButton.parentNode
+    editBtnClone.textContent = "Save";
   const content = post.querySelector(".post-text");
-  editButton.textContent = "Save";
-  editButton.
+  
 
   //replace content by textarea while editing
   content.style.display = "none";
