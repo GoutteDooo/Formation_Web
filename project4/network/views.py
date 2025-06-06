@@ -226,7 +226,6 @@ def follow(request, profile_id):
 @csrf_exempt
 @login_required
 def edit_post(request, post_id):
-
     if request.method != "PATCH":
         return JsonResponse({"error":"PATCH request desired"}, status=405)
 

@@ -123,6 +123,7 @@ function generate_posts(pageType, posts_data) {
     const topElements = document.createElement("div");
     const userElement = document.createElement("div");
     const textElement = document.createElement("p");
+    const bottomElements = document.createElement("div");
     const timeElement = document.createElement("div");
     const likeCounterElement = document.createElement("div");
     
