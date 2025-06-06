@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 
 from .models import User, Post, FollowModel
 from .forms import PostForm
+import json
 
 
 def index(request):
@@ -222,11 +223,16 @@ def follow(request, profile_id):
     }, status=500)
 
 @require_POST
+@login_required
 def edit_post(request, post_id):
     try:
         data = json.loads(request.body)
         registered_text = data.get("registeredText")
         print("text:",registered_text)
-    except: json.JSONDecodeError:
+        return JsonResponse({
+            "message":"success!",
+            "edited_text":registered_text
+            })
+
+    except json.JSONDecodeError:
         return JsonResponse({"error":"Invalid JSON"}, status=400)
-    return JsonResponse({"message":"success!"})
