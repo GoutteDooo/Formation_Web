@@ -183,19 +183,29 @@ function generate_posts(pageType, posts_data) {
 
 const edit_post = (post, edit=true) => {
   const editButton = post.querySelector(".post-edit"),
-    editBtnClone = editButton.cloneNode(true);
-    editButton.parentNode.replaceChild(editBtnClone, editButton);
+  editBtnClone = editButton.cloneNode(true);
+  editButton.parentNode.replaceChild(editBtnClone, editButton);
+  if (edit) {
     editBtnClone.textContent = "Save";
     editBtnClone.onclick = () => edit_post(post, false);
-  const content = post.querySelector(".post-text");
-  
+    
+    //replace content by textarea while editing
+    const content = post.querySelector(".post-text");
+    content.style.display = "none";
+    const textArea = document.createElement("textarea");
+    textArea.value = content.textContent; 
+    textArea.classList.add("post-edit__text");
+    post.appendChild(textArea);
 
-  //replace content by textarea while editing
-  content.style.display = "none";
-  const textArea = document.createElement("textarea");
-  textArea.value = content.textContent; 
-  textArea.classList.add("post-text");
-  post.appendChild(textArea);
+  } else {
+    editBtnClone.textContent = "Editer";
+    editBtnClone.onclick = () => edit_post(post);
+    const textArea = document.querySelector(".post-edit__text");
+    textArea.style.display = "none";
+    const content = post.querySelector(".post-text");
+    content.style.display = "block";
+
+  }
 
 }
 
