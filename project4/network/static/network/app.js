@@ -167,6 +167,7 @@ const follow = async () => {
     console.log(data);
     const followBtn = document.querySelector("#follow-btn")
     followBtn.textContent = data.toggle ? "Follow": "Unfollow";
+    load_page(`profile-${profileId}`)
 
   })
   .catch(err => {
