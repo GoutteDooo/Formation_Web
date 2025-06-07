@@ -116,6 +116,8 @@ const load_posts = async (pageType, page = 1) => {
 function generate_posts(pageType, posts_data) {
   const view = document.querySelector("#posts-view");
   view.innerHTML = "";
+  console.log(posts_data);
+  
   
   for (const post of posts_data.posts) {
     const postElement = document.createElement("div");
@@ -160,7 +162,7 @@ function generate_posts(pageType, posts_data) {
     if (user_connected) {
       const likeButton = document.createElement("button");
       //vérifier si le post a déjà été liké par l'utilisateur ou non
-      
+
       likeButton.textContent = `TODO`;
       console.log(post);
       
