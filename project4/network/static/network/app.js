@@ -157,15 +157,13 @@ function generate_posts(pageType, posts_data) {
     timeElement.textContent = post.timestamp;
     
     likeCounterElement.classList.add("post-likes");
-    likeCounterElement.textContent = post.likes + " likes";
+    likeCounterElement.textContent = post.likes > 1 ? post.likes + " likes" : post.likes + " like";
     bottomElements.appendChild(timeElement);
     if (user_connected) {
       const likeButton = document.createElement("button");
       //vérifier si le post a déjà été liké par l'utilisateur ou non
 
-      likeButton.textContent = `TODO`;
-      console.log(post);
-      
+      likeButton.textContent = post.is_liked ? "Unlike" : "Like";
       likeButton.classList.add("post-like__button");
       likeButton.onclick = (e) => like_post(e,post);
       bottomElements.appendChild(likeButton);
