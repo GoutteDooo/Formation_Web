@@ -269,30 +269,39 @@ def like_post(request, post_id):
         post = Post.objects.get(id=post_id)
     except Post.DoesNotExist:
         return JsonResponse({"error":"Post not found."}, status=404)
-        
+
     # check in the Like table and see if post is already liked
-    already_liked = PostLikes.objects.filter(
+    existing_like = PostLikes.objects.filter(
         post = post_id,
         user = request.user
     )
     # if it is not the case, add a new row
     # and send appropriate response
-    if not already_liked.exists():
+    if not existing_like.exists():
 
         PostLikes.objects.create(
             post_id = post_id,
             user = request.user
         )
+        post.like_counter = F('like_counter') + 1
+        post.save(update_fields=['like_counter'])
+        post.refresh_from_db(fields=['like_counter'])
 
         return JsonResponse({
             "message":f"Post {post_id} liked",
-            "is_liked":True
+            "is_liked":True,
+            "like_count":post.like_counter
             })
     # else, post is already like, so remove the row
     # and send the appropriate response
     else:
-        already_liked.delete()
+        existing_like.delete()
+        post.like_counter = F('like_counter') - 1
+        post.save(update_fields=['like_counter'])
+        post.refresh_from_db(fields=['like_counter'])
+
         return JsonResponse({
             "message":f"Post {post_id} unliked",
-            "is_liked":False
+            "is_liked":False,
+            "like_count":post.like_counter
             })
