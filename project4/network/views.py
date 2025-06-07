@@ -271,6 +271,7 @@ def like_post(request, post_id):
     # if it is not the case, add a new row
     # and send appropriate response
     if not already_liked.exists():
+
         PostLikes.objects.create(
             post_id = post_id,
             user = request.user
