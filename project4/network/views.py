@@ -269,8 +269,23 @@ def like_post(request, post_id):
     )
     # if it is not the case, add a new row
     # and send appropriate response
-    if like is not None:
+    if like is None:
+        post_like = PostLikes(
+            user = request.user,
+            post = post_id
+        )
+        post_like.save()
 
+        return JsonResponse({
+            "message":f"Post {post_id} liked",
+            "is_liked":True
+            })
     # else, post is already like, so remove the row
     # and send the appropriate response
+    else:
+        like.delete()
+        return JsonResponse({
+            "message":f"Post {post_id} unliked",
+            "is_liked":False
+            })
     return JsonResponse({"message":"server response"})
