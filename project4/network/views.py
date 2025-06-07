@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 
-from .models import User, Post, FollowModel
+from .models import User, Post, FollowModel, PostLikes
 from .forms import PostForm
 import json
 
@@ -270,7 +270,7 @@ def like_post(request, post_id):
     # if it is not the case, add a new row
     # and send appropriate response
     if like is not None:
-        
+
     # else, post is already like, so remove the row
     # and send the appropriate response
     return JsonResponse({"message":"server response"})
