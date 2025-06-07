@@ -136,19 +136,23 @@ def load_posts(request, posts_type):
     #Get the specific page
     page_obj = paginator.get_page(page_number)
 
-    user_likes = set(
-        PostLikes.objects.filter(
-            user=request.user, 
-            post__in=page_obj.object_list
-        ).values_list("post_id",flat=True)
-    )
-    # create all posts
     posts = []
 
-    for post in page_obj:
-        data = post.serialize()
-        data["is_liked"] = post.id in user_likes
-        posts.append(data)
+    if request.user.is_authenticated:
+        user_likes = set(
+            PostLikes.objects.filter(
+                user=request.user, 
+                post__in=page_obj.object_list
+            ).values_list("post_id",flat=True)
+        )
+
+        for post in page_obj:
+            data = post.serialize()
+            data["is_liked"] = post.id in user_likes
+            posts.append(data)
+    
+    else:
+        posts = [post.serialize() for post in page_obj]
     
     return JsonResponse(
         {
