@@ -160,7 +160,7 @@ function generate_posts(pageType, posts_data) {
     if (user_connected) {
       const likeButton = document.createElement("button");
       likeButton.textContent = `TODO`;
-      console.log(post);
+      // console.log(post);
       
       likeButton.classList.add("post-like__button");
       likeButton.onclick = (e) => like_post(e,post);
@@ -282,8 +282,9 @@ const like_post = (e, post) => {
   .then(r => r.json())
   .then((data) => {
     console.log(data);
-    
+    console.log(e)
     e.srcElement.textContent = data.is_liked ? "Unlike" : "Like";
+    e.srcElement.nextSibling.textContent = `${data.like_count}` + (data.like_count > 1) ? "likes" : "like";
   })
   .catch(err => {
     console.error("error when like:", err);
