@@ -263,7 +263,7 @@ def edit_post(request, post_id):
 
 def like_post(request, post_id):
     # check in the Like table and see if post is already liked
-    like = Postlikes.objects.get(
+    like = PostLikes.objects.get(
         post = post_id,
         user = request.user
     )
@@ -288,4 +288,4 @@ def like_post(request, post_id):
             "message":f"Post {post_id} unliked",
             "is_liked":False
             })
-    return JsonResponse({"message":"server response"})
+    return JsonResponse({"error":"server error"}, status=400)
