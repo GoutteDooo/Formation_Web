@@ -142,7 +142,9 @@ def load_posts(request, posts_type):
             post__in=page_obj.object_list
         ).values_list("post_id",flat=True)
     )
-    print(user_likes)
+    posts = [post.serialize() for post in page_obj]
+    print(posts[0])
+    print()
 
     return JsonResponse(
         {
