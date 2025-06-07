@@ -281,6 +281,8 @@ const like_post = (e, post) => {
   })
   .then(r => r.json())
   .then((data) => {
+    console.log(data);
+    
     e.srcElement.textContent = data.is_liked ? "Unlike" : "Like";
   })
   .catch(err => {

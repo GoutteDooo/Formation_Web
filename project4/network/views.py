@@ -284,25 +284,25 @@ def like_post(request, post_id):
             post_id = post_id,
             user = request.user
         )
-        post.like_counter = F('like_counter') + 1
-        post.save(update_fields=['like_counter'])
-        post.refresh_from_db(fields=['like_counter'])
+        post.likes = F('likes') + 1
+        post.save(update_fields=['likes'])
+        post.refresh_from_db(fields=['likes'])
 
         return JsonResponse({
             "message":f"Post {post_id} liked",
             "is_liked":True,
-            "like_count":post.like_counter
+            "like_count":post.likes
             })
     # else, post is already like, so remove the row
     # and send the appropriate response
     else:
         existing_like.delete()
-        post.like_counter = F('like_counter') - 1
-        post.save(update_fields=['like_counter'])
-        post.refresh_from_db(fields=['like_counter'])
+        post.likes = F('likes') - 1
+        post.save(update_fields=['likes'])
+        post.refresh_from_db(fields=['likes'])
 
         return JsonResponse({
             "message":f"Post {post_id} unliked",
             "is_liked":False,
-            "like_count":post.like_counter
+            "like_count":post.likes
             })
