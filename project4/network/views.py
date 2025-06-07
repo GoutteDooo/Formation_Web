@@ -264,18 +264,17 @@ def edit_post(request, post_id):
 @require_POST
 def like_post(request, post_id):
     # check in the Like table and see if post is already liked
-    like = PostLikes.objects.filter(
+    already_liked = PostLikes.objects.filter(
         post = post_id,
         user = request.user
-    ).exists()
+    )
     # if it is not the case, add a new row
     # and send appropriate response
-    if like is None:
-        post_like = PostLikes(
-            user = request.user,
-            post = post_id
+    if not already_liked.exists():
+        PostLikes.objects.create(
+            post_id = post_id,
+            user = request.user
         )
-        post_like.save()
 
         return JsonResponse({
             "message":f"Post {post_id} liked",
@@ -284,9 +283,10 @@ def like_post(request, post_id):
     # else, post is already like, so remove the row
     # and send the appropriate response
     else:
-        like.delete()
+        already_liked.delete()
         return JsonResponse({
             "message":f"Post {post_id} unliked",
             "is_liked":False
             })
+    
     return JsonResponse({"error":"server error"}, status=400)
