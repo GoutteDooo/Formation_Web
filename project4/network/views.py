@@ -264,14 +264,10 @@ def edit_post(request, post_id):
 @require_POST
 def like_post(request, post_id):
     # check in the Like table and see if post is already liked
-    like = None
-    try:
-        like = PostLikes.objects.get(
-            post = post_id,
-            user = request.user
-        )
-    except PostLikes.DoesNotExist:
-        print("does not exist")
+    like = PostLikes.objects.filter(
+        post = post_id,
+        user = request.user
+    ).exists()
     # if it is not the case, add a new row
     # and send appropriate response
     if like is None:
