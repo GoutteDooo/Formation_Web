@@ -261,12 +261,17 @@ def edit_post(request, post_id):
     except json.JSONDecodeError:
         return JsonResponse({"error":"Invalid JSON"}, status=400)
 
+@require_POST
 def like_post(request, post_id):
     # check in the Like table and see if post is already liked
-    like = PostLikes.objects.get(
-        post = post_id,
-        user = request.user
-    )
+    like = None
+    try:
+        like = PostLikes.objects.get(
+            post = post_id,
+            user = request.user
+        )
+    except PostLikes.DoesNotExist:
+        print("does not exist")
     # if it is not the case, add a new row
     # and send appropriate response
     if like is None:
