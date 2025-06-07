@@ -116,7 +116,6 @@ const load_posts = async (pageType, page = 1) => {
 function generate_posts(pageType, posts_data) {
   const view = document.querySelector("#posts-view");
   view.innerHTML = "";
-  console.log("posts:",posts_data);
   
   for (const post of posts_data.posts) {
     const postElement = document.createElement("div");
@@ -161,8 +160,10 @@ function generate_posts(pageType, posts_data) {
     if (user_connected) {
       const likeButton = document.createElement("button");
       likeButton.textContent = `TODO`;
+      console.log(post);
+      
       likeButton.classList.add("post-like__button");
-      likeButton.onclick = () => like_post(post);
+      likeButton.onclick = (e) => like_post(e,post);
       bottomElements.appendChild(likeButton);
     }
     bottomElements.appendChild(likeCounterElement);
@@ -266,8 +267,7 @@ const follow = async () => {
   })
 }
 
-const like_post = (post) => {
-  console.log("post:",post);
+const like_post = (e, post) => {
   const csrftoken = getCookie("csrftoken");
   fetch(`like_post/${post.id}`, {
     method:"POST",
@@ -281,9 +281,7 @@ const like_post = (post) => {
   })
   .then(r => r.json())
   .then((data) => {
-    console.log(data);
-    document.querySelector(`#post-${post.id}`).style.color = "blue";
-    
+    e.srcElement.textContent = data.is_liked ? "Unlike" : "Like";
   })
   .catch(err => {
     console.error("error when like:", err);
