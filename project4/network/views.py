@@ -142,13 +142,17 @@ def load_posts(request, posts_type):
             post__in=page_obj.object_list
         ).values_list("post_id",flat=True)
     )
-    posts = [post.serialize() for post in page_obj]
-    print(posts[0])
-    print()
+    # create all posts
+    posts = []
 
+    for post in page_obj:
+        data = post.serialize()
+        data["is_liked"] = post.id in user_likes
+        posts.append(data)
+    
     return JsonResponse(
         {
-            "posts": [post.serialize() for post in page_obj],
+            "posts": posts,
             "has_next": page_obj.has_next(),
             "has_previous": page_obj.has_previous(),
             "num_pages": paginator.num_pages,
