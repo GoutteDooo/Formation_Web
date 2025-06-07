@@ -264,6 +264,12 @@ def edit_post(request, post_id):
 @require_POST
 @login_required
 def like_post(request, post_id):
+
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return JsonResponse({"error":"Post not found."}, status=404)
+        
     # check in the Like table and see if post is already liked
     already_liked = PostLikes.objects.filter(
         post = post_id,
