@@ -136,15 +136,13 @@ def load_posts(request, posts_type):
     #Get the specific page
     page_obj = paginator.get_page(page_number)
 
-    # Get for user if they already liked the posts
-    for (post in page_obj):
-        try:
-            already_liked = PostLikes.objects.get(
-            post_id = post.id
-            user = request.user
-            )
-        except PostLikes.DoesNotExist:
-            return JsonResponse({"error":f'post {post.id} not found'}, status = 404)
+    user_likes = set(
+        PostLikes.objects.filter(
+            user=request.user, 
+            post__in=page_obj.object_list
+        ).values_list("post_id",flat=True)
+    )
+    print(user_likes)
 
     return JsonResponse(
         {
