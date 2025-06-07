@@ -267,7 +267,7 @@ const follow = async () => {
 }
 
 const like_post = (post) => {
-  console.log(post);
+  console.log("post:",post);
   const csrftoken = getCookie("csrftoken");
   fetch(`like_post/${post.id}`, {
     method:"POST",
@@ -282,11 +282,11 @@ const like_post = (post) => {
   .then(r => r.json())
   .then((data) => {
     console.log(data);
+    document.querySelector(`#post-${post.id}`).style.color = "blue";
     
   })
   .catch(err => {
     console.error("error when like:", err);
-    
   })
 }
 
