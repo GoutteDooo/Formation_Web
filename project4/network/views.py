@@ -262,4 +262,10 @@ def edit_post(request, post_id):
         return JsonResponse({"error":"Invalid JSON"}, status=400)
 
 def like_post(request, post_id):
+    # check in the Like table and see if post is already liked
+    Postlikes.objects.get()
+    # if it is the case, remove the row
+    # and send the appropriate response
+    # else, add a new row
+    # and send appropriate response
     return JsonResponse({"message":"server response"})
