@@ -262,6 +262,7 @@ def edit_post(request, post_id):
         return JsonResponse({"error":"Invalid JSON"}, status=400)
 
 @require_POST
+@login_required
 def like_post(request, post_id):
     # check in the Like table and see if post is already liked
     already_liked = PostLikes.objects.filter(
@@ -289,5 +290,3 @@ def like_post(request, post_id):
             "message":f"Post {post_id} unliked",
             "is_liked":False
             })
-    
-    return JsonResponse({"error":"server error"}, status=400)
